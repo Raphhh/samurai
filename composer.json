@@ -1,0 +1,36 @@
+{
+    "name": "raphhh/samurai",
+    "description": "PHP bootstrap - creates for you all the files you need to start a new project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raphaël Lefebvre",
+            "email": "raphael@raphaellefebvre.be"
+        }
+    ],
+    "keywords": [
+        "bootstrap"
+    ],
+    "homepage": "https://github.com/Raphhh/samurai",
+    "autoload": {
+        "psr-4": {
+            "Samurai\\": [
+                "src/",
+                "tests/"
+            ]
+        }
+    },
+    "require": {
+        "php": ">=5.4",
+        "symfony/console": "~2.6",
+        "raphhh/trex-cli": "@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
+    "bin": [
+        "bin/samurai",
+        "bin/samurai.php"
+    ]
+}
