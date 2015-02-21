@@ -28,7 +28,8 @@
         "pimple/pimple": "~3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "@stable"
+        "phpunit/phpunit": "@stable",
+        "symfony/event-dispatcher": "~2.6"
     },
     "bin": [
         "bin/samurai",
