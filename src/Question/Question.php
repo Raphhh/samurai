@@ -1,9 +1,7 @@
 <?php
 namespace Samurai\Question;
 
-use Pimple\Container;
-use Samurai\Service\ServiceWorker;
-use Samurai\Task\ITask;
+use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question as SimpleQuestion;
@@ -13,18 +11,8 @@ use Symfony\Component\Console\Question\Question as SimpleQuestion;
  * @package Samurai\Question
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-abstract class Question implements ITask
+abstract class Question extends Task
 {
-    use ServiceWorker;
-
-    /**
-     * @param Container $services
-     */
-    public function __construct(Container $services)
-    {
-        $this->setServices($services);
-    }
-
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
