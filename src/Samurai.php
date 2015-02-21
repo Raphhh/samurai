@@ -2,8 +2,11 @@
 namespace Samurai;
 
 use Pimple\Container;
+use Samurai\Command\Generate;
 use Samurai\Composer\Composer;
 use Samurai\Composer\Project;
+use Samurai\Composer\Task\Factory\ProjectCreationTaskFactory;
+use Samurai\Task\Planner;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -97,7 +100,9 @@ class Samurai
      */
     private function initCommands()
     {
-       //todo
+        $this->getApplication()->add(new Generate(new Planner([
+            ProjectCreationTaskFactory::create($this->getServices())
+        ])));
     }
 
     /**
