@@ -2,6 +2,8 @@
 namespace Samurai\Composer\Task\Factory;
 
 use Pimple\Container;
+use Samurai\Composer\Task\ConfigSetting;
+use Samurai\Composer\Task\ProjectDownload;
 use Samurai\Task\ITask;
 use Samurai\Task\Planner;
 
@@ -20,6 +22,8 @@ class ProjectCreationTaskFactory
     {
         return new Planner([
             ProjectInitializationTaskFactory::create($services),
+            new ProjectDownload($services),
+            new ConfigSetting($services),
         ]);
     }
 }

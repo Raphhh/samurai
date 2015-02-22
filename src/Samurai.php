@@ -38,14 +38,16 @@ class Samurai
 
     /**
      * @param Application $application
+     * @param Container $services
      * @param Executor $executor
      */
-    public function __construct(Application $application, Executor $executor = null)
+    public function __construct(Application $application, Container $services = null, Executor $executor = null)
     {
         $application->setName('Samurai console');
         $application->setVersion('0.0.0');
 
         $this->setApplication($application);
+        $this->setServices($services);
         $this->setExecutor($executor ? : new Executor());
 
         $this->initCommands();
@@ -90,7 +92,7 @@ class Samurai
      *
      * @param Container $services
      */
-    public function setServices(Container $services)
+    public function setServices(Container $services = null)
     {
         $this->services = $services;
     }
