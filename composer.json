@@ -25,7 +25,8 @@
         "php": ">=5.4",
         "symfony/console": "~2.6",
         "raphhh/trex-cli": "@dev",
-        "pimple/pimple": "~3.0"
+        "pimple/pimple": "~3.0",
+        "raphhh/puppy-config": "@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable",

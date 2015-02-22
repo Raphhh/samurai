@@ -2,6 +2,7 @@
 namespace Samurai;
 
 use Pimple\Container;
+use Puppy\Config\Config;
 use Samurai\Command\Generate;
 use Samurai\Composer\Composer;
 use Samurai\Composer\Project;
@@ -153,6 +154,10 @@ class Samurai
 
         $services['question'] = function () use ($application) {
             return $application->getHelperSet()->get('question');
+        };
+
+        $services['config'] = function () {
+            return new Config('', __DIR__ . '/../config');
         };
 
         return $services;
