@@ -32,7 +32,6 @@
         "symfony/event-dispatcher": "~2.6"
     },
     "bin": [
-        "bin/samurai",
-        "bin/samurai.php"
+        "samurai"
     ]
 }
