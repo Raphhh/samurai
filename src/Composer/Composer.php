@@ -40,8 +40,8 @@ class Composer
     public function __construct(Project $project, Executor $executor)
     {
         $this->setProject($project);
-        $this->setComposerConfigManager(new ComposerConfigManager());
-        $this->setComposerConfigMerger(new ComposerConfigMerger());
+        $this->setComposerConfigManager(new ComposerConfigManager()); //todo DI => use pimple
+        $this->setComposerConfigMerger(new ComposerConfigMerger()); //todo DI => use pimple
         $this->setExecutor($executor);
     }
 
