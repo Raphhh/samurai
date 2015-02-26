@@ -3,6 +3,7 @@ namespace Samurai\Composer;
 
 use InvalidArgumentException;
 use Samurai\Composer\Config\ComposerConfigManager;
+use Samurai\Composer\Config\ComposerConfigMerger;
 use TRex\Cli\Executor;
 
 /**
@@ -23,6 +24,11 @@ class Composer
     private $composerConfigManager;
 
     /**
+     * @var ComposerConfigMerger
+     */
+    private $composerConfigMerger;
+
+    /**
      * @var Executor
      */
     private $executor;
@@ -35,6 +41,7 @@ class Composer
     {
         $this->setProject($project);
         $this->setComposerConfigManager(new ComposerConfigManager());
+        $this->setComposerConfigMerger(new ComposerConfigMerger());
         $this->setExecutor($executor);
     }
 
@@ -113,39 +120,10 @@ class Composer
             ));
         }
 
-        $config = array_merge($config, $this->getProject()->toConfig());
-        $config = $this->cleanConfig($config);
-
-        return $this->getComposerConfigManager()->set($this->getConfigPath(), $config);
-    }
-
-    /**
-     * @param $config
-     * @return array
-     */
-    private function cleanConfig($config)
-    {
-        if (array_key_exists('version', $config)) {
-            unset($config['version']);
-        }
-        if (array_key_exists('time', $config)) {
-            unset($config['time']);
-        }
-
-        $recursiveFilter = function($value, callable $filter){
-            if(is_array($value)){
-                $result = [];
-                foreach($value as $key => $subValue) {
-                    if($filter($value[$key], $filter)) {
-                        $result[$key] = $subValue;
-                    }
-                }
-                return $result;
-            }
-            return $value;
-        };
-
-        return $recursiveFilter($config, $recursiveFilter);
+        return $this->getComposerConfigManager()->set(
+            $this->getConfigPath(),
+            $this->getComposerConfigMerger()->merge($config, $this->getProject()->toConfig())
+        );
     }
 
     /**
@@ -200,6 +178,26 @@ class Composer
     public function setComposerConfigManager(ComposerConfigManager $composerConfigManager)
     {
         $this->composerConfigManager = $composerConfigManager;
+    }
+
+    /**
+     * Getter of $composerConfigMerger
+     *
+     * @return ComposerConfigMerger
+     */
+    public function getComposerConfigMerger()
+    {
+        return $this->composerConfigMerger;
+    }
+
+    /**
+     * Setter of $composerConfigMerger
+     *
+     * @param ComposerConfigMerger $composerConfigMerger
+     */
+    public function setComposerConfigMerger(ComposerConfigMerger $composerConfigMerger)
+    {
+        $this->composerConfigMerger = $composerConfigMerger;
     }
 
     /**
