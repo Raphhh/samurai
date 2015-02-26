@@ -2,6 +2,7 @@
 namespace Samurai\Composer;
 
 use InvalidArgumentException;
+use Samurai\Composer\Config\ComposerConfigManager;
 use TRex\Cli\Executor;
 
 /**
@@ -17,6 +18,11 @@ class Composer
     private $project;
 
     /**
+     * @var ComposerConfigManager
+     */
+    private $composerConfigManager;
+
+    /**
      * @var Executor
      */
     private $executor;
@@ -28,6 +34,7 @@ class Composer
     public function __construct(Project $project, Executor $executor)
     {
         $this->setProject($project);
+        $this->setComposerConfigManager(new ComposerConfigManager());
         $this->setExecutor($executor);
     }
 
@@ -82,10 +89,7 @@ class Composer
      */
     public function getConfig()
     {
-        if(is_readable($this->getConfigPath())) {
-            return json_decode(file_get_contents($this->getConfigPath()), true);
-        }
-        return null;
+        return $this->getComposerConfigManager()->get($this->getConfigPath());
     }
 
     /**
@@ -112,10 +116,7 @@ class Composer
         $config = array_merge($config, $this->getProject()->toConfig());
         $config = $this->cleanConfig($config);
 
-        return file_put_contents(
-            $this->getConfigPath(),
-            json_encode($config, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
-        );
+        return $this->getComposerConfigManager()->set($this->getConfigPath(), $config);
     }
 
     /**
@@ -179,6 +180,26 @@ class Composer
     private function setProject(Project $project)
     {
         $this->project = $project;
+    }
+
+    /**
+     * Getter of $composerConfigManager
+     *
+     * @return ComposerConfigManager
+     */
+    public function getComposerConfigManager()
+    {
+        return $this->composerConfigManager;
+    }
+
+    /**
+     * Setter of $composerConfigManager
+     *
+     * @param ComposerConfigManager $composerConfigManager
+     */
+    public function setComposerConfigManager(ComposerConfigManager $composerConfigManager)
+    {
+        $this->composerConfigManager = $composerConfigManager;
     }
 
     /**
