@@ -1,0 +1,20 @@
+[
+  {
+    "name": "lib",
+    "description": "Basic PHP library",
+    "bootstrap": "raphhh/php-lib-bootstrap",
+    "version": ""
+  },
+  {
+    "name": "puppy",
+    "description": "Puppy application",
+    "bootstrap": "raphhh/puppy",
+    "version": ""
+  },
+  {
+    "name": "symfony",
+    "description": "Symfony application",
+    "bootstrap": "symfony/framework-standard-edition",
+    "version": ""
+  }
+]
