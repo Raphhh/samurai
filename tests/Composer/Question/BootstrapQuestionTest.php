@@ -2,12 +2,17 @@
 namespace Samurai\Composer\Question;
 
 use Pimple\Container;
+use Puppy\Config\Config;
+use Samurai\Alias\AliasManager;
 use Samurai\Composer\Composer;
 use Samurai\Composer\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use TRex\Cli\Executor;
 
 /**
@@ -24,8 +29,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServices();
 
         $question = new BootstrapQuestion($services);
-        $this->assertFalse($question->execute($input, $output));
-        $this->assertSame('', $services['composer']->getproject()->getBootstrapName());
+        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame('raphhh/php-lib-bootstrap', $services['composer']->getproject()->getBootstrapName());
         $this->assertSame('', $services['composer']->getproject()->getBootstrapVersion());
     }
 
@@ -62,6 +67,24 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
         $services['composer'] = function () {
             return new Composer(new Project(), new Executor());
         };
+
+        $services['alias_manager'] = function () {
+            return new AliasManager(new Config('', __DIR__ . '/../../../config')); //todo
+        };
+
+        $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));
+
+        $questionHelper->expects($this->any())
+            ->method('ask')
+            ->will($this->returnCallback(function(InputInterface $input, OutputInterface $output, ChoiceQuestion $question){
+                $choices = $question->getChoices();
+                return current($choices);
+            }));
+
+        $services['question'] = function () use ($questionHelper){
+            return $questionHelper;
+        };
+
         return $services;
     }
 

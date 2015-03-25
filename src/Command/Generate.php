@@ -25,8 +25,7 @@ class Generate extends Command
             ->addArgument(
                 'bootstrap',
                 InputArgument::OPTIONAL,
-                'package name',
-                'raphhh/php-lib-bootstrap'
+                'package name'
             )
             ->addArgument(
                 'version',

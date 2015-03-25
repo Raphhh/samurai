@@ -2,10 +2,15 @@
 namespace Samurai\Command;
 
 use Pimple\Container;
+use Puppy\Config\Config;
+use Samurai\Alias\AliasManager;
 use Samurai\Composer\Project;
 use Samurai\Samurai;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\QuestionHelper;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Tester\CommandTester;
 
 class GenerateTest extends \PHPUnit_Framework_TestCase
@@ -25,6 +30,13 @@ class GenerateTest extends \PHPUnit_Framework_TestCase
         $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));
 
         $questionHelper->expects($this->at(0))
+            ->method('ask')
+            ->will($this->returnCallback(function(InputInterface $input, OutputInterface $output, ChoiceQuestion $question){
+                $choices = $question->getChoices();
+                return current($choices);
+            }));
+
+        $questionHelper->expects($this->at(1))
             ->method('ask')
             ->will($this->returnValue('vendor/package'));
 
@@ -130,6 +142,10 @@ class GenerateTest extends \PHPUnit_Framework_TestCase
         };
         $services['question'] = function () use ($questionHelper) {
             return $questionHelper;
+        };
+
+        $services['alias_manager'] = function () {
+            return new AliasManager(new Config('', __DIR__ . '/../../config')); //todo
         };
         return $services;
     }
