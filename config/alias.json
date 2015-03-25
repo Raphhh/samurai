@@ -12,12 +12,6 @@
     "version": ""
   },
   {
-    "name": "puppy",
-    "description": "Puppy application",
-    "bootstrap": "raphhh/puppy",
-    "version": ""
-  },
-  {
     "name": "symfony",
     "description": "Symfony application",
     "bootstrap": "symfony/framework-standard-edition",
@@ -27,6 +21,12 @@
     "name": "laravel",
     "description": "Laravel application",
     "bootstrap": "laravel/laravel",
+    "version": ""
+  },
+  {
+    "name": "cake",
+    "description": "CakePHP application",
+    "bootstrap": "cakephp/app",
     "version": ""
   },
   {
@@ -42,9 +42,9 @@
     "version": ""
   },
   {
-    "name": "cake",
-    "description": "CakePHP application",
-    "bootstrap": "cakephp/app",
+    "name": "puppy",
+    "description": "Puppy application",
+    "bootstrap": "raphhh/puppy",
     "version": ""
   }
 ]
