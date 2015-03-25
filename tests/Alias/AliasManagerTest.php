@@ -159,6 +159,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
             'app' => $this->provideAlias('app', 'Basic PHP web project','raphhh/php-app-bootstrap', ''),
             'puppy' => $this->provideAlias('puppy', 'Puppy application','raphhh/puppy', ''),
             'symfony' => $this->provideAlias('symfony', 'Symfony application','symfony/framework-standard-edition', ''),
+            'laravel' => $this->provideAlias('laravel', 'Laravel application','laravel/laravel', ''),
         ];
     }
 

@@ -22,5 +22,11 @@
     "description": "Symfony application",
     "bootstrap": "symfony/framework-standard-edition",
     "version": ""
+  },
+  {
+    "name": "laravel",
+    "description": "Laravel application",
+    "bootstrap": "laravel/laravel",
+    "version": ""
   }
 ]
