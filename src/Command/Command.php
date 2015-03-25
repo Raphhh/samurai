@@ -16,11 +16,10 @@ class Command extends SymfonyCommand
 
     /**
      * @param Container $services
-     * @param string $name
      */
-    public function __construct(Container $services, $name = null)
+    public function __construct(Container $services)
     {
         $this->setServices($services);
-        parent::__construct($name);
+        parent::__construct();
     }
 }
