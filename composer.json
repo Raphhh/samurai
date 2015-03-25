@@ -1,6 +1,6 @@
 {
     "name": "raphhh/samurai",
-    "description": "PHP bootstrap - creates for you all the files you need to start a new project",
+    "description": "PHP scaffolding tool - creates for you all the files you need to start a new project",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -10,7 +10,9 @@
         }
     ],
     "keywords": [
-        "bootstrap"
+        "bootstrap",
+        "scaffolding tool",
+        "composer"
     ],
     "homepage": "https://github.com/Raphhh/samurai",
     "autoload": {
