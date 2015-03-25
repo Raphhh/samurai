@@ -6,6 +6,12 @@
     "version": ""
   },
   {
+    "name": "app",
+    "description": "Basic PHP web project",
+    "bootstrap": "raphhh/php-app-bootstrap",
+    "version": ""
+  },
+  {
     "name": "puppy",
     "description": "Puppy application",
     "bootstrap": "raphhh/puppy",
