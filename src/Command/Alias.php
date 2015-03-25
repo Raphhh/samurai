@@ -72,7 +72,7 @@ class Alias extends Command
      */
     private function getTask(InputInterface $input)
     {
-        return (new AliasManagementTaskFactory())->create($input, $this->getServices());
+        return AliasManagementTaskFactory::create($input, $this->getServices());
     }
 }
 

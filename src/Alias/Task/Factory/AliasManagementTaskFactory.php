@@ -21,7 +21,7 @@ class AliasManagementTaskFactory
      * @param Container $services
      * @return ITask
      */
-    public function create(InputInterface $input, Container $services)
+    public static function create(InputInterface $input, Container $services)
     {
         if($input->getArgument('bootstrap')){
             return new Saving($services);
