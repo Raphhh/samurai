@@ -1,6 +1,8 @@
 <?php
 namespace Samurai;
 
+use Symfony\Component\Console\Application;
+
 /**
  * Class SamuraiTest
  * @package Samurai
@@ -19,5 +21,13 @@ class SamuraiTest extends \PHPUnit_Framework_TestCase
 
         $samurai = new Samurai($application);
         $this->assertSame(0, $samurai->run());
+    }
+
+    public function testGetServices()
+    {
+        $samurai = new Samurai(new Application());
+        foreach($samurai->getServices()->keys() as $key){
+            $this->assertNotNull($samurai->getServices()[$key]);
+        }
     }
 }

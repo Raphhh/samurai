@@ -48,8 +48,8 @@ class Samurai
         $application->setVersion('0.0.0');
 
         $this->setApplication($application);
-        $this->setServices($services ? : $this->buildServices());
         $this->setExecutor($executor ? : new Executor());
+        $this->setServices($services ? : $this->buildServices());
 
         $this->initCommands();
     }
