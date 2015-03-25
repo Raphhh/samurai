@@ -161,6 +161,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
             'symfony' => $this->provideAlias('symfony', 'Symfony application','symfony/framework-standard-edition', ''),
             'laravel' => $this->provideAlias('laravel', 'Laravel application','laravel/laravel', ''),
             'silex' => $this->provideAlias('silex', 'Silex application','fabpot/silex-skeleton', ''),
+            'slim' => $this->provideAlias('slim', 'Slim application','slim/slim-skeleton', ''),
         ];
     }
 

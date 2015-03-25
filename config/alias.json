@@ -34,5 +34,11 @@
     "description": "Silex application",
     "bootstrap": "fabpot/silex-skeleton",
     "version": ""
+  },
+  {
+    "name": "slim",
+    "description": "Slim application",
+    "bootstrap": "slim/slim-skeleton",
+    "version": ""
   }
 ]
