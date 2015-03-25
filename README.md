@@ -98,12 +98,12 @@ Samurai installs and params all your project:
  3. Dump the autoloader of Composer with your new Package name (todo)
  4. Clean some files (changelog, etc) (todo)
  5. Execute the installed modules. For example:
- 5.1. Init git for the project (git module) (todo)
- 5.2. Create a new repo on GitHub and link it to your project (github module) (todo)
- 5.3. Link your project to Packagist (packagist module) (todo)
- 5.4. Link your project to Travis-ci (travis module) (todo)
- 5.5. Link your project to Scrutinizer (scrutinizer module) (todo)
- 5.6. Add a file phpunit.xml (phpunit module) (todo)
+     5.1. Init git for the project (git module) (todo)
+     5.2. Create a new repo on GitHub and link it to your project (github module) (todo)
+     5.3. Link your project to Packagist (packagist module) (todo)
+     5.4. Link your project to Travis-ci (travis module) (todo)
+     5.5. Link your project to Scrutinizer (scrutinizer module) (todo)
+     5.6. Add a file phpunit.xml (phpunit module) (todo)
 
 
 ## Alias
