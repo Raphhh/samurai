@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/Raphhh/samurai.png)](https://travis-ci.org/Raphhh/samurai)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Raphhh/samurai/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Raphhh/samurai/)
 [![Code Coverage](https://scrutinizer-ci.com/g/Raphhh/samurai/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Raphhh/samurai/)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/1eaf3345-68ec-44ff-8fed-bcbd4721bb13/mini.png)](https://insight.sensiolabs.com/projects/1eaf3345-68ec-44ff-8fed-bcbd4721bb13)
 [![Total Downloads](https://poser.pugx.org/raphhh/samurai/downloads.svg)](https://packagist.org/packages/raphhh/samurai)
 [![Reference Status](https://www.versioneye.com/php/raphhh:samurai/reference_badge.svg?style=flat)](https://www.versioneye.com/php/raphhh:samurai/references)
 [![License](https://poser.pugx.org/raphhh/samurai/license.svg)](https://packagist.org/packages/raphhh/samurai)
@@ -48,7 +47,7 @@ samurai help <command>
 
 The simple samurai "new" command will create a fresh installation of a new project. 
 
-### Choose between project
+### Choose between projects
 
 If you do not specify a bootstrap to install, Samurai will list all the project's bootstraps.
 
@@ -94,17 +93,17 @@ samurai new symfony
 
 Samurai installs and params all your project:
 
- 1 Download the bootstrap and its dependency with Composer
- 2 Param the Composer config (composer.json) (todo: author + package)
- 3 Dump the autoloader of Composer with your new Package name (todo)
- 4 Clean some files (changelog, etc) (todo)
- 5 Execute the installed modules. For example:
- 5.1 Init git for the project (git module) (todo)
- 5.2 Create a new repo on GitHub and link it to your project (github module) (todo)
- 5.3 Link your project to Packagist (packagist module) (todo)
- 5.4 Link your project to Travis-ci (travis module) (todo)
- 5.5 Link your project to Scrutinizer (scrutinizer module) (todo)
- 5.6 Add a file phpunit.xml (phpunit module) (todo)
+ 1. Download the bootstrap and its dependency with Composer
+ 2. Param the Composer config (composer.json) (todo: author + package)
+ 3. Dump the autoloader of Composer with your new Package name (todo)
+ 4. Clean some files (changelog, etc) (todo)
+ 5. Execute the installed modules. For example:
+ 5.1. Init git for the project (git module) (todo)
+ 5.2. Create a new repo on GitHub and link it to your project (github module) (todo)
+ 5.3. Link your project to Packagist (packagist module) (todo)
+ 5.4. Link your project to Travis-ci (travis module) (todo)
+ 5.5. Link your project to Scrutinizer (scrutinizer module) (todo)
+ 5.6. Add a file phpunit.xml (phpunit module) (todo)
 
 
 ## Alias
