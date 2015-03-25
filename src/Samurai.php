@@ -159,7 +159,7 @@ class Samurai
         };
 
         $services['config'] = function () {
-            return new Config('', __DIR__ . '/../config'); //todo régler ces problèmes de path
+            return new Config('');
         };
 
         $services['alias_manager'] = function (Container $services) {

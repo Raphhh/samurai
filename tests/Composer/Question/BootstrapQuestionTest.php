@@ -69,7 +69,7 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
         };
 
         $services['alias_manager'] = function () {
-            return new AliasManager(new Config('', __DIR__ . '/../../../config')); //todo
+            return new AliasManager(new Config(''));
         };
 
         $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));

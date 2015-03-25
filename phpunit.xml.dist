@@ -12,6 +12,10 @@
          syntaxCheck="false"
         >
 
+    <php>
+        <includePath>.</includePath>
+    </php>
+
     <testsuites>
         <testsuite name="main">
             <directory>./tests/</directory>

@@ -145,7 +145,7 @@ class GenerateTest extends \PHPUnit_Framework_TestCase
         };
 
         $services['alias_manager'] = function () {
-            return new AliasManager(new Config('', __DIR__ . '/../../config')); //todo
+            return new AliasManager(new Config(''));
         };
         return $services;
     }

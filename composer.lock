@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Raphhh/puppy-config.git",
-                "reference": "c3c30425f15f6398657fd949e53dcb2243c69317"
+                "reference": "fce670c4d2be3715d32345aec7d9dce0c6f47dbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Raphhh/puppy-config/zipball/c3c30425f15f6398657fd949e53dcb2243c69317",
-                "reference": "c3c30425f15f6398657fd949e53dcb2243c69317",
+                "url": "https://api.github.com/repos/Raphhh/puppy-config/zipball/fce670c4d2be3715d32345aec7d9dce0c6f47dbe",
+                "reference": "fce670c4d2be3715d32345aec7d9dce0c6f47dbe",
                 "shasum": ""
             },
             "require": {
