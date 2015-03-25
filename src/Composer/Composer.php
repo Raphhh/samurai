@@ -2,8 +2,8 @@
 namespace Samurai\Composer;
 
 use InvalidArgumentException;
-use Samurai\Composer\Config\ComposerConfigManager;
 use Samurai\Composer\Config\ComposerConfigMerger;
+use Samurai\File\JsonFileManager;
 use TRex\Cli\Executor;
 
 /**
@@ -19,7 +19,7 @@ class Composer
     private $project;
 
     /**
-     * @var ComposerConfigManager
+     * @var JsonFileManager
      */
     private $composerConfigManager;
 
@@ -40,7 +40,7 @@ class Composer
     public function __construct(Project $project, Executor $executor)
     {
         $this->setProject($project);
-        $this->setComposerConfigManager(new ComposerConfigManager()); //todo DI => use pimple
+        $this->setComposerConfigManager(new JsonFileManager()); //todo DI => use pimple
         $this->setComposerConfigMerger(new ComposerConfigMerger()); //todo DI => use pimple
         $this->setExecutor($executor);
     }
@@ -163,7 +163,7 @@ class Composer
     /**
      * Getter of $composerConfigManager
      *
-     * @return ComposerConfigManager
+     * @return JsonFileManager
      */
     public function getComposerConfigManager()
     {
@@ -173,9 +173,9 @@ class Composer
     /**
      * Setter of $composerConfigManager
      *
-     * @param ComposerConfigManager $composerConfigManager
+     * @param JsonFileManager $composerConfigManager
      */
-    public function setComposerConfigManager(ComposerConfigManager $composerConfigManager)
+    public function setComposerConfigManager(JsonFileManager $composerConfigManager)
     {
         $this->composerConfigManager = $composerConfigManager;
     }

@@ -1,12 +1,12 @@
 <?php
-namespace Samurai\Composer\Config;
+namespace Samurai\File;
 
 /**
  * Class ComposerConfigManager
  * @package Samurai\Composer
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ComposerConfigManager 
+class JsonFileManager
 {
 
     /**
