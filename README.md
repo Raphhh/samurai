@@ -16,7 +16,7 @@ Samurai generates a all the files you need for a basic library, a web applicatio
 
 ## Installation
 
-First, download Samurai with (Composer)[https://getcomposer.org].
+First, download Samurai with [Composer](https://getcomposer.org) in the global env.
 
 ```
 composer global require raphhh/samurai
@@ -59,7 +59,7 @@ You just have to choose a bootstrap to install.
 
 ### Specify a pre-defined project
 
-If you directly know the project, you can specify it in the command.
+If you know the project, you can directly specify it in the command.
 
 ```
 samurai new lib
@@ -83,7 +83,11 @@ Or if you want a specific version of a package, add the version you want just af
 samurai new symfony/framework-standard-edition 1.0.0
 ```
 
-If you install a project from a non-aliased bootstrap, do not hesitate to add it in the alias list. It is very simple. See alias section for more information.
+If you install a project from a non-aliased bootstrap, do not hesitate to add it in the alias list. It is very simple. See alias section for more information. For example, Symfony is already available with 'symfony' alias.
+
+```
+samurai new symfony
+```
 
 
 ## What Samurai does during the installation of your project?
@@ -131,11 +135,11 @@ samurai alias <name>
 
 ## Modules (todo)
 
-A module is a plugin added to Samurai. This plugin will execute some specific command. For example, git module will init Git in your project.
+A module is a plugin added to Samurai. This plugin will execute some specific commands. For example, git module will init Git in your project.
 
 ### Add a module
 
-Obviously, Samurai execute only modules that you have installed. So, you can decide, according to your own needs, which modules you want to execute.
+Obviously, Samurai executes only modules that you have installed. So, you can decide, according to your own needs, which modules you want to execute.
 
 #### When you install Samurai
 
@@ -146,7 +150,7 @@ During the installation, Samurai will ask you if you want to load some modules.
 Execute the module command. You must specify the package of your module.
  
 ```
-samurai module <module>
+samurai module <vendor/package>
 ```
 
 For example, if you want to load the git module:
