@@ -40,5 +40,11 @@
     "description": "Slim application",
     "bootstrap": "slim/slim-skeleton",
     "version": ""
+  },
+  {
+    "name": "cake",
+    "description": "CakePHP application",
+    "bootstrap": "cakephp/app",
+    "version": ""
   }
 ]

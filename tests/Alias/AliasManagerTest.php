@@ -162,6 +162,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
             'laravel' => $this->provideAlias('laravel', 'Laravel application','laravel/laravel', ''),
             'silex' => $this->provideAlias('silex', 'Silex application','fabpot/silex-skeleton', ''),
             'slim' => $this->provideAlias('slim', 'Slim application','slim/slim-skeleton', ''),
+            'cake' => $this->provideAlias('cake', 'CakePHP application','cakephp/app', ''),
         ];
     }
 
