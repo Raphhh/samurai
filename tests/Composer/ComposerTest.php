@@ -139,8 +139,9 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigWithoutFile()
     {
         $project = new Project();
+        $project->setDirectoryPath('no-such-dir');
         $composer = new Composer($project, new Executor());
-        $this->assertNull($composer->getConfig());
+        $this->assertNull($composer->getConfig(), 'config path: ' . $composer->getConfigPath());
     }
 
     public function testGetConfigWithFile()
@@ -192,6 +193,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testResetConfig()
     {
         $project = new Project();
+        $project->setDirectoryPath('no-such-dir');
         $composer = new Composer($project, new Executor());
 
         $this->setExpectedException('\RuntimeException', 'Impossible to load the composer config from file "composer.json"');
