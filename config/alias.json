@@ -28,5 +28,11 @@
     "description": "Laravel application",
     "bootstrap": "laravel/laravel",
     "version": ""
+  },
+  {
+    "name": "silex",
+    "description": "Silex application",
+    "bootstrap": "fabpot/silex-skeleton",
+    "version": ""
   }
 ]

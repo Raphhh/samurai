@@ -160,6 +160,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
             'puppy' => $this->provideAlias('puppy', 'Puppy application','raphhh/puppy', ''),
             'symfony' => $this->provideAlias('symfony', 'Symfony application','symfony/framework-standard-edition', ''),
             'laravel' => $this->provideAlias('laravel', 'Laravel application','laravel/laravel', ''),
+            'silex' => $this->provideAlias('silex', 'Silex application','fabpot/silex-skeleton', ''),
         ];
     }
 
