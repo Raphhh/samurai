@@ -196,7 +196,10 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project->setDirectoryPath('no-such-dir');
         $composer = new Composer($project, new Executor());
 
-        $this->setExpectedException('\RuntimeException', 'Impossible to load the composer config from file "composer.json"');
+        $this->setExpectedException(
+            '\RuntimeException',
+            'Impossible to load the composer config from file "no-such-dir/composer.json"'
+        );
         $composer->resetConfig();
     }
 
