@@ -3,6 +3,9 @@ namespace Samurai;
 
 use Pimple\Container;
 use Puppy\Config\Config;
+use Samurai\Alias\AliasManager;
+use Samurai\alias\Task\Handle;
+use Samurai\Command\Alias;
 use Samurai\Command\Generate;
 use Samurai\Composer\Composer;
 use Samurai\Composer\Project;
@@ -48,7 +51,7 @@ class Samurai
         $application->setVersion('0.0.0');
 
         $this->setApplication($application);
-        $this->setServices($services);
+        $this->setServices($services ? : $this->buildServices());
         $this->setExecutor($executor ? : new Executor());
 
         $this->initCommands();
@@ -82,9 +85,6 @@ class Samurai
      */
     public function getServices()
     {
-        if(null === $this->services){
-            $this->setServices($this->buildServices());
-        }
         return $this->services;
     }
 
@@ -93,7 +93,7 @@ class Samurai
      *
      * @param Container $services
      */
-    public function setServices(Container $services = null)
+    public function setServices(Container $services)
     {
         $this->services = $services;
     }
@@ -103,9 +103,11 @@ class Samurai
      */
     private function initCommands()
     {
-        $this->getApplication()->add(new Generate(new Planner([
+        $this->getApplication()->add(new Generate(new Planner([ //todo déclarer ceci dans la classe
             ProjectCreationTaskFactory::create($this->getServices())
         ])));
+
+        $this->getApplication()->add(new Alias(new Handle($this->getServices())));
     }
 
     /**
@@ -157,7 +159,11 @@ class Samurai
         };
 
         $services['config'] = function () {
-            return new Config('', __DIR__ . '/../config');
+            return new Config('', __DIR__ . '/../config'); //todo régler ces problèmes de path
+        };
+
+        $services['alias_manager'] = function (Container $services) {
+            return new AliasManager($services['config']);
         };
 
         return $services;
