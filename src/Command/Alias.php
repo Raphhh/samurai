@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Command;
 
+use Samurai\Alias\Task\Factory\AliasManagementTaskFactory;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -62,7 +63,16 @@ class Alias extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getTask()->execute($input, $output);
+        $this->getTask($input)->execute($input, $output);
+    }
+
+    /**
+     * @param InputInterface $input
+     * @return \Samurai\Task\ITask
+     */
+    private function getTask(InputInterface $input)
+    {
+        return (new AliasManagementTaskFactory())->create($input, $this->getServices());
     }
 }
 

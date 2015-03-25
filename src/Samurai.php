@@ -4,13 +4,10 @@ namespace Samurai;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
-use Samurai\alias\Task\Handle;
 use Samurai\Command\Alias;
 use Samurai\Command\Generate;
 use Samurai\Composer\Composer;
 use Samurai\Composer\Project;
-use Samurai\Composer\Task\Factory\ProjectCreationTaskFactory;
-use Samurai\Task\Planner;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -103,11 +100,8 @@ class Samurai
      */
     private function initCommands()
     {
-        $this->getApplication()->add(new Generate(new Planner([ //todo déclarer ceci dans la classe
-            ProjectCreationTaskFactory::create($this->getServices())
-        ])));
-
-        $this->getApplication()->add(new Alias(new Handle($this->getServices())));
+        $this->getApplication()->add(new Generate($this->getServices()));
+        $this->getApplication()->add(new Alias($this->getServices()));
     }
 
     /**

@@ -1,7 +1,8 @@
 <?php
 namespace Samurai\Command;
 
-use Samurai\Task\ITask;
+use Pimple\Container;
+use Samurai\Service\ServiceWorker;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 /**
@@ -11,38 +12,15 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
  */
 class Command extends SymfonyCommand
 {
-    /**
-     * @var ITask
-     */
-    private $task;
+    use ServiceWorker;
 
     /**
-     * @param ITask $task
+     * @param Container $services
      * @param string $name
      */
-    public function __construct(ITask $task, $name = null)
+    public function __construct(Container $services, $name = null)
     {
-        $this->setTask($task);
+        $this->setServices($services);
         parent::__construct($name);
-    }
-
-    /**
-     * Getter of $task
-     *
-     * @return ITask
-     */
-    protected function getTask()
-    {
-        return $this->task;
-    }
-
-    /**
-     * Setter of $task
-     *
-     * @param ITask $task
-     */
-    private function setTask(ITask $task)
-    {
-        $this->task = $task;
     }
 }
