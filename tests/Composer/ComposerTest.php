@@ -33,7 +33,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('composer create-project vendor/package')
+            ->with('composer create-project --prefer-dist vendor/package')
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
@@ -48,7 +48,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('composer create-project vendor/package --repository-url=url')
+            ->with('composer create-project --prefer-dist vendor/package --repository-url=url')
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
@@ -64,7 +64,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('composer create-project vendor/package dir/path')
+            ->with('composer create-project --prefer-dist vendor/package dir/path')
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
@@ -80,7 +80,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('composer create-project vendor/package dir/path --repository-url=url')
+            ->with('composer create-project --prefer-dist vendor/package dir/path --repository-url=url')
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
@@ -97,7 +97,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('composer create-project vendor/package dir/path 1.0.0')
+            ->with('composer create-project --prefer-dist vendor/package dir/path 1.0.0')
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
@@ -114,7 +114,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('composer create-project vendor/package dir/path 1.0.0 --repository-url=url')
+            ->with('composer create-project --prefer-dist vendor/package dir/path 1.0.0 --repository-url=url')
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);

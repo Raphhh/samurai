@@ -69,7 +69,7 @@ class Composer
         return $this->getExecutor()->flush(
             trim(
                 sprintf(
-                    'composer create-project %s %s %s',
+                    'composer create-project --prefer-dist %s %s %s',
                     $this->getProject()->getBootstrapName(),
                     $this->getProject()->getDirectoryPath(),
                     $this->getProject()->getBootstrapVersion()
