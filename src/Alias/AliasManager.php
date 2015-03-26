@@ -153,11 +153,7 @@ class AliasManager
     {
         $result = [];
         foreach($aliasList as $aliasData){
-            $alias = new Alias();
-            $alias->setName($aliasData['name']);
-            $alias->setDescription($aliasData['description']);
-            $alias->setBootstrap($aliasData['bootstrap']);
-            $alias->setVersion($aliasData['version']);
+            $alias = $this->mapAlias($aliasData);
             $result[$alias->getName()] = $alias;
         }
         return $result;
@@ -206,5 +202,21 @@ class AliasManager
                 mkdir($currentPath);
             }
         }
+    }
+
+    /**
+     * @param array $aliasData
+     * @return Alias
+     */
+    private function mapAlias(array $aliasData)
+    {
+        $alias = new Alias();
+        $reflectedClass = new \ReflectionClass($alias);
+        foreach ($reflectedClass->getProperties() as $reflectedProperty) {
+            if (isset($aliasData[$reflectedProperty->getName()])) {
+                $alias->{'set' . $reflectedProperty->getName()}($aliasData[$reflectedProperty->getName()]);
+            }
+        }
+        return $alias;
     }
 }

@@ -19,7 +19,8 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
                 'lib',
                 'Basic PHP library',
                 'raphhh/php-lib-bootstrap',
-                ''
+                '',
+                'https://github.com/Raphhh/php-lib-bootstrap'
             ),
             $aliasManager->getGlobal()['lib']
         );
@@ -39,7 +40,8 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
                 'lib',
                 'Basic PHP library',
                 'raphhh/php-lib-bootstrap',
-                ''
+                '',
+                'https://github.com/Raphhh/php-lib-bootstrap'
             ),
             $aliasManager->getAll()['lib']
         );
@@ -135,15 +137,17 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
      * @param $desc
      * @param $bootstrap
      * @param $version
+     * @param $repository
      * @return Alias
      */
-    private function provideAlias($name, $desc, $bootstrap, $version)
+    private function provideAlias($name, $desc, $bootstrap, $version, $repository)
     {
         $alias = new Alias();
         $alias->setName($name);
         $alias->setDescription($desc);
         $alias->setBootstrap($bootstrap);
         $alias->setVersion($version);
+        $alias->setRepository($repository);
         return $alias;
     }
 }
