@@ -157,12 +157,13 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
         return [
             'lib' => $this->provideAlias('lib', 'Basic PHP library','raphhh/php-lib-bootstrap', ''),
             'app' => $this->provideAlias('app', 'Basic PHP web project','raphhh/php-app-bootstrap', ''),
-            'puppy' => $this->provideAlias('puppy', 'Puppy application','raphhh/puppy', ''),
             'symfony' => $this->provideAlias('symfony', 'Symfony application','symfony/framework-standard-edition', ''),
             'laravel' => $this->provideAlias('laravel', 'Laravel application','laravel/laravel', ''),
+            'zend' => $this->provideAlias('zend', 'Zend application','zendframework/skeleton-application', ''),
+            'cake' => $this->provideAlias('cake', 'CakePHP application','cakephp/app', ''),
             'silex' => $this->provideAlias('silex', 'Silex application','fabpot/silex-skeleton', ''),
             'slim' => $this->provideAlias('slim', 'Slim application','slim/slim-skeleton', ''),
-            'cake' => $this->provideAlias('cake', 'CakePHP application','cakephp/app', ''),
+            'puppy' => $this->provideAlias('puppy', 'Puppy application','raphhh/puppy', ''),
         ];
     }
 

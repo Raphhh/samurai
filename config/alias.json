@@ -24,6 +24,12 @@
     "version": ""
   },
   {
+    "name": "zend",
+    "description": "Zend application",
+    "bootstrap": "zendframework/skeleton-application",
+    "version": ""
+  },
+  {
     "name": "cake",
     "description": "CakePHP application",
     "bootstrap": "cakephp/app",
