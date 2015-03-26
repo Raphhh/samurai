@@ -42,6 +42,13 @@
     "repository": "https://github.com/cakephp/app"
   },
   {
+    "name": "igniter",
+    "description": "CodeIgniter framework application",
+    "bootstrap": "codeigniter/framework",
+    "version": "@dev",
+    "repository": "https://github.com/bcit-ci/CodeIgniter"
+  },
+  {
     "name": "drupal",
     "description": "Drupal CMS application",
     "bootstrap": "drupal-composer/drupal-project",
