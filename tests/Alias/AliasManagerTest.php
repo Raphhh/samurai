@@ -162,6 +162,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
             'zend' => $this->provideAlias('zend', 'Zend framework application','zendframework/skeleton-application', ''),
             'cake' => $this->provideAlias('cake', 'CakePHP framework application','cakephp/app', ''),
             'drupal' => $this->provideAlias('drupal', 'Drupal CMS application','drupal-composer/drupal-project', '@dev'),
+            'joomla' => $this->provideAlias('joomla', 'Joomla CMS application','joomla/framework', ''),
             'silex' => $this->provideAlias('silex', 'Silex micro-framework application','fabpot/silex-skeleton', ''),
             'slim' => $this->provideAlias('slim', 'Slim micro-framework application','slim/slim-skeleton', ''),
             'puppy' => $this->provideAlias('puppy', 'Puppy micro-framework application','raphhh/puppy', ''),

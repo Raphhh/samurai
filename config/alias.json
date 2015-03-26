@@ -42,6 +42,12 @@
     "version": "@dev"
   },
   {
+    "name": "joomla",
+    "description": "Joomla CMS application",
+    "bootstrap": "joomla/framework",
+    "version": ""
+  },
+  {
     "name": "silex",
     "description": "Silex micro-framework application",
     "bootstrap": "fabpot/silex-skeleton",
