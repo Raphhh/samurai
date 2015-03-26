@@ -4,7 +4,7 @@ namespace Samurai;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
-use Samurai\Command\Alias;
+use Samurai\Command\AliasCommand;
 use Samurai\Command\Generate;
 use Samurai\Project\Composer;
 use Samurai\Project\Project;
@@ -101,7 +101,7 @@ class Samurai
     private function initCommands()
     {
         $this->getApplication()->add(new Generate($this->getServices()));
-        $this->getApplication()->add(new Alias($this->getServices()));
+        $this->getApplication()->add(new AliasCommand($this->getServices()));
     }
 
     /**

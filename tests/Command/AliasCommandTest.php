@@ -10,11 +10,11 @@ use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * Class AliasTest
+ * Class AliasCommandTest
  * @package Samurai\Command
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class AliasTest extends \PHPUnit_Framework_TestCase
+class AliasCommandTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecuteSave()
     {
