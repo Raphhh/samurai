@@ -14,7 +14,25 @@ Samurai generates all the files you need for a library, a web application, a fra
 
 ![Samurai during project installation](https://raw.githubusercontent.com/Raphhh/samurai/master/doc/samurai-new.png)
 
-## Installation
+
+## What does Samurai scaffold?
+
+Samurai installs and params your project:
+
+ 1. Download the bootstrap and its dependency with Composer
+ 2. Param the Composer config (composer.json) (todo: author + package)
+ 3. Dump the autoloader of Composer with your new Package name (todo)
+ 4. Clean some files (changelog, etc) (todo)
+ 5. Execute the installed modules. For example:
+     1. Init git for the project (git module) (todo)
+     2. Create a new repo on GitHub and link it to your project (github module) (todo)
+     3. Link your project to Packagist (packagist module) (todo)
+     4. Link your project to Travis-ci (travis module) (todo)
+     5. Link your project to Scrutinizer (scrutinizer module) (todo)
+     6. Add a file phpunit.xml (phpunit module) (todo)
+
+
+## Installation of Samurai
 
 ### Download Samurai
 
@@ -139,23 +157,6 @@ But you can specify another directory with the option "--dir" or "-d".
 ```console
 $ samurai new lib -d specific/path/to/my/project
 ```
-
-## What Samurai does during the installation of your project?
-
-Samurai installs and params all your project:
-
- 1. Download the bootstrap and its dependency with Composer
- 2. Param the Composer config (composer.json) (todo: author + package)
- 3. Dump the autoloader of Composer with your new Package name (todo)
- 4. Clean some files (changelog, etc) (todo)
- 5. Execute the installed modules. For example:
-     1. Init git for the project (git module) (todo)
-     2. Create a new repo on GitHub and link it to your project (github module) (todo)
-     3. Link your project to Packagist (packagist module) (todo)
-     4. Link your project to Travis-ci (travis module) (todo)
-     5. Link your project to Scrutinizer (scrutinizer module) (todo)
-     6. Add a file phpunit.xml (phpunit module) (todo)
-
 
 ## Alias
 
