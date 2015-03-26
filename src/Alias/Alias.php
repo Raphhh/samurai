@@ -31,7 +31,7 @@ class Alias
     /**
      * @var string
      */
-    private $repository;
+    private $source;
 
     /**
      * Getter of $name
@@ -114,23 +114,23 @@ class Alias
     }
 
     /**
-     * Getter of $repository
+     * Getter of $source
      *
      * @return string
      */
-    public function getRepository()
+    public function getSource()
     {
-        return $this->repository;
+        return $this->source;
     }
 
     /**
-     * Setter of $repository
+     * Setter of $source
      *
-     * @param string $repository
+     * @param string $source
      */
-    public function setRepository($repository)
+    public function setSource($source)
     {
-        $this->repository = (string)$repository;
+        $this->source = (string)$source;
     }
 
     /**

@@ -36,7 +36,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertTrue($saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nrepository:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
     public function testExecuteWithLocal()
@@ -58,7 +58,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertTrue($saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nrepository:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
     public function testExecuteWithAll()
@@ -79,7 +79,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertTrue($saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nrepository:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
     /**

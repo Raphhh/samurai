@@ -137,17 +137,17 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
      * @param $desc
      * @param $bootstrap
      * @param $version
-     * @param $repository
+     * @param $source
      * @return Alias
      */
-    private function provideAlias($name, $desc, $bootstrap, $version, $repository)
+    private function provideAlias($name, $desc, $bootstrap, $version, $source)
     {
         $alias = new Alias();
         $alias->setName($name);
         $alias->setDescription($desc);
         $alias->setBootstrap($bootstrap);
         $alias->setVersion($version);
-        $alias->setRepository($repository);
+        $alias->setSource($source);
         return $alias;
     }
 }
