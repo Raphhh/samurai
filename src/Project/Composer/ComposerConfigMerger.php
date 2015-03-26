@@ -1,9 +1,9 @@
 <?php
-namespace Samurai\Project\Config;
+namespace Samurai\Project\Composer;
 
 /**
  * Class ComposerConfigMerger
- * @package Samurai\Project\Config
+ * @package Samurai\Project\Composer
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
 class ComposerConfigMerger 

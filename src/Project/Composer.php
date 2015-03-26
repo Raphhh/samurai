@@ -2,7 +2,7 @@
 namespace Samurai\Project;
 
 use InvalidArgumentException;
-use Samurai\Project\Config\ComposerConfigMerger;
+use Samurai\Project\Composer\ComposerConfigMerger;
 use Samurai\File\JsonFileManager;
 use TRex\Cli\Executor;
 
