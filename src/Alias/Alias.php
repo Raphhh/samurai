@@ -29,6 +29,11 @@ class Alias
     private $version;
 
     /**
+     * @var string
+     */
+    private $repository;
+
+    /**
      * Getter of $name
      *
      * @return string
@@ -106,6 +111,26 @@ class Alias
     public function setVersion($version)
     {
         $this->version = (string)$version;
+    }
+
+    /**
+     * Getter of $repository
+     *
+     * @return string
+     */
+    public function getRepository()
+    {
+        return $this->repository;
+    }
+
+    /**
+     * Setter of $repository
+     *
+     * @param string $repository
+     */
+    public function setRepository($repository)
+    {
+        $this->repository = (string)$repository;
     }
 
     /**
