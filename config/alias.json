@@ -13,25 +13,25 @@
   },
   {
     "name": "symfony",
-    "description": "Symfony application",
+    "description": "Symfony framework application",
     "bootstrap": "symfony/framework-standard-edition",
     "version": ""
   },
   {
     "name": "laravel",
-    "description": "Laravel application",
+    "description": "Laravel framework application",
     "bootstrap": "laravel/laravel",
     "version": ""
   },
   {
     "name": "zend",
-    "description": "Zend application",
+    "description": "Zend framework application",
     "bootstrap": "zendframework/skeleton-application",
     "version": ""
   },
   {
     "name": "cake",
-    "description": "CakePHP application",
+    "description": "CakePHP framework application",
     "bootstrap": "cakephp/app",
     "version": ""
   },
@@ -43,19 +43,19 @@
   },
   {
     "name": "silex",
-    "description": "Silex application",
+    "description": "Silex micro-framework application",
     "bootstrap": "fabpot/silex-skeleton",
     "version": ""
   },
   {
     "name": "slim",
-    "description": "Slim application",
+    "description": "Slim micro-framework application",
     "bootstrap": "slim/slim-skeleton",
     "version": ""
   },
   {
     "name": "puppy",
-    "description": "Puppy application",
+    "description": "Puppy micro-framework application",
     "bootstrap": "raphhh/puppy",
     "version": ""
   }

@@ -157,14 +157,14 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
         return [
             'lib' => $this->provideAlias('lib', 'Basic PHP library','raphhh/php-lib-bootstrap', ''),
             'app' => $this->provideAlias('app', 'Basic PHP web project','raphhh/php-app-bootstrap', ''),
-            'symfony' => $this->provideAlias('symfony', 'Symfony application','symfony/framework-standard-edition', ''),
-            'laravel' => $this->provideAlias('laravel', 'Laravel application','laravel/laravel', ''),
-            'zend' => $this->provideAlias('zend', 'Zend application','zendframework/skeleton-application', ''),
-            'cake' => $this->provideAlias('cake', 'CakePHP application','cakephp/app', ''),
+            'symfony' => $this->provideAlias('symfony', 'Symfony framework application','symfony/framework-standard-edition', ''),
+            'laravel' => $this->provideAlias('laravel', 'Laravel framework application','laravel/laravel', ''),
+            'zend' => $this->provideAlias('zend', 'Zend framework application','zendframework/skeleton-application', ''),
+            'cake' => $this->provideAlias('cake', 'CakePHP framework application','cakephp/app', ''),
             'drupal' => $this->provideAlias('drupal', 'Drupal CMS application','drupal-composer/drupal-project', '@dev'),
-            'silex' => $this->provideAlias('silex', 'Silex application','fabpot/silex-skeleton', ''),
-            'slim' => $this->provideAlias('slim', 'Slim application','slim/slim-skeleton', ''),
-            'puppy' => $this->provideAlias('puppy', 'Puppy application','raphhh/puppy', ''),
+            'silex' => $this->provideAlias('silex', 'Silex micro-framework application','fabpot/silex-skeleton', ''),
+            'slim' => $this->provideAlias('slim', 'Slim micro-framework application','slim/slim-skeleton', ''),
+            'puppy' => $this->provideAlias('puppy', 'Puppy micro-framework application','raphhh/puppy', ''),
         ];
     }
 
