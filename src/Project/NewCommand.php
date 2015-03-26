@@ -1,6 +1,7 @@
 <?php
-namespace Samurai\Command;
+namespace Samurai\Project;
 
+use Samurai\Command\Command;
 use Samurai\Project\Task\Factory\ProjectCreationTaskFactory;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -1,10 +1,9 @@
 <?php
-namespace Samurai\Command;
+namespace Samurai\Project;
 
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
-use Samurai\Project\Project;
 use Samurai\Samurai;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\QuestionHelper;
