@@ -39,7 +39,10 @@ class Listing extends Task
     {
         $result = '';
         foreach($aliasList as $name => $alias){
-            $result .= '[' . $name . '] ' . $alias . "\n";
+            foreach($alias->toArray() as $property => $value){
+                $result .= "$property: $value\n";
+            }
+            $result .= "\n";
         }
         return trim($result);
     }
