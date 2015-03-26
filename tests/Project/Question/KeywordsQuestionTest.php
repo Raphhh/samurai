@@ -2,7 +2,7 @@
 namespace Samurai\Project\Question;
 
 use Pimple\Container;
-use Samurai\Project\Composer;
+use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;

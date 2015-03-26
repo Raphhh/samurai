@@ -6,7 +6,7 @@ use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
 use Samurai\Alias\AliasCommand;
 use Samurai\Project\NewCommand;
-use Samurai\Project\Composer;
+use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;

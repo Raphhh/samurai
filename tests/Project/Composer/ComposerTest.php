@@ -1,11 +1,12 @@
 <?php
-namespace Samurai\Project;
+namespace Samurai\Project\Composer;
 
+use Samurai\Project\Project;
 use TRex\Cli\Executor;
 
 /**
  * Class ComposerTest
- * @package Samurai\Project
+ * @package Samurai\Project\Composer
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
 class ComposerTest extends \PHPUnit_Framework_TestCase
@@ -147,7 +148,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigWithFile()
     {
         $project = new Project();
-        $project->setDirectoryPath(__DIR__ . '/resources');
+        $project->setDirectoryPath(__DIR__ . '/../resources');
         $composer = new Composer($project, new Executor());
         $this->assertSame(
             [
@@ -178,12 +179,12 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testValidateConfigWithFile()
     {
         $project = new Project();
-        $project->setDirectoryPath(__DIR__ . '/resources');
+        $project->setDirectoryPath(__DIR__ . '/../resources');
 
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('cd '.__DIR__ .'/resources && composer validate')
+            ->with('cd '.__DIR__ .'/../resources && composer validate')
             ->will($this->returnValue(true));
 
         $composer = new Composer($project, $executor);
@@ -207,7 +208,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     {
 
         $project = new Project();
-        $project->setDirectoryPath(__DIR__ . '/resources');
+        $project->setDirectoryPath(__DIR__ . '/../resources');
         $composer = new Composer($project, new Executor());
         $fileContent = file_get_contents($composer->getConfigPath());
 
@@ -236,7 +237,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testResetConfigWithOverride()
     {
         $project = new Project();
-        $project->setDirectoryPath(__DIR__ . '/resources');
+        $project->setDirectoryPath(__DIR__ . '/../resources');
         $composer = new Composer($project, new Executor());
         $fileContent = file_get_contents($composer->getConfigPath());
 

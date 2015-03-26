@@ -1,14 +1,14 @@
 <?php
-namespace Samurai\Project;
+namespace Samurai\Project\Composer;
 
 use InvalidArgumentException;
-use Samurai\Project\Composer\ComposerConfigMerger;
 use Samurai\File\JsonFileManager;
+use Samurai\Project\Project;
 use TRex\Cli\Executor;
 
 /**
  * Class Composer
- * @package Samurai\Project
+ * @package Samurai\Project\Composer
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
 class Composer

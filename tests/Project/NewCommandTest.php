@@ -156,7 +156,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
 
     private function provideComposer($result)
     {
-        $composer = $this->getMockBuilder('Samurai\Project\Composer')
+        $composer = $this->getMockBuilder('Samurai\Project\Composer\Composer')
             ->disableOriginalConstructor()
             ->getMock();
 
