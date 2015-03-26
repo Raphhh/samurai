@@ -32,7 +32,7 @@ Make sure to place the ~/.composer/vendor/bin directory in your PATH.
 For all users (restart):
 
 ```console
-$ echo "export PATH=$PATH:~/.composer/vendor/bin" >> /etc/profile
+# echo "export PATH=$PATH:~/.composer/vendor/bin" >> /etc/profile
 ```
 
 For current user (relogin):
