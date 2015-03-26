@@ -60,25 +60,35 @@ You just have to select a bootstrap to install.
 
 ### Specify a pre-defined project
 
-If you know the project, you can directly specify it in the command.
+If you know the project, you can directly specify it in the command. Samurai will create your project from this bootstrap. 
+
+```
+samurai new <bootstrap>
+```
+
+In fact, you specify an alias of a project. An alias is just a defined bootstrap and version. See alias section for more information.
+
+For example, with alias 'lib', Samurai will install a basic PHP library bootstrap.
 
 ```
 samurai new lib
 ```
 
-In fact, you specify an alias of a project. An alias is just a defined bootstrap and version. See alias section for more information.
-
-Samurai will create your project from this bootstrap. For example, with alias 'lib', Samurai will install a basic PHP library bootstrap.
-
 ### Specify another bootstrap and its version
 
-You can specify any project loadable with Composer, event if you do not have alias. For example, you can create a new Symfony app by specifying its package. (This is just an example, because the 'symfony' alias already exists)
+You can specify any project loadable with Composer, event if you do not have alias. 
+
+```
+samurai new <vendor/package> [<version>]
+```
+
+For example, you can create a new Symfony app by specifying its package. (This is just an example, because the 'symfony' alias already exists)
 
 ```
 samurai new symfony/framework-standard-edition
 ```
 
-Or if you want a specific version of a package, add the version you want just after the bootstrap.
+Or if you want a specific version of a package, add the version you want just after the bootstrap. If you do not specify a version, Samurai will take the last stable version of the bootstrap.
 
 ```
 samurai new symfony/framework-standard-edition 1.0.0
