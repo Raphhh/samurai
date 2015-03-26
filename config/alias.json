@@ -63,6 +63,13 @@
     "repository": "https://github.com/joomla/joomla-framework"
   },
   {
+    "name": "wordpress",
+    "description": "WordPress CMS application",
+    "bootstrap": "wemakecustom/wp-skeleton",
+    "version": "",
+    "repository": "https://github.com/wemakecustom/wp-skeleton"
+  },
+  {
     "name": "silex",
     "description": "Silex micro-framework application",
     "bootstrap": "fabpot/silex-skeleton",
