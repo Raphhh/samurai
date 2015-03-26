@@ -3,66 +3,77 @@
     "name": "lib",
     "description": "Basic PHP library",
     "bootstrap": "raphhh/php-lib-bootstrap",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/Raphhh/php-lib-bootstrap"
   },
   {
     "name": "app",
     "description": "Basic PHP web project",
     "bootstrap": "raphhh/php-app-bootstrap",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/Raphhh/php-app-bootstrap"
   },
   {
     "name": "symfony",
     "description": "Symfony framework application",
     "bootstrap": "symfony/framework-standard-edition",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/symfony/symfony-standard"
   },
   {
     "name": "laravel",
     "description": "Laravel framework application",
     "bootstrap": "laravel/laravel",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/laravel/laravel"
   },
   {
     "name": "zend",
     "description": "Zend framework application",
     "bootstrap": "zendframework/skeleton-application",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/zendframework/ZendSkeletonApplication"
   },
   {
     "name": "cake",
     "description": "CakePHP framework application",
     "bootstrap": "cakephp/app",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/cakephp/app"
   },
   {
     "name": "drupal",
     "description": "Drupal CMS application",
     "bootstrap": "drupal-composer/drupal-project",
-    "version": "@dev"
+    "version": "@dev",
+    "repository": "https://github.com/drupal-composer/drupal-project"
   },
   {
     "name": "joomla",
     "description": "Joomla CMS application",
     "bootstrap": "joomla/framework",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/joomla/joomla-framework"
   },
   {
     "name": "silex",
     "description": "Silex micro-framework application",
     "bootstrap": "fabpot/silex-skeleton",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/silexphp/Silex-Skeleton"
   },
   {
     "name": "slim",
     "description": "Slim micro-framework application",
     "bootstrap": "slim/slim-skeleton",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/slimphp/Slim-Skeleton"
   },
   {
     "name": "puppy",
     "description": "Puppy micro-framework application",
     "bootstrap": "raphhh/puppy",
-    "version": ""
+    "version": "",
+    "repository": "https://github.com/Raphhh/puppy"
   }
 ]
