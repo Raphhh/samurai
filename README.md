@@ -10,7 +10,7 @@
 
 Samurai is a PHP scaffolding tool. It helps you to start a new project in PHP, generating all the base files in a simple command line.
 
-Samurai generates a all the files you need for a basic library, a web application, a frameworked project, and so on. You can event add your own bootstrap.
+Samurai generates all the files you need for a library, a web application, a frameworked project, and so on. You can even add your own bootstrap.
 
 
 ## Installation
@@ -21,7 +21,9 @@ First, download Samurai with [Composer](https://getcomposer.org) in the global e
 composer global require raphhh/samurai
 ```
 
-Make sure to place the ~/.composer/vendor/bin directory in your PATH (or C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin if working with Windows). So, the samurai executable is found when you run the command in your terminal.
+Make sure to place the ~/.composer/vendor/bin directory in your PATH (or C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin if working with Windows). 
+
+So, the samurai executable is found when you run the command in your terminal.
 
 ```
 samurai help --version
@@ -30,7 +32,7 @@ samurai help --version
 
 ## List commands and help
 
-To list all the available command, enter the 'list' command:
+To list all the available commands, enter the 'list' command:
 
 ```
 samurai list
@@ -45,7 +47,7 @@ samurai help <command>
 
 ## Create your project
 
-The simple samurai "new" command will create a fresh installation of a new project. 
+The samurai "new" command will create a fresh installation of a new project. 
 
 ### Choose between projects
 
@@ -54,7 +56,7 @@ If you do not specify a bootstrap to install, Samurai will list all the project'
 ```
 samurai new
 ```
-You just have to choose a bootstrap to install.
+You just have to select a bootstrap to install.
 
 ### Specify a pre-defined project
 
@@ -98,12 +100,12 @@ Samurai installs and params all your project:
  3. Dump the autoloader of Composer with your new Package name (todo)
  4. Clean some files (changelog, etc) (todo)
  5. Execute the installed modules. For example:
-     5.1. Init git for the project (git module) (todo)
-     5.2. Create a new repo on GitHub and link it to your project (github module) (todo)
-     5.3. Link your project to Packagist (packagist module) (todo)
-     5.4. Link your project to Travis-ci (travis module) (todo)
-     5.5. Link your project to Scrutinizer (scrutinizer module) (todo)
-     5.6. Add a file phpunit.xml (phpunit module) (todo)
+     1. Init git for the project (git module) (todo)
+     2. Create a new repo on GitHub and link it to your project (github module) (todo)
+     3. Link your project to Packagist (packagist module) (todo)
+     4. Link your project to Travis-ci (travis module) (todo)
+     5. Link your project to Scrutinizer (scrutinizer module) (todo)
+     6. Add a file phpunit.xml (phpunit module) (todo)
 
 
 ## Alias
