@@ -39,6 +39,7 @@ class Saving extends Task
         $alias->setDescription($input->getArgument('description'));
         $alias->setBootstrap($input->getArgument('bootstrap'));
         $alias->setVersion($input->getArgument('version'));
+        $alias->setSource($input->getArgument('source'));
         return $alias;
     }
 

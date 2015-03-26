@@ -25,6 +25,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
+            'source' => 'source',
         ];
         $input = $this->provideInput($args);
         $output = new BufferedOutput();
@@ -48,6 +49,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
+            'source' => 'source',
         ];
         $input = $this->provideInput($args);
         $output = new BufferedOutput();
@@ -71,6 +73,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
+            'source' => 'source',
         ];
         $input = $this->provideInput($args);
         $output = new BufferedOutput();
@@ -100,6 +103,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
                 new InputArgument('description'),
                 new InputArgument('bootstrap'),
                 new InputArgument('version'),
+                new InputArgument('source'),
             ])
         );
     }
@@ -138,6 +142,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
         $alias->setDescription($args['description']);
         $alias->setBootstrap($args['bootstrap']);
         $alias->setVersion($args['version']);
+        $alias->setSource($args['source']);
         return $alias;
     }
 

@@ -123,7 +123,7 @@ samurai alias
 
 You can easily add any bootstrap you want, event yours! To add or redefine an alias, execute the command:
 ```
-samurai alias <name> <bootstrap> [<version>] [<description>]
+samurai alias <name> <bootstrap> [<version>] [<description>] [<source>]
 ```
 
 ### Remove an alias

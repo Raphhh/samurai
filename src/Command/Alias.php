@@ -42,6 +42,11 @@ class Alias extends Command
                 InputArgument::OPTIONAL,
                 'bootstrap description'
             )
+            ->addArgument(
+                'source',
+                InputArgument::OPTIONAL,
+                'bootstrap source'
+            )
             ->addOption(
                 'global',
                 'g',
