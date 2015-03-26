@@ -12,6 +12,7 @@ Samurai is a PHP scaffolding tool. It helps you to start a new project in PHP, g
 
 Samurai generates all the files you need for a library, a web application, a frameworked project, and so on. You can even add your own bootstrap.
 
+![Samurai during project installation](https://github.com/Raphhh/samurai/doc/samurai-new.png)
 
 ## Installation
 
