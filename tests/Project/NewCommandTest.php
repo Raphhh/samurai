@@ -111,7 +111,6 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
             'bootstrap' => 'vendor/bootstrap',
             'version' => '1.0.0',
             '--dir' => 'dir/path',
-            '--repo' => 'repo',
         ]);
 
         $this->assertRegExp('/Installing project vendor\/package from vendor\/bootstrap/', $commandTester->getDisplay());

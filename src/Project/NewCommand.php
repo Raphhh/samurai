@@ -39,12 +39,6 @@ class NewCommand extends Command
                 'd',
                 InputOption::VALUE_REQUIRED,
                 'Specify a custom directory path for the project. By default, project will be installed in the same directory as the project name.'
-            )
-            ->addOption(
-                'repo', //todo: test
-                'r',
-                InputOption::VALUE_REQUIRED,
-                'Provide a custom repository to search for the package, which will be used instead of packagist.'
             );
     }
 
