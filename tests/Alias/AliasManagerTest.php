@@ -13,11 +13,15 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetGlobal()
     {
-
         $aliasManager = new AliasManager(new Config(''));
         $this->assertEquals(
-            $this->provideGlobalAlias(),
-            $aliasManager->getGlobal()
+            $this->provideAlias(
+                'lib',
+                'Basic PHP library',
+                'raphhh/php-lib-bootstrap',
+                ''
+            ),
+            $aliasManager->getGlobal()['lib']
         );
     }
 
@@ -31,8 +35,13 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
     {
         $aliasManager = new AliasManager(new Config(''));
         $this->assertEquals(
-            $this->provideGlobalAlias(),
-            $aliasManager->getAll()
+            $this->provideAlias(
+                'lib',
+                'Basic PHP library',
+                'raphhh/php-lib-bootstrap',
+                ''
+            ),
+            $aliasManager->getAll()['lib']
         );
     }
 
@@ -46,36 +55,24 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
 
         $aliasManager = new AliasManager(new Config(''));
 
+        //pre-assertion
+        $this->assertArrayNotHasKey('name', $aliasManager->getGlobal());
+        $this->assertArrayNotHasKey('name', $aliasManager->getLocal());
+        $this->assertArrayNotHasKey('name', $aliasManager->getAll());
+
         //add
         $aliasManager->add($alias);
 
-        $this->assertEquals(
-            [
-                'name' => $alias,
-            ],
-            $aliasManager->getLocal()
-        );
-
-        $globalAlias = $this->provideGlobalAlias();
-
-        $this->assertEquals(
-            $globalAlias,
-            $aliasManager->getGlobal()
-        );
-
-        $globalAlias['name'] = $alias;
-        $this->assertEquals(
-            $globalAlias,
-            $aliasManager->getAll()
-        );
+        $this->assertArrayNotHasKey('name', $aliasManager->getGlobal());
+        $this->assertArrayHasKey('name', $aliasManager->getLocal());
+        $this->assertArrayHasKey('name', $aliasManager->getAll());
 
         //remove
         $aliasManager->remove($alias->getName());
-        $this->assertEquals([], $aliasManager->getLocal());
-        $this->assertEquals(
-            $this->provideGlobalAlias(),
-            $aliasManager->getGlobal()
-        );
+
+        $this->assertArrayNotHasKey('name', $aliasManager->getGlobal());
+        $this->assertArrayNotHasKey('name', $aliasManager->getLocal());
+        $this->assertArrayNotHasKey('name', $aliasManager->getAll());
     }
 
     public function testAddAndRemoveWithOverride()
@@ -88,40 +85,24 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
 
         $aliasManager = new AliasManager(new Config(''));
 
+        //pre-assertion
+        $this->assertArrayHasKey('lib', $aliasManager->getGlobal());
+        $this->assertArrayNotHasKey('lib', $aliasManager->getLocal());
+        $this->assertArrayHasKey('lib', $aliasManager->getAll());
+
         //add
         $aliasManager->add($alias);
 
-        $this->assertEquals(
-            [
-                'lib' => $alias,
-            ],
-            $aliasManager->getLocal()
-        );
-
-        $globalAlias = $this->provideGlobalAlias();
-        $this->assertEquals(
-            $globalAlias,
-            $aliasManager->getGlobal()
-        );
-
-        $globalAlias['lib'] = $alias;
-        $this->assertEquals(
-            $globalAlias,
-            $aliasManager->getAll()
-        );
+        $this->assertArrayHasKey('lib', $aliasManager->getGlobal());
+        $this->assertArrayHasKey('lib', $aliasManager->getLocal());
+        $this->assertArrayHasKey('lib', $aliasManager->getAll());
 
         //remove
         $aliasManager->remove($alias->getName());
-        $this->assertEquals([], $aliasManager->getLocal());
-        $this->assertEquals(
-            $this->provideGlobalAlias(),
-            $aliasManager->getGlobal()
-        );
 
-        $this->assertEquals(
-            $this->provideGlobalAlias(),
-            $aliasManager->getAll()
-        );
+        $this->assertArrayHasKey('lib', $aliasManager->getGlobal());
+        $this->assertArrayNotHasKey('lib', $aliasManager->getLocal());
+        $this->assertArrayHasKey('lib', $aliasManager->getAll());
     }
 
     public function testHasTrue()
@@ -147,26 +128,6 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
     {
         $aliasManager = new AliasManager(new Config(''));
         $this->assertNull($aliasManager->get('none'));
-    }
-
-    /**
-     * @return array
-     */
-    private function provideGlobalAlias()
-    {
-        return [
-            'lib' => $this->provideAlias('lib', 'Basic PHP library','raphhh/php-lib-bootstrap', ''),
-            'app' => $this->provideAlias('app', 'Basic PHP web project','raphhh/php-app-bootstrap', ''),
-            'symfony' => $this->provideAlias('symfony', 'Symfony framework application','symfony/framework-standard-edition', ''),
-            'laravel' => $this->provideAlias('laravel', 'Laravel framework application','laravel/laravel', ''),
-            'zend' => $this->provideAlias('zend', 'Zend framework application','zendframework/skeleton-application', ''),
-            'cake' => $this->provideAlias('cake', 'CakePHP framework application','cakephp/app', ''),
-            'drupal' => $this->provideAlias('drupal', 'Drupal CMS application','drupal-composer/drupal-project', '@dev'),
-            'joomla' => $this->provideAlias('joomla', 'Joomla CMS application','joomla/framework', ''),
-            'silex' => $this->provideAlias('silex', 'Silex micro-framework application','fabpot/silex-skeleton', ''),
-            'slim' => $this->provideAlias('slim', 'Slim micro-framework application','slim/slim-skeleton', ''),
-            'puppy' => $this->provideAlias('puppy', 'Puppy micro-framework application','raphhh/puppy', ''),
-        ];
     }
 
     /**
