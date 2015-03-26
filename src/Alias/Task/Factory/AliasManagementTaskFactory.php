@@ -6,7 +6,6 @@ use Samurai\Alias\Task\Listing;
 use Samurai\Alias\Task\Removing;
 use Samurai\Alias\Task\Saving;
 use Samurai\Task\ITask;
-
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
