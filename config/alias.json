@@ -56,6 +56,13 @@
     "repository": "https://github.com/yiisoft/yii2-app-basic"
   },
   {
+    "name": "yii+",
+    "description": "Yii framework application - advanced template",
+    "bootstrap": "yiisoft/yii2-app-advanced",
+    "version": "",
+    "repository": "https://github.com/yiisoft/yii2-app-advanced"
+  },
+  {
     "name": "drupal",
     "description": "Drupal CMS application",
     "bootstrap": "drupal-composer/drupal-project",
