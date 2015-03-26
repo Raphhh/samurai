@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class CommandLine
- * @package Samurai\Composer
+ * @package Samurai\Project
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
 class Alias extends Command

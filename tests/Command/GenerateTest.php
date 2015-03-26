@@ -4,7 +4,7 @@ namespace Samurai\Command;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
-use Samurai\Composer\Project;
+use Samurai\Project\Project;
 use Samurai\Samurai;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -152,7 +152,7 @@ class GenerateTest extends \PHPUnit_Framework_TestCase
 
     private function provideComposer($result)
     {
-        $composer = $this->getMockBuilder('Samurai\Composer\Composer')
+        $composer = $this->getMockBuilder('Samurai\Project\Composer')
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -1,7 +1,7 @@
 <?php
 namespace Samurai\Command;
 
-use Samurai\Composer\Task\Factory\ProjectCreationTaskFactory;
+use Samurai\Project\Task\Factory\ProjectCreationTaskFactory;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class CommandLine
- * @package Samurai\Composer
+ * @package Samurai\Project
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
 class Generate extends Command

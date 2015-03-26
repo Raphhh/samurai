@@ -3,7 +3,7 @@ namespace Samurai\File;
 
 /**
  * Class ComposerConfigManager
- * @package Samurai\Composer
+ * @package Samurai\Project
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
 class JsonFileManager
