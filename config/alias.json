@@ -36,6 +36,12 @@
     "version": ""
   },
   {
+    "name": "drupal",
+    "description": "Drupal CMS application",
+    "bootstrap": "drupal-composer/drupal-project",
+    "version": "@dev"
+  },
+  {
     "name": "silex",
     "description": "Silex application",
     "bootstrap": "fabpot/silex-skeleton",
