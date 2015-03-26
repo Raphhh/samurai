@@ -8,11 +8,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class CommandLine
+ * Class NewCommand
  * @package Samurai\Project
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class Generate extends Command
+class NewCommand extends Command
 {
 
     /**

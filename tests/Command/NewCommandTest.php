@@ -13,7 +13,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class GenerateTest extends \PHPUnit_Framework_TestCase
+/**
+ * Class NewCommandTest
+ * @package Samurai\Command
+ * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
+ */
+class NewCommandTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

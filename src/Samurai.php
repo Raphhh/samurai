@@ -5,7 +5,7 @@ use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
 use Samurai\Alias\AliasCommand;
-use Samurai\Command\Generate;
+use Samurai\Command\NewCommand;
 use Samurai\Project\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Application;
@@ -100,7 +100,7 @@ class Samurai
      */
     private function initCommands()
     {
-        $this->getApplication()->add(new Generate($this->getServices()));
+        $this->getApplication()->add(new NewCommand($this->getServices()));
         $this->getApplication()->add(new AliasCommand($this->getServices()));
     }
 
