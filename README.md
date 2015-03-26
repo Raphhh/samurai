@@ -15,33 +15,60 @@ Samurai generates all the files you need for a library, a web application, a fra
 
 ## Installation
 
+### Download Samurai
+
 First, download Samurai with [Composer](https://getcomposer.org) in the global env.
 
-```
-composer global require raphhh/samurai
+```console
+$ composer global require raphhh/samurai
 ```
 
-Make sure to place the ~/.composer/vendor/bin directory in your PATH (or C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin if working with Windows). 
+### Set the PATH of Composer
+
+#### Linux
+
+Make sure to place the ~/.composer/vendor/bin directory in your PATH.
+
+For all users (restart):
+
+```console
+$ echo "export PATH=$PATH:~/.composer/vendor/bin" >> /etc/profile
+```
+
+For current user (relogin):
+
+```console
+$ echo "export PATH=$PATH:~/.composer/vendor/bin" >> ~/.profile
+```
+
+#### Windows
+
+Make sure to place the C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin in your PATH. 
+
+```console
+setx PATH "%PATH%;C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin"
+```
+
+### Test Samurai
 
 So, the samurai executable is found when you run the command in your terminal.
 
+```console
+$ samurai help --version
 ```
-samurai help --version
-```
-
 
 ## List commands and help
 
 To list all the available commands, enter the 'list' command:
 
-```
-samurai list
+```console
+$ samurai list
 ```
 
 To get help on a specific command, use the 'help' command:
 
-```
-samurai help <command>
+```console
+$ samurai help <command>
 ```
 
 
@@ -53,8 +80,8 @@ The samurai "new" command will create a fresh installation of a new project.
 
 If you do not specify a bootstrap to install, Samurai will list all the project's bootstraps.
 
-```
-samurai new
+```console
+$ samurai new
 ```
 You just have to select a bootstrap to install.
 
@@ -62,42 +89,42 @@ You just have to select a bootstrap to install.
 
 If you know the project, you can directly specify it in the command. Samurai will create your project from this bootstrap. 
 
-```
-samurai new <bootstrap>
+```console
+$ samurai new <bootstrap>
 ```
 
 In fact, you specify an alias of a project. An alias is just a defined bootstrap and version. See alias section for more information.
 
 For example, with alias 'lib', Samurai will install a basic PHP library bootstrap.
 
-```
-samurai new lib
+```console
+$ samurai new lib
 ```
 
 ### Specify another bootstrap and its version
 
 You can specify any project loadable with Composer, event if you do not have alias. 
 
-```
-samurai new <vendor/package> [<version>]
+```console
+$ samurai new <vendor/package> [<version>]
 ```
 
 For example, you can create a new Symfony app by specifying its package. (This is just an example, because the 'symfony' alias already exists)
 
-```
-samurai new symfony/framework-standard-edition
+```console
+$ samurai new symfony/framework-standard-edition
 ```
 
 Or if you want a specific version of a package, add the version you want just after the bootstrap. If you do not specify a version, Samurai will take the last stable version of the bootstrap.
 
-```
-samurai new symfony/framework-standard-edition 1.0.0
+```console
+$ samurai new symfony/framework-standard-edition 1.0.0
 ```
 
 If you install a project from a non-aliased bootstrap, do not hesitate to add it in the alias list. It is very simple. See alias section for more information. For example, Symfony is already available with 'symfony' alias.
 
-```
-samurai new symfony
+```console
+$ samurai new symfony
 ```
 
 
@@ -125,22 +152,22 @@ Alias are simple words linked to a specific bootstrap at a specific version. For
 ### List the existing alias
 
 To list all the alias, execute the command:
-```
-samurai alias
+```console
+$ samurai alias
 ```
 
 ### Add or redefine an alias
 
 You can easily add any bootstrap you want, event yours! To add or redefine an alias, execute the command:
-```
-samurai alias <name> <bootstrap> [<version>] [<description>] [<source>]
+```console
+$ samurai alias <name> <bootstrap> [<version>] [<description>] [<source>]
 ```
 
 ### Remove an alias
 
 To remove an alias, execute the command:
-```
-samurai alias <name>
+```console
+$ samurai alias <name>
 ```
 
 
@@ -160,12 +187,12 @@ During the installation, Samurai will ask you if you want to load some modules.
 
 Execute the module command. You must specify the package of your module.
  
-```
-samurai module <vendor/package>
+```console
+$ samurai module <vendor/package>
 ```
 
 For example, if you want to load the git module:
 
-```
-samurai module raphhh/samurai-module-git
+```console
+$ samurai module raphhh/samurai-module-git
 ```
