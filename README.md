@@ -128,6 +128,17 @@ If you install a project from a non-aliased bootstrap, do not hesitate to add it
 $ samurai new symfony
 ```
 
+### Specify a project dir
+
+By default, Samurai will put your project into the same directory as your project name.
+
+For example, if you run Samurai from "~/projects" and you name your project "my/lib", it will put your project in "~/projects/my/lib".
+
+But you can specify another directory with the option "--dir" or "-d".
+
+```console
+$ samurai new lib -d specific/path/to/my/project
+```
 
 ## What Samurai does during the installation of your project?
 
