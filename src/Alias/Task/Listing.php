@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Alias\Task;
 
+use Samurai\Alias\Alias;
 use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -31,7 +32,7 @@ class Listing extends Task
     }
 
     /**
-     * @param array $aliasList
+     * @param Alias[] $aliasList
      * @return string
      */
     private function mapAlias(array $aliasList)
