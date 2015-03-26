@@ -4,7 +4,7 @@ namespace Samurai;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
-use Samurai\Command\AliasCommand;
+use Samurai\Alias\AliasCommand;
 use Samurai\Command\Generate;
 use Samurai\Project\Composer;
 use Samurai\Project\Project;
