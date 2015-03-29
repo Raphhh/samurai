@@ -91,7 +91,7 @@ $ samurai help <command>
 ```
 
 
-## Create your project
+## Scaffold your project
 
 The samurai "new" command will create a fresh installation of a new project. 
 
@@ -190,18 +190,18 @@ A module is a plugin added to Samurai. This plugin will execute some specific co
 
 ### Add a module
 
-Obviously, Samurai executes only modules that you have installed. So, you can decide, according to your own needs, which modules you want to execute.
+Obviously, Samurai executes only modules that you have installed. So, you can decide, according to your own needs, which modules you want to add.
 
 #### When you install Samurai
 
-During the installation, Samurai will ask you if you want to load some modules.
+During the installation, Samurai will ask you if you want to load some recommended modules.
 
 #### When you want
 
-Execute the module command. You must specify the package of your module.
+Execute the module command. You must specify the package of the module you want to add.
  
 ```console
-$ samurai module <vendor/package>
+$ samurai module <vendor/package> [<version>]
 ```
 
 For example, if you want to load the git module:
