@@ -34,14 +34,9 @@ class Project
     private $description;
 
     /**
-     * @var string
+     * @var Authors
      */
-    private $authorName;
-
-    /**
-     * @var string
-     */
-    private $authorEmail;
+    private $authors;
 
     /**
      * @var array
@@ -52,6 +47,14 @@ class Project
      * @var string
      */
     private $homepage;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->setAuthors(new Authors());
+    }
 
     /**
      * Getter of $name
@@ -162,43 +165,31 @@ class Project
     }
 
     /**
-     * Getter of $authorName
+     * Getter of $authors
      *
-     * @return string
+     * @return Authors
      */
-    public function getAuthorName()
+    public function getAuthors()
     {
-        return $this->authorName;
+        return $this->authors;
     }
 
     /**
-     * Setter of $authorName
+     * Setter of $authors
      *
-     * @param string $authorName
+     * @param Authors $authors
      */
-    public function setAuthorName($authorName)
+    public function setAuthors(Authors $authors)
     {
-        $this->authorName = (string)$authorName;
+        $this->authors = $authors;
     }
 
     /**
-     * Getter of $authorEmail
-     *
-     * @return string
+     * @param Author $author
      */
-    public function getAuthorEmail()
+    public function addAuthor(Author $author)
     {
-        return $this->authorEmail;
-    }
-
-    /**
-     * Setter of $authorEmail
-     *
-     * @param string $authorEmail
-     */
-    public function setAuthorEmail($authorEmail)
-    {
-        $this->authorEmail = (string)$authorEmail;
+        $this->authors[] = $author;
     }
 
     /**
@@ -251,12 +242,7 @@ class Project
             'description' => $this->getDescription(),
             'keywords' => $this->getKeywords(),
             'homepage' => $this->getHomepage(),
-            'authors' => [
-                [
-                    'name' => $this->getAuthorName(),
-                    'email' => $this->getAuthorEmail(),
-                ]
-            ],
+            'authors' => $this->getAuthors()->toArray(),
         ];
     }
 }

@@ -16,8 +16,7 @@ class ProjectTest extends \PHPUnit_Framework_TestCase
         $project->setDescription('description');
         $project->setKeywords(['k1', 'k2']);
         $project->setHomepage('http://homepage.com');
-        $project->setAuthorName('author-name');
-        $project->setAuthorEmail('author@email.com');
+        $project->addAuthor(new Author('author-name <author@email.com>'));
 
         $this->assertSame(
             [
