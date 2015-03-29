@@ -40,7 +40,7 @@ class NameQuestion extends Question
     private function buildValidator()
     {
         return function ($answer) {
-            if (count(explode('/', $answer)) !== 2) {
+            if (!preg_match('{^[a-z0-9_.-]+/[a-z0-9_.-]+$}', $answer)) {
                 throw new \RuntimeException('Error: format not valid');
             }
             return $answer;
