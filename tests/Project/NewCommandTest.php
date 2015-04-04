@@ -44,6 +44,10 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
             ->method('ask')
             ->will($this->returnValue('vendor/package'));
 
+        $questionHelper->expects($this->at(2))
+            ->method('ask')
+            ->will($this->returnValue('desc'));
+
 
         $application = new Application();
         $samurai = new Samurai($application, $this->provideServices($questionHelper), $executor);
@@ -68,7 +72,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('raphhh/php-lib-bootstrap', $project->getBootstrapName());
         $this->assertSame('', $project->getBootstrapVersion());
         $this->assertSame('vendor/package', $project->getDirectoryPath());
-        $this->assertSame('', $project->getDescription());
+        $this->assertSame('desc', $project->getDescription());
         $this->assertSame('', $project->getHomepage());
         $this->assertSame([], $project->getKeywords());
     }

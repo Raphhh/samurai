@@ -23,7 +23,7 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
     {
         $input = new ArrayInput([]);
         $output = new BufferedOutput();
-        $services = $this->provideServices($input, $output);
+        $services = $this->provideServices($input, $output, 'result');
 
         $this->assertNull($services['composer']->getProject()->getDescription());
 
@@ -33,14 +33,29 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('result', $services['composer']->getProject()->getDescription());
     }
 
+    public function testExecuteEmpty()
+    {
+        $input = new ArrayInput([]);
+        $output = new BufferedOutput();
+        $services = $this->provideServices($input, $output, '');
+
+        $this->assertNull($services['composer']->getProject()->getDescription());
+
+        $question = new DescriptionQuestion($services);
+        $this->assertFalse($question->execute($input, $output));
+
+        $this->assertSame('', $services['composer']->getProject()->getDescription());
+    }
+
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @param string $result
      * @return Container
      */
-    private function provideServices(InputInterface $input, OutputInterface $output)
+    private function provideServices(InputInterface $input, OutputInterface $output, $result)
     {
-        $questionHelper = $this->provideQuestionHelper($input, $output);
+        $questionHelper = $this->provideQuestionHelper($input, $output, $result);
 
         $services = new Container();
         $services['question'] = function () use ($questionHelper) {
@@ -57,9 +72,10 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @param string $result
      * @return \Symfony\Component\Console\Helper\QuestionHelper
      */
-    private function provideQuestionHelper(InputInterface $input, OutputInterface $output)
+    private function provideQuestionHelper(InputInterface $input, OutputInterface $output, $result)
     {
         $questionHelper = $this->getMockBuilder('Symfony\Component\Console\Helper\QuestionHelper')->getMock();
 
@@ -74,7 +90,7 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
                     }
                 )
             )
-            ->will($this->returnValue('result'));
+            ->will($this->returnValue($result));
 
         return $questionHelper;
     }

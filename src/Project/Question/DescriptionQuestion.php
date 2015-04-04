@@ -19,11 +19,29 @@ class DescriptionQuestion extends Question
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        $question = new SimpleQuestion('<question>Enter your project description:</question>');
+        $question->setValidator($this->buildValidator());
+        $question->setMaxAttempts(3);
+
         $this->getProject()->setDescription($this->ask(
             $input,
             $output,
-            new SimpleQuestion('<question>Enter your project description:</question>')
+            $question
         ));
-        return true;
+
+        return (bool) $this->getProject()->getDescription();
+    }
+
+    /**
+     * @return callable
+     */
+    private function buildValidator()
+    {
+        return function ($answer) {
+            if(!$answer){
+                throw new \RuntimeException('Error: description is required');
+            }
+            return $answer;
+        };
     }
 }
