@@ -35,7 +35,10 @@ class ConfigSettingTest extends \PHPUnit_Framework_TestCase
         $task = new ConfigSetting($services);
         $this->assertTrue($task->execute($input, $output));
 
-        $this->assertSame("Initializing composer config\nError: Composer config is not valid\n", $output->fetch());
+        $this->assertSame(
+            "Initializing composer config\nError: Composer config is not valid\nError: autoload is not up-to-date. Process to \"composer dump-autoload\".\n",
+            $output->fetch()
+        );
     }
 
     /**
@@ -64,6 +67,10 @@ class ConfigSettingTest extends \PHPUnit_Framework_TestCase
 
         $composer->expects($this->once())
             ->method('validateConfig')
+            ->will($this->returnValue($result));
+
+        $composer->expects($this->once())
+            ->method('dumpAutoload')
             ->will($this->returnValue($result));
 
         return $composer;

@@ -25,6 +25,9 @@ class ConfigSetting extends Task
         if(!$this->getService('composer')->validateConfig()) {
             $output->writeln('<error>Error: Composer config is not valid</error>');
         }
+        if(!$this->getService('composer')->dumpAutoload()) {
+            $output->writeln('<error>Error: autoload is not up-to-date. Process to "composer dump-autoload".</error>');
+        }
 
         return true;
     }
