@@ -1,6 +1,7 @@
 <?php
 namespace Samurai;
 
+use PHPGit\Git;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasCommand;
@@ -158,6 +159,10 @@ class Samurai
 
         $services['alias_manager'] = function (Container $services) {
             return new AliasManager($services['config']);
+        };
+
+        $services['git'] = function () {
+            return new Git();
         };
 
         return $services;

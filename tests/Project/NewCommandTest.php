@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project;
 
+use PHPGit\Git;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
@@ -42,15 +43,39 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
 
         $questionHelper->expects($this->at(1))
             ->method('ask')
-            ->will($this->returnValue('vendor/package'));
+            ->will($this->returnValue('vendor/package')); //set project name
 
         $questionHelper->expects($this->at(2))
             ->method('ask')
-            ->will($this->returnValue('desc'));
+            ->will($this->returnValue('desc')); //set description
+
+        $questionHelper->expects($this->at(3))
+            ->method('ask')
+            ->will($this->returnValue('')); //ask for hompage
+
+        $questionHelper->expects($this->at(4))
+            ->method('ask')
+            ->will($this->returnValue('')); //ask for keywords
+
+        $questionHelper->expects($this->at(5))
+            ->method('ask')
+            ->will($this->returnValue(true)); //confirm git user
+
+        $questionHelper->expects($this->at(6))
+            ->method('ask')
+            ->will($this->returnValue(false)); //do not add a other user
+
+        $git = $this->getMock('PHPGit\Git', array('config'));
+        $git->expects($this->once())
+            ->method('config')
+            ->will($this->returnValue([
+                'user.name' => 'git.name',
+                'user.email' => 'git.email@mail.com',
+            ]));
 
 
         $application = new Application();
-        $samurai = new Samurai($application, $this->provideServices($questionHelper), $executor);
+        $samurai = new Samurai($application, $this->provideServices($questionHelper, $git), $executor);
 
         $command = $application->find('new');
         $command->getHelperSet()->set($questionHelper, 'question');
@@ -75,6 +100,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('desc', $project->getDescription());
         $this->assertSame('', $project->getHomepage());
         $this->assertSame([], $project->getKeywords());
+        $this->assertSame('git.name <git.email@mail.com>', (string)$project->getAuthors()[0]);
     }
 
     public function testFilled()
@@ -102,9 +128,33 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
             ->method('ask')
             ->will($this->returnValue(' k1 , k2'));
 
+        $questionHelper->expects($this->at(4))
+            ->method('ask')
+            ->will($this->returnValue(true)); //confirm git user
+
+        $questionHelper->expects($this->at(5))
+            ->method('ask')
+            ->will($this->returnValue(true)); //add a other user
+
+        $questionHelper->expects($this->at(6))
+            ->method('ask')
+            ->will($this->returnValue(new Author('add.name <add.email@mail.com>'))); //set author
+
+        $questionHelper->expects($this->at(7))
+            ->method('ask')
+            ->will($this->returnValue(false)); //do not add a other user
+
+
+        $git = $this->getMock('PHPGit\Git', array('config'));
+        $git->expects($this->once())
+            ->method('config')
+            ->will($this->returnValue([
+                'user.name' => 'git.name',
+                'user.email' => 'git.email@mail.com',
+            ]));
 
         $application = new Application();
-        $samurai = new Samurai($application, $this->provideServices($questionHelper), $executor);
+        $samurai = new Samurai($application, $this->provideServices($questionHelper, $git), $executor);
 
         $command = $application->find('new');
         $command->getHelperSet()->set($questionHelper, 'question');
@@ -132,14 +182,17 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('desc', $project->getDescription());
         $this->assertSame('http://website.com', $project->getHomepage());
         $this->assertSame(['k1', 'k2'], $project->getKeywords());
+        $this->assertSame('git.name <git.email@mail.com>', (string)$project->getAuthors()[0]);
+        $this->assertSame('add.name <add.email@mail.com>', (string)$project->getAuthors()[1]);
     }
 
     /**
      * @param QuestionHelper $questionHelper
+     * @param Git $git
      * @return Container
      * @internal param $result
      */
-    private function provideServices(QuestionHelper $questionHelper)
+    private function provideServices(QuestionHelper $questionHelper, Git $git)
     {
         $composer = $this->provideComposer(true);
 
@@ -147,6 +200,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $services['composer'] = function () use ($composer) {
             return $composer;
         };
+
         $services['question'] = function () use ($questionHelper) {
             return $questionHelper;
         };
@@ -154,6 +208,11 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $services['alias_manager'] = function () {
             return new AliasManager(new Config(''));
         };
+
+        $services['git'] = function () use ($git){
+            return $git;
+        };
+
         return $services;
     }
 

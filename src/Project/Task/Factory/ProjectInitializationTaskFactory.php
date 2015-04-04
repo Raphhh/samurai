@@ -2,6 +2,7 @@
 namespace Samurai\Project\Task\Factory;
 
 use Pimple\Container;
+use Samurai\Project\Question\AuthorQuestion;
 use Samurai\Project\Question\BootstrapQuestion;
 use Samurai\Project\Question\DescriptionQuestion;
 use Samurai\Project\Question\DirectoryPathQuestion;
@@ -31,6 +32,7 @@ class ProjectInitializationTaskFactory
             new DescriptionQuestion($services),
             new HomepageQuestion($services),
             new KeywordsQuestion($services),
+            new AuthorQuestion($services),
         ]);
     }
 }
