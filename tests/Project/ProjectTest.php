@@ -17,6 +17,7 @@ class ProjectTest extends \PHPUnit_Framework_TestCase
         $project->setKeywords(['k1', 'k2']);
         $project->setHomepage('http://homepage.com');
         $project->addAuthor(new Author('author-name <author@email.com>'));
+        $project->addPackage($this->buildPackage('namespace1', ['path1.1', 'path1.2']));
 
         $this->assertSame(
             [
@@ -30,8 +31,29 @@ class ProjectTest extends \PHPUnit_Framework_TestCase
                         'email' => 'author@email.com',
                     ]
                 ],
+                'autoload' => [
+                    'psr-4' => [
+                        'namespace1\\' => [
+                            'path1.1',
+                            'path1.2',
+                        ],
+                    ],
+                ]
             ],
             $project->toConfig()
         );
+    }
+
+    /**
+     * @param string $namespace
+     * @param array $pathList
+     * @return Package
+     */
+    private function buildPackage($namespace, array $pathList)
+    {
+        $package = new Package();
+        $package->setNamespace($namespace);
+        $package->setPathList($pathList);
+        return $package;
     }
 }

@@ -49,11 +49,17 @@ class Project
     private $homepage;
 
     /**
+     * @var Packages
+     */
+    private $packages;
+
+    /**
      *
      */
     public function __construct()
     {
         $this->setAuthors(new Authors());
+        $this->setPackages(new Packages());
     }
 
     /**
@@ -233,6 +239,34 @@ class Project
     }
 
     /**
+     * Getter of $package
+     *
+     * @return Packages
+     */
+    public function getPackages()
+    {
+        return $this->packages;
+    }
+
+    /**
+     * Setter of $packages
+     *
+     * @param Packages $packages
+     */
+    public function setPackages(Packages $packages)
+    {
+        $this->packages = $packages;
+    }
+
+    /**
+     * @param Package $package
+     */
+    public function addPackage(Package $package)
+    {
+        $this->packages[] = $package;
+    }
+
+    /**
      * @return array
      */
     public function toConfig()
@@ -243,6 +277,7 @@ class Project
             'keywords' => $this->getKeywords(),
             'homepage' => $this->getHomepage(),
             'authors' => $this->getAuthors()->toArray(),
+            'autoload' => $this->getPackages()->toArray(),
         ];
     }
 }
