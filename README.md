@@ -20,7 +20,7 @@ Samurai generates all the files you need for a library, a web application, a fra
 Samurai installs and params your project:
 
  1. Download the bootstrap and its dependency with Composer
- 2. Param the Composer config (composer.json) (todo: author + package)
+ 2. Param the Composer config (composer.json) (todo: package)
  3. Dump the autoloader of Composer with your new Package name (todo)
  4. Clean some files (changelog, etc) (todo)
  5. Execute the installed modules. For example:
@@ -67,6 +67,11 @@ Make sure to place the C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin in your
 ```console
 setx PATH "%PATH%;C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin"
 ```
+
+### Download Git
+
+For a better experience, you should also install [Git](http://git-scm.com/).
+
 
 ### Test Samurai
 
