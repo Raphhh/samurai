@@ -127,6 +127,14 @@ class Composer
     }
 
     /**
+     * @return bool
+     */
+    public function dumpAutoload()
+    {
+        return $this->getExecutor()->flush($this->cd() . 'composer dump-autoload');
+    }
+
+    /**
      * @return string
      */
     private function cd()

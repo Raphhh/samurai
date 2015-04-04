@@ -267,4 +267,19 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 
         file_put_contents($composer->getConfigPath(), $fileContent);
     }
+
+    public function testDumpAutoload()
+    {
+        $project = new Project();
+        $project->setDirectoryPath(__DIR__ . '/../resources');
+
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('flush')
+            ->with('cd '.__DIR__ .'/../resources && composer dump-autoload')
+            ->will($this->returnValue(true));
+
+        $composer = new Composer($project, $executor);
+        $this->assertTrue($composer->dumpAutoload());
+    }
 }
