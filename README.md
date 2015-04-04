@@ -21,7 +21,7 @@ Samurai installs and params your project:
 
  1. Download the bootstrap and its dependency with Composer
  2. Param the Composer config (composer.json)
- 3. Dump the autoloader of Composer with your new Package name (todo)
+ 3. Dump the autoloader of Composer with your new Package name
  4. Clean some files (changelog, etc) (todo)
  5. Execute the installed modules. For example:
      - Init git for the project (git module) (todo)
