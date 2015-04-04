@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Question;
 
+use ICanBoogie\Inflector;
 use Samurai\Project\Package;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -108,7 +109,7 @@ class PackageQuestion extends Question
      */
     private function buildFirstNamespaceQuestion()
     {
-        $defaultNamespace = explode('/', $this->getProject()->getName())[1];
+        $defaultNamespace = $this->retrieveDefaultNamespace();
         return new SimpleQuestion(
             '<question>Enter the namespace:['.$defaultNamespace.']</question>',
             $defaultNamespace
@@ -146,5 +147,14 @@ class PackageQuestion extends Question
             '<question>Enter the path list (path separated by a comma)[src/,tests/]:</question>',
             'src/,tests/'
         );
+    }
+
+    /**
+     * @return string
+     */
+    private function retrieveDefaultNamespace()
+    {
+        $inflector = Inflector::get();
+        return $inflector->camelize(explode('/', $this->getProject()->getName())[1]);
     }
 }
