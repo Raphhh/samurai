@@ -9,6 +9,7 @@ use Samurai\Project\Question\DirectoryPathQuestion;
 use Samurai\Project\Question\HomepageQuestion;
 use Samurai\Project\Question\KeywordsQuestion;
 use Samurai\Project\Question\NameQuestion;
+use Samurai\Project\Question\PackageQuestion;
 use Samurai\Task\ITask;
 use Samurai\Task\Planner;
 
@@ -33,6 +34,7 @@ class ProjectInitializationTaskFactory
             new HomepageQuestion($services),
             new KeywordsQuestion($services),
             new AuthorQuestion($services),
+            new PackageQuestion($services),
         ]);
     }
 }

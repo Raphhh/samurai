@@ -101,6 +101,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('', $project->getHomepage());
         $this->assertSame([], $project->getKeywords());
         $this->assertSame('git.name <git.email@mail.com>', (string)$project->getAuthors()[0]);
+        $this->assertCount(0, $project->getPackages());
     }
 
     public function testFilled()
@@ -144,6 +145,22 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
             ->method('ask')
             ->will($this->returnValue(false)); //do not add a other user
 
+        $questionHelper->expects($this->at(8))
+            ->method('ask')
+            ->will($this->returnValue(true)); //add a package
+
+        $questionHelper->expects($this->at(9))
+            ->method('ask')
+            ->will($this->returnValue('vendor\namespace')); //add a namespace
+
+        $questionHelper->expects($this->at(10))
+            ->method('ask')
+            ->will($this->returnValue('src/,tests/,test/')); //add dirs
+
+        $questionHelper->expects($this->at(11))
+            ->method('ask')
+            ->will($this->returnValue(false)); //do not add another namespace
+
 
         $git = $this->getMock('PHPGit\Git', array('config'));
         $git->expects($this->once())
@@ -184,6 +201,8 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(['k1', 'k2'], $project->getKeywords());
         $this->assertSame('git.name <git.email@mail.com>', (string)$project->getAuthors()[0]);
         $this->assertSame('add.name <add.email@mail.com>', (string)$project->getAuthors()[1]);
+        $this->assertSame('vendor\namespace\\', $project->getPackages()[0]->getNamespace());
+        $this->assertSame(['src/','tests/','test/'], $project->getPackages()[0]->getPathList());
     }
 
     /**
