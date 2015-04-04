@@ -17,13 +17,20 @@ class ComposerConfigMerger
     ];
 
     /**
+     * @var string[]
+     */
+    private static $sharedKeys = [
+        'autoload',
+    ];
+
+    /**
      * @param array $initialConfig
      * @param array $updatedConfig
      * @return array
      */
     public function merge(array $initialConfig, array $updatedConfig)
     {
-        return $this->cleanConfig(array_merge($initialConfig, $updatedConfig));
+        return $this->cleanConfig($this->mergeConfig($initialConfig, $updatedConfig));
     }
 
     /**
@@ -73,5 +80,26 @@ class ComposerConfigMerger
             }
         }
         return $config;
+    }
+
+    /**
+     * @param array $initialConfig
+     * @param array $updatedConfig
+     * @return array
+     */
+    private function mergeConfig(array $initialConfig, array $updatedConfig)
+    {
+        $updatedConfig = array_merge($initialConfig, $updatedConfig);
+
+        foreach(self::$sharedKeys as $key){
+            if (isset($initialConfig[$key])) {
+                $updatedConfig[$key] = array_merge_recursive(
+                    $initialConfig[$key],
+                    $updatedConfig[$key]
+                );
+            }
+        }
+
+        return $updatedConfig;
     }
 }
