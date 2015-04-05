@@ -24,9 +24,9 @@ class PackageQuestion extends Question
     {
         if($this->confirmFirstPackage($input, $output)){
             $this->setPackage($input, $output, true);
-        }
-        while ($this->confirmAdditionalPackages($input, $output)) {
-            $this->setPackage($input, $output, false);
+            while ($this->confirmAdditionalPackages($input, $output)) {
+                $this->setPackage($input, $output, false);
+            }
         }
         return true;
     }
