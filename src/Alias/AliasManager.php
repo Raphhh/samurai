@@ -19,7 +19,7 @@ class AliasManager
     /**
      * @param ArrayObject $config
      */
-    public function __construct(ArrayObject $config)
+    public function __construct(ArrayObject $config)//todo align the type
     {
         $this->setConfig($config);
     }
@@ -92,7 +92,7 @@ class AliasManager
      * @return int
      */
     public function addList(array $aliasList)
-    {
+    {//todo refactor with JsonFileManager
         $this->createLocalConfigFile($this->getConfig()['alias.local.path']);
         return file_put_contents(
             $this->getConfig()['alias.local.path'],
@@ -177,7 +177,7 @@ class AliasManager
      * @return Alias[]
      */
     private function retrieveFrom($key)
-    {
+    { //todo refactor with JsonFileManager
         if(!file_exists($this->getConfig()[$key]) || !is_readable($this->getConfig()[$key])){
             return [];
         }
@@ -193,7 +193,7 @@ class AliasManager
      * @param $path
      */
     private function createLocalConfigFile($path)
-    {
+    { //todo refactor with JsonFileManager
         $currentPath = '';
         $subPathList = explode('/', $path);
         foreach($subPathList as $index => $subPath) { //we force to use / because project name separator is only /
