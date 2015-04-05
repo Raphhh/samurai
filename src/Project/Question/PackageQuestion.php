@@ -144,7 +144,7 @@ class PackageQuestion extends Question
     private function buildPathListQuestion()
     {
         return new SimpleQuestion(
-            '<question>Enter the path list (path separated by a comma)[src/,tests/]:</question>',
+            '<question>Enter the path list (path separated by a comma):[src/,tests/]</question>',
             'src/,tests/'
         );
     }
