@@ -155,6 +155,6 @@ class PackageQuestion extends Question
     private function retrieveDefaultNamespace()
     {
         $inflector = Inflector::get();
-        return $inflector->camelize(explode('/', $this->getProject()->getName())[1]);
+        return $inflector->camelize(explode('/', $this->getProject()->getName())[1]);//todo add \
     }
 }

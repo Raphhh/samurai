@@ -149,7 +149,7 @@ class AliasManager
      * @param array $aliasList
      * @return Alias[]
      */
-    private function map(array $aliasList)
+    private function map(array $aliasList) //todo refactor with DataMapper
     {
         $result = [];
         foreach($aliasList as $aliasData){
