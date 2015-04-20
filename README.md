@@ -5,7 +5,6 @@
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Raphhh/samurai/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Raphhh/samurai/)
 [![Code Coverage](https://scrutinizer-ci.com/g/Raphhh/samurai/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Raphhh/samurai/)
 [![Total Downloads](https://poser.pugx.org/raphhh/samurai/downloads.svg)](https://packagist.org/packages/raphhh/samurai)
-[![Reference Status](https://www.versioneye.com/php/raphhh:samurai/reference_badge.svg?style=flat)](https://www.versioneye.com/php/raphhh:samurai/references)
 [![License](https://poser.pugx.org/raphhh/samurai/license.svg)](https://packagist.org/packages/raphhh/samurai)
 
 Samurai is a PHP scaffolding tool. It helps you to start a new project in PHP, generating all the base files in a simple command line.
