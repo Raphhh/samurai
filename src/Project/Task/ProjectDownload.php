@@ -16,7 +16,7 @@ class ProjectDownload extends Task
      * @var array
      */
     private $optionsMapping = [
-        'url' => 'repository-url',
+        'url' => 'repository-url',//todo use alias::source instead. this options is not allowed anymore
     ];
 
     /**
