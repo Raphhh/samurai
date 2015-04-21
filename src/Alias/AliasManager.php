@@ -88,7 +88,7 @@ class AliasManager
     }
 
     /**
-     * @param array $aliasList
+     * @param array $aliasList //todo rename all the $aliasList in $aliases
      * @return int
      */
     public function addList(array $aliasList)
