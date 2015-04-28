@@ -1,107 +1,107 @@
-[
-  {
+{
+  "lib": {
     "name": "lib",
     "description": "Basic PHP library",
     "bootstrap": "raphhh/php-lib-bootstrap",
     "version": "",
     "source": "https://github.com/Raphhh/php-lib-bootstrap"
   },
-  {
+  "app": {
     "name": "app",
     "description": "Basic PHP web project",
     "bootstrap": "raphhh/php-app-bootstrap",
     "version": "",
     "source": "https://github.com/Raphhh/php-app-bootstrap"
   },
-  {
+  "symfony": {
     "name": "symfony",
     "description": "Symfony framework application",
     "bootstrap": "symfony/framework-standard-edition",
     "version": "",
     "source": "https://github.com/symfony/symfony-standard"
   },
-  {
+  "laravel": {
     "name": "laravel",
     "description": "Laravel framework application",
     "bootstrap": "laravel/laravel",
     "version": "",
     "source": "https://github.com/laravel/laravel"
   },
-  {
+  "zend": {
     "name": "zend",
     "description": "Zend framework application",
     "bootstrap": "zendframework/skeleton-application",
     "version": "",
     "source": "https://github.com/zendframework/ZendSkeletonApplication"
   },
-  {
+  "cake": {
     "name": "cake",
     "description": "CakePHP framework application",
     "bootstrap": "cakephp/app",
     "version": "",
     "source": "https://github.com/cakephp/app"
   },
-  {
+  "igniter": {
     "name": "igniter",
     "description": "CodeIgniter framework application",
     "bootstrap": "codeigniter/framework",
     "version": "@dev",
     "source": "https://github.com/bcit-ci/CodeIgniter"
   },
-  {
+  "yii": {
     "name": "yii",
     "description": "Yii framework application - basic template",
     "bootstrap": "yiisoft/yii2-app-basic",
     "version": "",
     "source": "https://github.com/yiisoft/yii2-app-basic"
   },
-  {
+  "yii+": {
     "name": "yii+",
     "description": "Yii framework application - advanced template",
     "bootstrap": "yiisoft/yii2-app-advanced",
     "version": "",
     "source": "https://github.com/yiisoft/yii2-app-advanced"
   },
-  {
+  "drupal": {
     "name": "drupal",
     "description": "Drupal CMS application",
     "bootstrap": "drupal-composer/drupal-project",
     "version": "@dev",
     "source": "https://github.com/drupal-composer/drupal-project"
   },
-  {
+  "joomla": {
     "name": "joomla",
     "description": "Joomla CMS application",
     "bootstrap": "joomla/framework",
     "version": "",
     "source": "https://github.com/joomla/joomla-framework"
   },
-  {
+  "wordpress": {
     "name": "wordpress",
     "description": "WordPress CMS application",
     "bootstrap": "wemakecustom/wp-skeleton",
     "version": "",
     "source": "https://github.com/wemakecustom/wp-skeleton"
   },
-  {
+  "silex": {
     "name": "silex",
     "description": "Silex micro-framework application",
     "bootstrap": "fabpot/silex-skeleton",
     "version": "",
     "source": "https://github.com/silexphp/Silex-Skeleton"
   },
-  {
-    "name": "slim",
+  "silex": {
+    "name": "silex",
     "description": "Slim micro-framework application",
     "bootstrap": "slim/slim-skeleton",
     "version": "",
     "source": "https://github.com/slimphp/Slim-Skeleton"
   },
-  {
+  "puppy": {
     "name": "puppy",
     "description": "Puppy micro-framework application",
     "bootstrap": "raphhh/puppy",
     "version": "",
     "source": "https://github.com/Raphhh/puppy"
   }
-]
+}
