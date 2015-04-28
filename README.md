@@ -43,9 +43,11 @@ $ composer global require raphhh/samurai
 
 ### Set the PATH of Composer
 
-#### Linux
+Make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/03-cli.md#composer-bin-dir) directory in your PATH.
 
-Make sure to place the ~/.composer/vendor/bin directory in your PATH.
+#### Unix system
+
+By default, the COMPOSER_BIN_DIR is the directory "~/.composer/vendor/bin".
 
 For all users (restart):
 
@@ -61,7 +63,7 @@ $ echo "export PATH=$PATH:~/.composer/vendor/bin" >> ~/.profile
 
 #### Windows
 
-Make sure to place the C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin in your PATH. 
+By default, the COMPOSER_BIN_DIR is the directory "C:\Users\<user>\AppData\Roaming\Composer\vendor\bin". 
 
 ```console
 setx PATH "%PATH%;C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin"
