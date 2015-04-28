@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61b05bc47e5ffb44bcb739fdb7f1f2be",
+    "hash": "658c80214a9b3c0431b7fcde9cc6aefd",
     "packages": [
         {
             "name": "icanboogie/inflector",
@@ -149,21 +149,80 @@
             "time": "2014-07-24 09:48:15"
         },
         {
+            "name": "raphhh/balloon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Raphhh/balloon.git",
+                "reference": "181d728b30c04b40d20cad951c4e1ae1e16c2c09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Raphhh/balloon/zipball/02f81c591cb6a1e64aaf8859136673e351ec3094",
+                "reference": "181d728b30c04b40d20cad951c4e1ae1e16c2c09",
+                "shasum": ""
+            },
+            "require": {
+                "icanboogie/inflector": "~1.3",
+                "php": ">=5.4",
+                "symfony/yaml": "~2.6"
+            },
+            "require-dev": {
+                "knplabs/gaufrette": "0.1.*",
+                "phpunit/phpunit": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": [
+                        "src/",
+                        "tests/"
+                    ],
+                    "Balloon\\": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raphaël Lefebvre",
+                    "email": "raphael@raphaellefebvre.be"
+                }
+            ],
+            "description": "Tiny file ORM",
+            "keywords": [
+                "Object Relational Mapping",
+                "csv",
+                "data access layer",
+                "filemanager",
+                "json",
+                "xml",
+                "yaml"
+            ],
+            "time": "2015-05-01 19:52:36"
+        },
+        {
             "name": "raphhh/puppy-config",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Raphhh/puppy-config.git",
-                "reference": "fce670c4d2be3715d32345aec7d9dce0c6f47dbe"
+                "reference": "3b954a008bf41298777b05db7087a7ce4ab4af07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Raphhh/puppy-config/zipball/fce670c4d2be3715d32345aec7d9dce0c6f47dbe",
-                "reference": "fce670c4d2be3715d32345aec7d9dce0c6f47dbe",
+                "url": "https://api.github.com/repos/Raphhh/puppy-config/zipball/3b954a008bf41298777b05db7087a7ce4ab4af07",
+                "reference": "3b954a008bf41298777b05db7087a7ce4ab4af07",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4"
+                "php": ">=5.4",
+                "symfony/yaml": "~2.6"
             },
             "require-dev": {
                 "phpunit/phpunit": "@stable"
@@ -192,7 +251,7 @@
             "keywords": [
                 "config"
             ],
-            "time": "2015-03-25 20:35:28"
+            "time": "2015-04-10 21:02:55"
         },
         {
             "name": "raphhh/trex-cli",
@@ -400,6 +459,56 @@
                 }
             ],
             "description": "Symfony Process Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-03-12 10:28:44"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v2.6.5",
+            "target-dir": "Symfony/Component/Yaml",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Yaml.git",
+                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
+                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Yaml\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
             "time": "2015-03-12 10:28:44"
         }
@@ -1367,56 +1476,6 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
             "time": "2015-03-13 17:37:22"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "v2.6.5",
-            "target-dir": "Symfony/Component/Yaml",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
-                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Yaml\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-03-12 10:28:44"
         }
     ],
     "aliases": [],
@@ -1424,6 +1483,7 @@
     "stability-flags": {
         "raphhh/trex-cli": 20,
         "raphhh/puppy-config": 20,
+        "raphhh/balloon": 20,
         "phpunit/phpunit": 0
     },
     "prefer-stable": false,

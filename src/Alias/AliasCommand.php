@@ -70,6 +70,7 @@ class AliasCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->getTask($input)->execute($input, $output);
+        $this->getService('alias_manager')->flush();
     }
 
     /**

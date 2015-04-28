@@ -1,12 +1,14 @@
 <?php
 namespace Samurai\Alias;
 
+use Balloon\Mapper\IArrayCastable;
+
 /**
  * Class Alias
  * @package Samurai\alias
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class Alias 
+class Alias implements IArrayCastable
 {
     /**
      * @var string

@@ -1,7 +1,8 @@
 <?php
 namespace Samurai\Alias;
 
-use ArrayObject;
+use Balloon\Balloon;
+use Balloon\Factory\BalloonFactory;
 use Puppy\Config\Config;
 
 /**
@@ -12,16 +13,23 @@ use Puppy\Config\Config;
 class AliasManager
 {
     /**
-     * @var Config
+     * @var Balloon
      */
-    private $config;
+    private $globalManager;
 
     /**
-     * @param ArrayObject $config
+     * @var Balloon
      */
-    public function __construct(ArrayObject $config)//todo align the type
+    private $localManager;
+
+    /**
+     * @param Config $config
+     */
+    public function __construct(Config $config)
     {
-        $this->setConfig($config);
+        $balloonFactory = new BalloonFactory();
+        $this->globalManager = $balloonFactory->create($config['alias.global.path'], 'Samurai\Alias\Alias', 'name');
+        $this->localManager = $balloonFactory->create($config['alias.local.path'], 'Samurai\Alias\Alias', 'name');
     }
 
     /**
@@ -49,7 +57,7 @@ class AliasManager
      */
     public function getGlobal()
     {
-        return $this->retrieveFrom('alias.global.path');
+        return $this->globalManager->getAll();
     }
 
     /**
@@ -57,7 +65,7 @@ class AliasManager
      */
     public function getLocal()
     {
-        return $this->retrieveFrom('alias.local.path');
+        return $this->localManager->getAll();
     }
 
     /**
@@ -88,19 +96,12 @@ class AliasManager
     }
 
     /**
-     * @param array $aliasList //todo rename all the $aliasList in $aliases
+     * @param array $aliases
      * @return int
      */
-    public function addList(array $aliasList)
-    {//todo refactor with JsonFileManager
-        $this->createLocalConfigFile($this->getConfig()['alias.local.path']);
-        return file_put_contents(
-            $this->getConfig()['alias.local.path'],
-            json_encode(
-                $this->unmap($aliasList),
-                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-            )
-        );
+    public function addList(array $aliases)
+    {
+        return $this->localManager->addList($aliases);
     }
 
     /**
@@ -109,9 +110,7 @@ class AliasManager
      */
     public function add(Alias $alias)
     {
-        $aliasList = $this->getLocal();
-        $aliasList[$alias->getName()] = $alias;
-        return $this->addList($aliasList);
+        return $this->localManager->add($alias);
     }
 
     /**
@@ -120,103 +119,14 @@ class AliasManager
      */
     public function remove($name)
     {
-        $aliasList = $this->getLocal();
-        unset($aliasList[$name]);
-        return $this->addList($aliasList);
+        return $this->localManager->remove($name);
     }
 
     /**
-     * Getter of $config
-     *
-     * @return ArrayObject
+     * @return int
      */
-    private function getConfig()
+    public function flush()
     {
-        return $this->config;
-    }
-
-    /**
-     * Setter of $config
-     *
-     * @param ArrayObject $config
-     */
-    private function setConfig(ArrayObject $config)
-    {
-        $this->config = $config;
-    }
-
-    /**
-     * @param array $aliasList
-     * @return Alias[]
-     */
-    private function map(array $aliasList) //todo refactor with DataMapper
-    {
-        $result = [];
-        foreach($aliasList as $aliasData){
-            $alias = $this->mapAlias($aliasData);
-            $result[$alias->getName()] = $alias;
-        }
-        return $result;
-    }
-
-    /**
-     * @param Alias[] $aliasList
-     * @return array
-     */
-    private function unmap(array $aliasList)
-    {
-        $result = [];
-        foreach($aliasList as $alias){
-            $result[$alias->getName()] = $alias->toArray();
-        }
-        return $result;
-    }
-
-    /**
-     * @param string $key
-     * @return Alias[]
-     */
-    private function retrieveFrom($key)
-    { //todo refactor with JsonFileManager
-        if(!file_exists($this->getConfig()[$key]) || !is_readable($this->getConfig()[$key])){
-            return [];
-        }
-
-        $json = json_decode(
-            file_get_contents($this->getConfig()[$key]),
-            true
-        );
-        return $this->map($json ? : []);
-    }
-
-    /**
-     * @param $path
-     */
-    private function createLocalConfigFile($path)
-    { //todo refactor with JsonFileManager
-        $currentPath = '';
-        $subPathList = explode('/', $path);
-        foreach($subPathList as $index => $subPath) { //we force to use / because project name separator is only /
-            $currentPath .= $subPath . DIRECTORY_SEPARATOR;
-            if($index < count($subPathList) - 1 && !file_exists($currentPath)){
-                mkdir($currentPath);
-            }
-        }
-    }
-
-    /**
-     * @param array $aliasData
-     * @return Alias
-     */
-    private function mapAlias(array $aliasData)
-    {
-        $alias = new Alias();
-        $reflectedClass = new \ReflectionClass($alias);
-        foreach ($reflectedClass->getProperties() as $reflectedProperty) {
-            if (isset($aliasData[$reflectedProperty->getName()])) {
-                $alias->{'set' . $reflectedProperty->getName()}($aliasData[$reflectedProperty->getName()]);
-            }
-        }
-        return $alias;
+        return $this->localManager->flush();
     }
 }
