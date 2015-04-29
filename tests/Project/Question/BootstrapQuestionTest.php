@@ -4,6 +4,7 @@ namespace Samurai\Project\Question;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
+use Samurai\Alias\AliasManagerFactory;
 use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -69,7 +70,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
         };
 
         $services['alias_manager'] = function () {
-            return new AliasManager(new Config(''));
+            $factory = new AliasManagerFactory();
+            return $factory->createFromConfig(new Config(''));
         };
 
         $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));

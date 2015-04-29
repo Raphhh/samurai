@@ -5,7 +5,7 @@ use PHPGit\Git;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasCommand;
-use Samurai\Alias\AliasManager;
+use Samurai\Alias\AliasManagerFactory;
 use Samurai\Project\Composer\Composer;
 use Samurai\Project\NewCommand;
 use Samurai\Project\Project;
@@ -158,7 +158,8 @@ class Samurai
         };
 
         $services['alias_manager'] = function (Container $services) {
-            return new AliasManager($services['config']);
+            $factory = new AliasManagerFactory();
+            return $factory->createFromConfig($services['config']);
         };
 
         $services['git'] = function () {

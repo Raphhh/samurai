@@ -5,6 +5,7 @@ use PHPGit\Git;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManager;
+use Samurai\Alias\AliasManagerFactory;
 use Samurai\Samurai;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -225,7 +226,8 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         };
 
         $services['alias_manager'] = function () {
-            return new AliasManager(new Config(''));
+            $factory = new AliasManagerFactory();
+            return $factory->createFromConfig(new Config(''));
         };
 
         $services['git'] = function () use ($git){

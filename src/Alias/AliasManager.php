@@ -2,8 +2,6 @@
 namespace Samurai\Alias;
 
 use Balloon\Balloon;
-use Balloon\Factory\BalloonFactory;
-use Puppy\Config\Config;
 
 /**
  * Class AliasManager
@@ -23,13 +21,13 @@ class AliasManager
     private $localManager;
 
     /**
-     * @param Config $config
+     * @param Balloon $globalManager
+     * @param Balloon $localManager
      */
-    public function __construct(Config $config)
+    public function __construct(Balloon $globalManager, Balloon $localManager)
     {
-        $balloonFactory = new BalloonFactory();
-        $this->globalManager = $balloonFactory->create($config['alias.global.path'], 'Samurai\Alias\Alias', 'name');
-        $this->localManager = $balloonFactory->create($config['alias.local.path'], 'Samurai\Alias\Alias', 'name');
+        $this->globalManager = $globalManager;
+        $this->localManager = $localManager;
     }
 
     /**

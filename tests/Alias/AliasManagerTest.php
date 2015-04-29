@@ -13,7 +13,8 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetGlobal()
     {
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
         $this->assertEquals(
             $this->provideAlias(
                 'lib',
@@ -28,13 +29,15 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetLocal()
     {
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
         $this->assertEquals([], $aliasManager->getLocal());
     }
 
     public function testGetAll()
     {
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
         $this->assertEquals(
             $this->provideAlias(
                 'lib',
@@ -55,7 +58,8 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
         $alias->setBootstrap('boots');
         $alias->setVersion('vers');
 
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
 
         //pre-assertion
         $this->assertArrayNotHasKey('name', $aliasManager->getGlobal());
@@ -85,7 +89,8 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
         $alias->setBootstrap('boots');
         $alias->setVersion('vers');
 
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
 
         //pre-assertion
         $this->assertArrayHasKey('lib', $aliasManager->getGlobal());
@@ -109,26 +114,30 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testHasTrue()
     {
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
         $this->assertTrue($aliasManager->has('lib'));
     }
 
     public function testHasFalse()
     {
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
         $this->assertFalse($aliasManager->has('none'));
     }
 
     public function testGetTrue()
     {
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
         $result = $aliasManager->get('lib');
         $this->assertSame('lib', $result->getName());
     }
 
     public function testGetFalse()
     {
-        $aliasManager = new AliasManager(new Config(''));
+        $factory = new AliasManagerFactory();
+        $aliasManager = $factory->createFromConfig(new Config(''));
         $this->assertNull($aliasManager->get('none'));
     }
 

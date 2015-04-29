@@ -157,7 +157,8 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         };
 
         $services['alias_manager'] = function () {
-            return new AliasManager(new Config(''));
+            $factory = new AliasManagerFactory();
+            return $factory->createFromConfig(new Config(''));
         };
         return $services;
     }
