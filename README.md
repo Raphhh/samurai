@@ -163,7 +163,7 @@ But you can specify another directory with the option "--dir" or "-d".
 $ samurai new lib -d specific/path/to/my/project
 ```
 
-## Alias
+## Alias (todo: align the interface on module)
 
 Alias are simple words linked to a specific bootstrap at a specific version. For example, the alias 'lib' points to the package 'raphhh/php-lib-bootstrap' at last stable version.
 
@@ -178,14 +178,14 @@ $ samurai alias
 
 You can easily add any bootstrap you want, event yours! To add or redefine an alias, execute the command:
 ```console
-$ samurai alias <name> <bootstrap> [<version>] [<description>] [<source>]
+$ samurai alias <alias_name> <bootstrap> [<version>] [<description>] [<source>]
 ```
 
 ### Remove an alias
 
 To remove an alias, execute the command:
 ```console
-$ samurai alias <name>
+$ samurai alias <alias_name>
 ```
 
 
@@ -193,9 +193,43 @@ $ samurai alias <name>
 
 A module is a plugin added to Samurai. This plugin will execute some specific commands. For example, git module will init Git in your project.
 
-### Add a module
+### Execute the modules
 
-Obviously, Samurai executes only modules that you have installed. So, you can decide, according to your own needs, which modules you want to add.
+#### During the scaffoling
+
+By default, all the enable modules you have installed will be called during the "new command".
+
+If you want to avoid to execute the modules during this command, you can specify the option "--no-module".
+```console
+$ samurai new --no-module
+```
+
+#### Separately
+
+Separateliy of the "new command", you can (re)execute all the enable modules with the command "module'.
+
+```console
+$ samurai module
+```
+
+You can also specify a module to execute only this one.
+
+```console
+$ samurai module <module_name>
+```
+
+### List the modules
+
+To list all the modules, execute the command:
+```console
+$ samurai module list
+```
+To list a specific module, execute the same command but with the name of the module:
+```console
+$ samurai module list <module_name>
+```
+
+### Add or redefine a module
 
 #### When you install Samurai
 
@@ -203,14 +237,38 @@ During the installation, Samurai will ask you if you want to load some recommend
 
 #### When you want
 
-Execute the module command. You must specify the package of the module you want to add.
+Execute the module command with "save" action. You must specify the package of the module you want to add.
  
 ```console
-$ samurai module <vendor/package> [<version>]
+$ samurai module save <module_name> <vendor/package> [<version>] [<description>] [<source>]
 ```
 
 For example, if you want to load the git module:
 
 ```console
 $ samurai module raphhh/samurai-module-git
+```
+
+If this module was already present, it will be overridden.
+
+### Enable/disable a module
+
+If you disable a module, it will be not called during the "new" command, neither with the "module" command.
+
+```console
+$ samurai module disable <module_name>
+```
+
+If you want to enable a module, execute the command:
+
+```console
+$ samurai module enable <module_name>
+```
+
+### Remove a module
+
+If you want to remove a module, execute the command:
+
+```console
+$ samurai module rm <module_name>
 ```
