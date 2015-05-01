@@ -21,7 +21,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
                 'Basic PHP library',
                 'raphhh/php-lib-bootstrap',
                 '',
-                'https://github.com/Raphhh/php-lib-bootstrap'
+                ''
             ),
             $aliasManager->getGlobal()['lib']
         );
@@ -44,7 +44,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
                 'Basic PHP library',
                 'raphhh/php-lib-bootstrap',
                 '',
-                'https://github.com/Raphhh/php-lib-bootstrap'
+                ''
             ),
             $aliasManager->getAll()['lib']
         );

@@ -49,7 +49,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertStringStartsWith(
-            "name: lib\ndescription: Basic PHP library\nbootstrap: raphhh/php-lib-bootstrap\nversion: \nsource: https://github.com/Raphhh/php-lib-bootstrap",
+            "name: lib\ndescription: Basic PHP library\nbootstrap: raphhh/php-lib-bootstrap\nversion: \nsource:",
             $commandTester->getDisplay()
         );
     }
@@ -66,7 +66,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertStringStartsWith(
-            "name: lib\ndescription: Basic PHP library\nbootstrap: raphhh/php-lib-bootstrap\nversion: \nsource: https://github.com/Raphhh/php-lib-bootstrap",
+            "name: lib\ndescription: Basic PHP library\nbootstrap: raphhh/php-lib-bootstrap\nversion: \nsource:",
             $commandTester->getDisplay()
         );
     }
