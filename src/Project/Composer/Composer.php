@@ -19,11 +19,6 @@ class Composer
     private $composerConfigManager;
 
     /**
-     * @var ComposerConfigMerger
-     */
-    private $composerConfigMerger;
-
-    /**
      * @var Executor
      */
     private $executor;
@@ -34,7 +29,6 @@ class Composer
     public function __construct(Executor $executor)
     {
         $this->setComposerConfigManager(new JsonFileManager()); //todo DI => use pimple
-        $this->setComposerConfigMerger(new ComposerConfigMerger()); //todo DI => use pimple
         $this->setExecutor($executor);
     }
 
@@ -154,26 +148,6 @@ class Composer
     public function setComposerConfigManager(JsonFileManager $composerConfigManager)
     {
         $this->composerConfigManager = $composerConfigManager;
-    }
-
-    /**
-     * Getter of $composerConfigMerger
-     *
-     * @return ComposerConfigMerger
-     */
-    public function getComposerConfigMerger()
-    {
-        return $this->composerConfigMerger;
-    }
-
-    /**
-     * Setter of $composerConfigMerger
-     *
-     * @param ComposerConfigMerger $composerConfigMerger
-     */
-    public function setComposerConfigMerger(ComposerConfigMerger $composerConfigMerger)
-    {
-        $this->composerConfigMerger = $composerConfigMerger;
     }
 
     /**
