@@ -3,14 +3,12 @@ namespace Samurai\Project\Question;
 
 use Pimple\Container;
 use Samurai\Project\Author;
-use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use TRex\Cli\Executor;
 
 /**
  * Class AuthorQuestionTest
@@ -27,7 +25,7 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new AuthorQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $authors = $services['composer']->getproject()->getAuthors();
+        $authors = $services['project']->getAuthors();
         $this->assertCount(1, $authors);
         $this->assertSame('git.name', $authors[0]->getName());
         $this->assertSame('git.email@mail.com', $authors[0]->getEmail());
@@ -39,8 +37,8 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
     private function provideServicesForOneAuthorWithGit()
     {
         $services = new Container();
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
 
         $git = $this->getMock('PHPGit\Git', array('config'));
@@ -106,7 +104,7 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new AuthorQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $authors = $services['composer']->getproject()->getAuthors();
+        $authors = $services['project']->getAuthors();
         $this->assertCount(2, $authors);
         $this->assertSame('git.name', $authors[0]->getName());
         $this->assertSame('git.email@mail.com', $authors[0]->getEmail());
@@ -120,8 +118,8 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
     private function provideServicesForTwoAuthorsWithGit()
     {
         $services = new Container();
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
 
         $git = $this->getMock('PHPGit\Git', array('config'));
@@ -204,7 +202,7 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new AuthorQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $authors = $services['composer']->getproject()->getAuthors();
+        $authors = $services['project']->getAuthors();
         $this->assertCount(2, $authors);
         $this->assertSame('main.name', $authors[0]->getName());
         $this->assertSame('main.email@mail.com', $authors[0]->getEmail());
@@ -218,8 +216,8 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
     private function provideServicesForTwoAuthorsWithoutGit()
     {
         $services = new Container();
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
 
         $git = $this->getMock('PHPGit\Git', array('config'));

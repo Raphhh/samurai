@@ -3,9 +3,7 @@ namespace Samurai\Project\Question;
 
 use Pimple\Container;
 use Puppy\Config\Config;
-use Samurai\Alias\AliasManager;
 use Samurai\Alias\AliasManagerFactory;
-use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,7 +12,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
-use TRex\Cli\Executor;
 
 /**
  * Class BootstrapQuestionTest
@@ -31,8 +28,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new BootstrapQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('raphhh/php-lib-bootstrap', $services['composer']->getproject()->getBootstrapName());
-        $this->assertSame('', $services['composer']->getproject()->getBootstrapVersion());
+        $this->assertSame('raphhh/php-lib-bootstrap', $services['project']->getBootstrapName());
+        $this->assertSame('', $services['project']->getBootstrapVersion());
     }
 
     public function testExecuteValid()
@@ -43,8 +40,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new BootstrapQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('vendor/package', $services['composer']->getproject()->getBootstrapName());
-        $this->assertSame('', $services['composer']->getproject()->getBootstrapVersion());
+        $this->assertSame('vendor/package', $services['project']->getBootstrapName());
+        $this->assertSame('', $services['project']->getBootstrapVersion());
     }
 
     public function testExecuteWithVersion()
@@ -55,8 +52,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new BootstrapQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('vendor/package', $services['composer']->getproject()->getBootstrapName());
-        $this->assertSame('1.0.0', $services['composer']->getproject()->getBootstrapVersion());
+        $this->assertSame('vendor/package', $services['project']->getBootstrapName());
+        $this->assertSame('1.0.0', $services['project']->getBootstrapVersion());
     }
 
     /**
@@ -65,8 +62,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
     private function provideServices()
     {
         $services = new Container();
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
 
         $services['alias_manager'] = function () {

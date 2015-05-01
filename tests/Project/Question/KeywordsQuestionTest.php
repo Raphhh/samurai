@@ -2,12 +2,10 @@
 namespace Samurai\Project\Question;
 
 use Pimple\Container;
-use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Question\Question;
-use TRex\Cli\Executor;
 
 /**
  * Class KeywordsQuestionTest
@@ -22,12 +20,12 @@ class KeywordsQuestionTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
         $services = $this->provideServices($this->provideQuestionHelper($input, $output));
 
-        $this->assertNull($services['composer']->getProject()->getKeywords());
+        $this->assertNull($services['project']->getKeywords());
 
         $question = new KeywordsQuestion($services);
         $this->assertTrue($question->execute($input, $output));
 
-        $this->assertSame(['k1', 'k2'], $services['composer']->getProject()->getKeywords());
+        $this->assertSame(['k1', 'k2'], $services['project']->getKeywords());
     }
 
     public function testExecuteEmpty()
@@ -36,12 +34,12 @@ class KeywordsQuestionTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
         $services = $this->provideServices($this->provideQuestionHelperEmpty($input, $output));
 
-        $this->assertNull($services['composer']->getProject()->getKeywords());
+        $this->assertNull($services['project']->getKeywords());
 
         $question = new KeywordsQuestion($services);
         $this->assertTrue($question->execute($input, $output));
 
-        $this->assertSame([], $services['composer']->getProject()->getKeywords());
+        $this->assertSame([], $services['project']->getKeywords());
     }
 
     /**
@@ -55,8 +53,8 @@ class KeywordsQuestionTest extends \PHPUnit_Framework_TestCase
             return $questionHelper;
         };
 
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
         return $services;
     }

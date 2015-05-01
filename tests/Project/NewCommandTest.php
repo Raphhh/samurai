@@ -93,7 +93,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         /**
          * @var Project $project
          */
-        $project = $samurai->getServices()['composer']->getProject();
+        $project = $samurai->getServices()['project'];
         $this->assertSame('vendor/package', $project->getName());
         $this->assertSame('raphhh/php-lib-bootstrap', $project->getBootstrapName());
         $this->assertSame('', $project->getBootstrapVersion());
@@ -192,7 +192,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         /**
          * @var Project $project
          */
-        $project = $samurai->getServices()['composer']->getProject();
+        $project = $samurai->getServices()['project'];
         $this->assertSame('vendor/package', $project->getName());
         $this->assertSame('vendor/bootstrap', $project->getBootstrapName());
         $this->assertSame('1.0.0', $project->getBootstrapVersion());
@@ -217,6 +217,11 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $composer = $this->provideComposer(true);
 
         $services = new Container();
+
+        $services['project'] = function () {
+            return new Project();
+        };
+
         $services['composer'] = function () use ($composer) {
             return $composer;
         };
@@ -253,10 +258,6 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $composer->expects($this->any())
             ->method('createProject')
             ->will($this->returnValue($result));
-
-        $composer->expects($this->any())
-            ->method('getProject')
-            ->will($this->returnValue(new Project()));
 
         return $composer;
     }

@@ -2,14 +2,12 @@
 namespace Samurai\Project\Question;
 
 use Pimple\Container;
-use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use TRex\Cli\Executor;
 
 /**
  * Class DescriptionQuestionTest
@@ -25,12 +23,12 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
         $services = $this->provideServices($input, $output, 'result');
 
-        $this->assertNull($services['composer']->getProject()->getDescription());
+        $this->assertNull($services['project']->getDescription());
 
         $question = new DescriptionQuestion($services);
         $this->assertTrue($question->execute($input, $output));
 
-        $this->assertSame('result', $services['composer']->getProject()->getDescription());
+        $this->assertSame('result', $services['project']->getDescription());
     }
 
     public function testExecuteEmpty()
@@ -39,12 +37,12 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
         $services = $this->provideServices($input, $output, '');
 
-        $this->assertNull($services['composer']->getProject()->getDescription());
+        $this->assertNull($services['project']->getDescription());
 
         $question = new DescriptionQuestion($services);
         $this->assertFalse($question->execute($input, $output));
 
-        $this->assertSame('', $services['composer']->getProject()->getDescription());
+        $this->assertSame('', $services['project']->getDescription());
     }
 
     /**
@@ -62,8 +60,8 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
             return $questionHelper;
         };
 
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
 
         return $services;

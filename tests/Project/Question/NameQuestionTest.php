@@ -2,12 +2,10 @@
 namespace Samurai\Project\Question;
 
 use Pimple\Container;
-use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Question\Question;
-use TRex\Cli\Executor;
 
 /**
  * Class NameQuestionTest
@@ -23,12 +21,12 @@ class NameQuestionTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
         $services = $this->provideServices($this->provideQuestionHelperValid($input, $output));
 
-        $this->assertNull($services['composer']->getProject()->getName());
+        $this->assertNull($services['project']->getName());
 
         $question = new NameQuestion($services);
         $this->assertTrue($question->execute($input, $output));
 
-        $this->assertSame('vendor/package', $services['composer']->getProject()->getName());
+        $this->assertSame('vendor/package', $services['project']->getName());
     }
 
     public function testExecuteEmpty()
@@ -37,13 +35,13 @@ class NameQuestionTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
         $services = $this->provideServices($this->provideQuestionHelperEmpty($input, $output));
 
-        $this->assertNull($services['composer']->getProject()->getName());
+        $this->assertNull($services['project']->getName());
 
         $question = new NameQuestion($services);
         $this->setExpectedException('RuntimeException', 'Error: format not valid');
         $this->assertFalse($question->execute($input, $output));
 
-        $this->assertSame('', $services['composer']->getProject()->getName());
+        $this->assertSame('', $services['project']->getName());
     }
 
     public function testExecuteNotValid()
@@ -52,13 +50,13 @@ class NameQuestionTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
         $services = $this->provideServices($this->provideQuestionHelperNotValid($input, $output));
 
-        $this->assertNull($services['composer']->getProject()->getName());
+        $this->assertNull($services['project']->getName());
 
         $question = new NameQuestion($services);
         $this->setExpectedException('RuntimeException', 'Error: format not valid');
         $this->assertFalse($question->execute($input, $output));
 
-        $this->assertSame('', $services['composer']->getProject()->getName());
+        $this->assertSame('', $services['project']->getName());
     }
 
     /**
@@ -99,8 +97,8 @@ class NameQuestionTest extends \PHPUnit_Framework_TestCase
             return $questionHelper;
         };
 
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
         return $services;
     }

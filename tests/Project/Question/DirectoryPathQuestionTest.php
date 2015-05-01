@@ -2,13 +2,11 @@
 namespace Samurai\Project\Question;
 
 use Pimple\Container;
-use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\BufferedOutput;
-use TRex\Cli\Executor;
 
 /**
  * Class DirectoryPathQuestionTest
@@ -22,11 +20,11 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
         $input = $this->provideInput([]);
         $output = new BufferedOutput();
         $services = $this->provideServices();
-        $services['composer']->getproject()->setName('vendor/package');
+        $services['project']->setName('vendor/package');
 
         $question = new DirectoryPathQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('vendor/package', $services['composer']->getproject()->getDirectoryPath());
+        $this->assertSame('vendor/package', $services['project']->getDirectoryPath());
     }
 
     public function testExecuteValid()
@@ -34,11 +32,11 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
         $input = $this->provideInput(['--dir' => 'dir/path']);
         $output = new BufferedOutput();
         $services = $this->provideServices();
-        $services['composer']->getproject()->setName('vendor/package');
+        $services['project']->setName('vendor/package');
 
         $question = new DirectoryPathQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('dir/path', $services['composer']->getproject()->getDirectoryPath());
+        $this->assertSame('dir/path', $services['project']->getDirectoryPath());
     }
 
     public function testExecuteEmpty()
@@ -49,7 +47,7 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new DirectoryPathQuestion($services);
         $this->assertFalse($question->execute($input, $output));
-        $this->assertSame('', $services['composer']->getproject()->getDirectoryPath());
+        $this->assertSame('', $services['project']->getDirectoryPath());
     }
 
     /**
@@ -58,8 +56,8 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
     private function provideServices()
     {
         $services = new Container();
-        $services['composer'] = function () {
-            return new Composer(new Project(), new Executor());
+        $services['project'] = function () {
+            return new Project();
         };
         return $services;
     }

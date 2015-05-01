@@ -28,8 +28,8 @@ class ProjectDownload extends Task
     {
         $output->writeln(sprintf(
             '<info>Installing project %s from %s</info>',
-            $this->getService('composer')->getProject()->getName(),
-            $this->getService('composer')->getProject()->getBootstrapName()
+            $this->getService('project')->getName(),
+            $this->getService('project')->getBootstrapName()
         ));
 
         return $this->getService('composer')->createProject($this->filter($input->getOptions()));

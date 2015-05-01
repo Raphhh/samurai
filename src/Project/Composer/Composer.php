@@ -50,7 +50,7 @@ class Composer
      *
      * @return Project
      */
-    public function getProject() //todo should be private
+    private function getProject() //todo should be private
     {
         return $this->project;
     }

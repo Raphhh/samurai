@@ -18,6 +18,6 @@ abstract class Question extends \Samurai\Question\Question
      */
     protected function getProject()
     {
-        return $this->getService('composer')->getProject();
+        return $this->getService('project');
     }
 }

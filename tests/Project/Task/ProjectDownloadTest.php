@@ -35,8 +35,8 @@ class ProjectDownloadTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
 
         $services = $this->provideServices($this->provideExecutor(1));
-        $services['composer']->getProject()->setName('vendor/package');
-        $services['composer']->getProject()->setBootstrapName('vendor/bootstrap');
+        $services['project']->setName('vendor/package');
+        $services['project']->setBootstrapName('vendor/bootstrap');
 
         $task = new ProjectDownload($services);
         $this->assertTrue($task->execute($input, $output));
@@ -50,8 +50,8 @@ class ProjectDownloadTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
 
         $services = $this->provideServices($this->provideExecutor(1, ' --repository-url=specific/url'));
-        $services['composer']->getProject()->setName('vendor/package');
-        $services['composer']->getProject()->setBootstrapName('vendor/bootstrap');
+        $services['project']->setName('vendor/package');
+        $services['project']->setBootstrapName('vendor/bootstrap');
 
         $task = new ProjectDownload($services);
         $this->assertTrue($task->execute($input, $output));
@@ -83,8 +83,11 @@ class ProjectDownloadTest extends \PHPUnit_Framework_TestCase
     private function provideServices($executor)
     {
         $services = new Container();
-        $services['composer'] = function () use ($executor) {
-            return new Composer(new Project(), $executor);
+        $services['project'] = function () {
+            return new Project();
+        };
+        $services['composer'] = function (Container $services) use ($executor) {//todo
+            return new Composer($services['project'], $executor);
         };
         return $services;
     }

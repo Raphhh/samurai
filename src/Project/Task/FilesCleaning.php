@@ -37,7 +37,7 @@ class FilesCleaning extends Task
      */
     private function remove(OutputInterface $output)
     {
-        $projectDir = $this->getService('composer')->getProject()->getDirectoryPath();
+        $projectDir = $this->getService('project')->getDirectoryPath();
         foreach (self::$patterns as $pattern) {
             $this->removeByPattern($output, $projectDir . DIRECTORY_SEPARATOR . $pattern);
         }
