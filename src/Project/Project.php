@@ -1,6 +1,8 @@
 <?php
 namespace Samurai\Project;
 
+use Samurai\Alias\Alias;
+
 /**
  * Class Project
  * @package Samurai
@@ -14,14 +16,9 @@ class Project
     private $name;
 
     /**
-     * @var string
+     * @var Alias
      */
-    private $bootstrapName;
-
-    /**
-     * @var string
-     */
-    private $bootstrapVersion;
+    private $bootstrap;
 
     /**
      * @var string
@@ -83,43 +80,23 @@ class Project
     }
 
     /**
-     * Getter of $bootstrapName
+     * Getter of $bootstrap
      *
-     * @return string
+     * @return Alias
      */
-    public function getBootstrapName()
+    public function getBootstrap()
     {
-        return $this->bootstrapName;
+        return $this->bootstrap;
     }
 
     /**
-     * Setter of $bootstrapName
+     * Setter of $bootstrap
      *
-     * @param string $bootstrapName
+     * @param Alias $bootstrap
      */
-    public function setBootstrapName($bootstrapName)
+    public function setBootstrap(Alias $bootstrap)
     {
-        $this->bootstrapName = (string)$bootstrapName;
-    }
-
-    /**
-     * Getter of $bootstrapVersion
-     *
-     * @return string
-     */
-    public function getBootstrapVersion()
-    {
-        return $this->bootstrapVersion;
-    }
-
-    /**
-     * Setter of $bootstrapVersion
-     *
-     * @param string $bootstrapVersion
-     */
-    public function setBootstrapVersion($bootstrapVersion)
-    {
-        $this->bootstrapVersion = (string)$bootstrapVersion;
+        $this->bootstrap = $bootstrap;
     }
 
     /**

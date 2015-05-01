@@ -4,6 +4,7 @@ namespace Samurai\Project\Task;
 use Balloon\Factory\BalloonFactory;
 use Balloon\Reader\Factory\DummyFileReaderFactory;
 use Pimple\Container;
+use Samurai\Alias\Alias;
 use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -36,9 +37,12 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $input = $this->provideInput([]);
         $output = new BufferedOutput();
 
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/bootstrap');
+        
         $services = $this->provideServices($this->provideExecutor(1));
         $services['project']->setName('vendor/package');
-        $services['project']->setBootstrapName('vendor/bootstrap');
+        $services['project']->setBootstrap($alias);
 
         $task = new BootstrapImportation($services);
         $this->assertTrue($task->execute($input, $output));
@@ -51,9 +55,12 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $input = $this->provideInput(['--url' => 'specific/url']);
         $output = new BufferedOutput();
 
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/bootstrap');
+
         $services = $this->provideServices($this->provideExecutor(1, ' --repository-url=specific/url'));
         $services['project']->setName('vendor/package');
-        $services['project']->setBootstrapName('vendor/bootstrap');
+        $services['project']->setBootstrap($alias);
 
         $task = new BootstrapImportation($services);
         $this->assertTrue($task->execute($input, $output));

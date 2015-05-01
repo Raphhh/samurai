@@ -25,7 +25,7 @@ class BootstrapQuestion extends Question
         }else{
             $this->setFromAlias($this->askForAlias($input, $output));
         }
-        return (bool)$this->getProject()->getBootstrapName();
+        return (bool)$this->getProject()->getBootstrap()->getBootstrap();
     }
 
     /**
@@ -50,8 +50,7 @@ class BootstrapQuestion extends Question
      */
     private function setFromAlias(Alias $alias)
     {
-        $this->getProject()->setBootstrapName($alias->getBootstrap());
-        $this->getProject()->setBootstrapVersion($alias->getVersion());
+        $this->getProject()->setBootstrap($alias);
     }
 
     /**
@@ -62,8 +61,10 @@ class BootstrapQuestion extends Question
         if ($this->getService('alias_manager')->has($input->getArgument('bootstrap'))) {
             $this->setFromAlias($this->getService('alias_manager')->get($input->getArgument('bootstrap')));
         } else {
-            $this->getProject()->setBootstrapName($input->getArgument('bootstrap'));
-            $this->getProject()->setBootstrapVersion($input->getArgument('version'));
+            $alias = new Alias();
+            $alias->setBootstrap($input->getArgument('bootstrap'));
+            $alias->setVersion($input->getArgument('version'));
+            $this->setFromAlias($alias);
         }
     }
 }

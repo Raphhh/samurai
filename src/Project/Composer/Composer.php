@@ -46,7 +46,7 @@ class Composer
      */
     public function createProject(Project $project, array $options = array())
     {
-        if(!$project->getBootstrapName()){
+        if(!$project->getBootstrap()){
             throw new InvalidArgumentException('The bootstrap of the project is not defined');
         }
 
@@ -54,9 +54,9 @@ class Composer
             trim(
                 sprintf(
                     'composer create-project --prefer-dist %s %s %s',
-                    $project->getBootstrapName(),
+                    $project->getBootstrap()->getBootstrap(),
                     $project->getDirectoryPath(),
-                    $project->getBootstrapVersion()
+                    $project->getBootstrap()->getVersion()
                 )
             )
             .$this->mapOptions($options)

@@ -3,6 +3,7 @@ namespace Samurai\Project\Composer;
 
 use Balloon\Factory\BalloonFactory;
 use Balloon\Reader\Factory\DummyFileReaderFactory;
+use Samurai\Alias\Alias;
 use Samurai\Project\Project;
 use TRex\Cli\Executor;
 
@@ -30,8 +31,11 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateProjectWithBootstrap()
     {
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/package');
+
         $project = new Project();
-        $project->setBootstrapName('vendor/package');
+        $project->setBootstrap($alias);
 
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
@@ -45,8 +49,11 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateProjectWithBootstrapAndOptions()
     {
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/package');
+
         $project = new Project();
-        $project->setBootstrapName('vendor/package');
+        $project->setBootstrap($alias);
 
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
@@ -60,8 +67,11 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateProjectWithDirectoryPath()
     {
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/package');
+
         $project = new Project();
-        $project->setBootstrapName('vendor/package');
+        $project->setBootstrap($alias);
         $project->setDirectoryPath('dir/path');
 
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
@@ -76,8 +86,11 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateProjectWithDirectoryPathAndOptions()
     {
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/package');
+
         $project = new Project();
-        $project->setBootstrapName('vendor/package');
+        $project->setBootstrap($alias);
         $project->setDirectoryPath('dir/path');
 
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
@@ -92,9 +105,12 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateProjectWithVersion()
     {
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/package');
+        $alias->setVersion('1.0.0');
+
         $project = new Project();
-        $project->setBootstrapName('vendor/package');
-        $project->setBootstrapVersion('1.0.0');
+        $project->setBootstrap($alias);
         $project->setDirectoryPath('dir/path');
 
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
@@ -109,9 +125,12 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateProjectWithVersionAndOptions()
     {
+        $alias = new Alias();
+        $alias->setBootstrap('vendor/package');
+        $alias->setVersion('1.0.0');
+
         $project = new Project();
-        $project->setBootstrapName('vendor/package');
-        $project->setBootstrapVersion('1.0.0');
+        $project->setBootstrap($alias);
         $project->setDirectoryPath('dir/path');
 
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
