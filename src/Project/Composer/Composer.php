@@ -92,11 +92,12 @@ class Composer
     }
 
     /**
+     * @param string $cwd
      * @return array|null
      */
-    public function getConfig()
+    public function getConfig($cwd = '')
     {
-        return $this->getComposerConfigManager()->get($this->getConfigPath($this->getProject()->getDirectoryPath()));
+        return $this->getComposerConfigManager()->get($this->getConfigPath($cwd));
     }
 
     /**
@@ -112,7 +113,7 @@ class Composer
      */
     public function resetConfig()
     {
-        $config = $this->getConfig();
+        $config = $this->getConfig($this->getProject()->getDirectoryPath());
         if($config===null){
             throw new \RuntimeException(sprintf(
                 'Impossible to load the composer config from file "%s"',

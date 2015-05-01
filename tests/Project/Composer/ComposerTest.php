@@ -142,7 +142,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project = new Project();
         $project->setDirectoryPath('no-such-dir');
         $composer = new Composer($project, new Executor());
-        $this->assertNull($composer->getConfig(), 'config path: ' . $composer->getConfigPath($project->getDirectoryPath()));
+        $this->assertNull($composer->getConfig($project->getDirectoryPath()), 'config path: ' . $composer->getConfigPath($project->getDirectoryPath()));
     }
 
     public function testGetConfigWithFile()
@@ -158,7 +158,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
                 'version' => '1.0.0',
                 'time' => '1999-12-31',
             ],
-            $composer->getConfig()
+            $composer->getConfig($project->getDirectoryPath())
         );
     }
 
@@ -220,7 +220,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
                 'version' => '1.0.0',
                 'time' => '1999-12-31',
             ],
-            $composer->getConfig()
+            $composer->getConfig($project->getDirectoryPath())
         );
 
         $composer->resetConfig();
@@ -228,7 +228,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             [
                 'license' => 'MIT',
             ],
-            $composer->getConfig()
+            $composer->getConfig($project->getDirectoryPath())
         );
 
         file_put_contents($composer->getConfigPath($project->getDirectoryPath()), $fileContent);
@@ -249,7 +249,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
                 'version' => '1.0.0',
                 'time' => '1999-12-31',
             ],
-            $composer->getConfig()
+            $composer->getConfig($project->getDirectoryPath())
         );
 
         $project->setName('raphhh/samurai2');
@@ -262,7 +262,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
                 'description' => 'desc2',
                 'license' => 'MIT',
             ],
-            $composer->getConfig()
+            $composer->getConfig($project->getDirectoryPath())
         );
 
         file_put_contents($composer->getConfigPath($project->getDirectoryPath()), $fileContent);
