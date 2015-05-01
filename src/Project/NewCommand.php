@@ -61,7 +61,8 @@ class NewCommand extends Command
      */
     private function getTask()
     {
-        return BootstrapImportationTaskFactory::create($this->getServices());
+        $factory = new BootstrapImportationTaskFactory();
+        return $factory->create($this->getServices());
     }
 }
 

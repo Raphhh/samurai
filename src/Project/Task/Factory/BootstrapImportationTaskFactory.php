@@ -19,7 +19,7 @@ class BootstrapImportationTaskFactory
      * @param Container $services
      * @return ITask
      */
-    public static function create(Container $services)
+    public function create(Container $services)
     {
         return new Planner([
             ProjectInitializationTaskFactory::create($services),
