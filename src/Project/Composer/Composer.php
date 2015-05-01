@@ -25,11 +25,18 @@ class Composer
     private $executor;
 
     /**
-     * @param Executor $executor
+     * @var BalloonFactory
      */
-    public function __construct(Executor $executor)
+    private $balloonFactory;
+
+    /**
+     * @param Executor $executor
+     * @param BalloonFactory $balloonFactory
+     */
+    public function __construct(Executor $executor, BalloonFactory $balloonFactory)
     {
         $this->setExecutor($executor);
+        $this->setBalloonFactory($balloonFactory);
     }
 
     /**
@@ -140,8 +147,7 @@ class Composer
     public function getComposerConfigManager($cwd)
     {
         if(empty($this->composerConfigManager[$cwd])){
-            $balloonFactory = new BalloonFactory();
-            $this->composerConfigManager[$cwd] = $balloonFactory->create($this->getConfigPath($cwd));
+            $this->composerConfigManager[$cwd] = $this->getBalloonFactory()->create($this->getConfigPath($cwd));
         }
         return $this->composerConfigManager[$cwd];
     }
@@ -164,5 +170,25 @@ class Composer
     private function setExecutor(Executor $executor)
     {
         $this->executor = $executor;
+    }
+
+    /**
+     * Getter of $balloonFactory
+     *
+     * @return BalloonFactory
+     */
+    private function getBalloonFactory()
+    {
+        return $this->balloonFactory;
+    }
+
+    /**
+     * Setter of $balloonFactory
+     *
+     * @param BalloonFactory $balloonFactory
+     */
+    private function setBalloonFactory(BalloonFactory $balloonFactory)
+    {
+        $this->balloonFactory = $balloonFactory;
     }
 }

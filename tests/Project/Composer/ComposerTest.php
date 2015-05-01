@@ -1,6 +1,8 @@
 <?php
 namespace Samurai\Project\Composer;
 
+use Balloon\Factory\BalloonFactory;
+use Balloon\Reader\Factory\DummyFileReaderFactory;
 use Samurai\Project\Project;
 use TRex\Cli\Executor;
 
@@ -20,7 +22,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->method('flush')
             ->will($this->returnValue('result'));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
 
         $this->setExpectedException('\InvalidArgumentException', 'The bootstrap of the project is not defined');
         $composer->createProject($project);
@@ -37,7 +39,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('composer create-project --prefer-dist vendor/package')
             ->will($this->returnValue('result'));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('result', $composer->createProject($project));
     }
 
@@ -52,7 +54,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('composer create-project --prefer-dist vendor/package --repository-url=url')
             ->will($this->returnValue('result'));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('result', $composer->createProject($project, ['repository-url' => 'url']));
     }
 
@@ -68,7 +70,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('composer create-project --prefer-dist vendor/package dir/path')
             ->will($this->returnValue('result'));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('result', $composer->createProject($project));
     }
 
@@ -84,7 +86,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('composer create-project --prefer-dist vendor/package dir/path --repository-url=url')
             ->will($this->returnValue('result'));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('result', $composer->createProject($project, ['repository-url' => 'url']));
     }
 
@@ -101,7 +103,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('composer create-project --prefer-dist vendor/package dir/path 1.0.0')
             ->will($this->returnValue('result'));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('result', $composer->createProject($project));
     }
 
@@ -118,14 +120,14 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('composer create-project --prefer-dist vendor/package dir/path 1.0.0 --repository-url=url')
             ->will($this->returnValue('result'));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('result', $composer->createProject($project, ['repository-url' => 'url']));
     }
 
     public function testGetConfigPath()
     {
         $project = new Project();
-        $composer = new Composer(new Executor());
+        $composer = new Composer(new Executor(), new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('composer.json', $composer->getConfigPath($project->getDirectoryPath()));
     }
 
@@ -133,7 +135,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
         $project->setDirectoryPath('dir/path');
-        $composer = new Composer(new Executor());
+        $composer = new Composer(new Executor(), new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame('dir/path/composer.json', $composer->getConfigPath($project->getDirectoryPath()));
     }
 
@@ -141,7 +143,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
         $project->setDirectoryPath('no-such-dir');
-        $composer = new Composer(new Executor());
+        $composer = new Composer(new Executor(), new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame([], $composer->getConfig($project->getDirectoryPath()), 'config path: ' . $composer->getConfigPath($project->getDirectoryPath()));
     }
 
@@ -149,7 +151,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
         $project->setDirectoryPath(__DIR__ . '/../resources');
-        $composer = new Composer(new Executor());
+        $composer = new Composer(new Executor(), new BalloonFactory());
         $this->assertSame(
             [
                 'name' => 'raphhh/samurai',
@@ -172,7 +174,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('composer validate')
             ->will($this->returnValue(false));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertFalse($composer->validateConfig($project->getDirectoryPath()));
     }
 
@@ -187,7 +189,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('cd '.__DIR__ .'/../resources && composer validate')
             ->will($this->returnValue(true));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertTrue($composer->validateConfig($project->getDirectoryPath()));
     }
 
@@ -202,7 +204,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->with('cd '.__DIR__ .'/../resources && composer dump-autoload')
             ->will($this->returnValue(true));
 
-        $composer = new Composer($executor);
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertTrue($composer->dumpAutoload($project->getDirectoryPath()));
     }
 }

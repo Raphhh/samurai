@@ -1,6 +1,8 @@
 <?php
 namespace Samurai\Project\Task;
 
+use Balloon\Factory\BalloonFactory;
+use Balloon\Reader\Factory\DummyFileReaderFactory;
 use Pimple\Container;
 use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
@@ -87,7 +89,7 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
             return new Project();
         };
         $services['composer'] = function () use ($executor) {
-            return new Composer($executor);
+            return new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         };
         return $services;
     }

@@ -1,6 +1,7 @@
 <?php
 namespace Samurai;
 
+use Balloon\Factory\BalloonFactory;
 use PHPGit\Git;
 use Pimple\Container;
 use Puppy\Config\Config;
@@ -150,7 +151,7 @@ class Samurai
         };
 
         $services['composer'] = function () use ($executor) {
-            return new Composer($executor);
+            return new Composer($executor, new BalloonFactory());
         };
 
         $services['question'] = function () use ($application) {
