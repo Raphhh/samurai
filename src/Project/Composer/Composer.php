@@ -110,10 +110,11 @@ class Composer
     }
 
     /**
+     * @param array $newConfig
      * @param string $cwd
      * @return int
      */
-    public function resetConfig($cwd = '')
+    public function resetConfig(array $newConfig, $cwd = '')
     {
         $config = $this->getConfig($cwd);
         if($config===null){
@@ -125,7 +126,7 @@ class Composer
 
         return $this->getComposerConfigManager()->set(
             $this->getConfigPath($cwd),
-            $this->getComposerConfigMerger()->merge($config, $this->getProject()->toConfig())
+            $this->getComposerConfigMerger()->merge($config, $newConfig)
         );
     }
 
