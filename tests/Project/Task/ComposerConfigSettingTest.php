@@ -6,11 +6,11 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
- * Class ConfigSettingTest
+ * Class ComposerConfigSettingTest
  * @package Samurai\Project\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ConfigSettingTest extends \PHPUnit_Framework_TestCase
+class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecuteWithValidConfig()
     {
@@ -19,7 +19,7 @@ class ConfigSettingTest extends \PHPUnit_Framework_TestCase
 
         $services = $this->provideServices(true);
 
-        $task = new ConfigSetting($services);
+        $task = new ComposerConfigSetting($services);
         $this->assertTrue($task->execute($input, $output));
 
         $this->assertSame("Initializing composer config\n", $output->fetch());
@@ -32,7 +32,7 @@ class ConfigSettingTest extends \PHPUnit_Framework_TestCase
 
         $services = $this->provideServices(false);
 
-        $task = new ConfigSetting($services);
+        $task = new ComposerConfigSetting($services);
         $this->assertTrue($task->execute($input, $output));
 
         $this->assertSame(

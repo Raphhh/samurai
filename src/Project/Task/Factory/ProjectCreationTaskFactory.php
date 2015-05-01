@@ -2,7 +2,7 @@
 namespace Samurai\Project\Task\Factory;
 
 use Pimple\Container;
-use Samurai\Project\Task\ConfigSetting;
+use Samurai\Project\Task\ComposerConfigSetting;
 use Samurai\Project\Task\FilesCleaning;
 use Samurai\Project\Task\ProjectDownload;
 use Samurai\Task\ITask;
@@ -24,7 +24,7 @@ class ProjectCreationTaskFactory
         return new Planner([
             ProjectInitializationTaskFactory::create($services),
             new ProjectDownload($services),
-            new ConfigSetting($services),
+            new ComposerConfigSetting($services),
             new FilesCleaning($services),
         ]);
     }
