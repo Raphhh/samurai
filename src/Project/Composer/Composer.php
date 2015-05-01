@@ -80,15 +80,15 @@ class Composer
     }
 
     /**
+     * @param $cwd
      * @return string
      */
-    public function getConfigPath()
+    public function getConfigPath($cwd = '')
     {
-        $dirPath = $this->getProject()->getDirectoryPath();
-        if($dirPath){
-            $dirPath = rtrim($dirPath, '/') . '/';
+        if($cwd){
+            $cwd = rtrim($cwd, '/') . '/';
         }
-        return  $dirPath . 'composer.json';
+        return  $cwd . 'composer.json';
     }
 
     /**
@@ -96,7 +96,7 @@ class Composer
      */
     public function getConfig()
     {
-        return $this->getComposerConfigManager()->get($this->getConfigPath());
+        return $this->getComposerConfigManager()->get($this->getConfigPath($this->getProject()->getDirectoryPath()));
     }
 
     /**
@@ -116,12 +116,12 @@ class Composer
         if($config===null){
             throw new \RuntimeException(sprintf(
                 'Impossible to load the composer config from file "%s"',
-                $this->getConfigPath()
+                $this->getConfigPath($this->getProject()->getDirectoryPath())
             ));
         }
 
         return $this->getComposerConfigManager()->set(
-            $this->getConfigPath(),
+            $this->getConfigPath($this->getProject()->getDirectoryPath()),
             $this->getComposerConfigMerger()->merge($config, $this->getProject()->toConfig())
         );
     }

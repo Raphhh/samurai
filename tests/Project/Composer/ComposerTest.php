@@ -126,7 +126,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
         $composer = new Composer($project, new Executor());
-        $this->assertSame('composer.json', $composer->getConfigPath());
+        $this->assertSame('composer.json', $composer->getConfigPath($project->getDirectoryPath()));
     }
 
     public function testGetConfigPathWithDirectoryPath()
@@ -134,7 +134,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project = new Project();
         $project->setDirectoryPath('dir/path');
         $composer = new Composer($project, new Executor());
-        $this->assertSame('dir/path/composer.json', $composer->getConfigPath());
+        $this->assertSame('dir/path/composer.json', $composer->getConfigPath($project->getDirectoryPath()));
     }
 
     public function testGetConfigWithoutFile()
@@ -142,7 +142,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project = new Project();
         $project->setDirectoryPath('no-such-dir');
         $composer = new Composer($project, new Executor());
-        $this->assertNull($composer->getConfig(), 'config path: ' . $composer->getConfigPath());
+        $this->assertNull($composer->getConfig(), 'config path: ' . $composer->getConfigPath($project->getDirectoryPath()));
     }
 
     public function testGetConfigWithFile()
@@ -210,7 +210,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project = new Project();
         $project->setDirectoryPath(__DIR__ . '/../resources');
         $composer = new Composer($project, new Executor());
-        $fileContent = file_get_contents($composer->getConfigPath());
+        $fileContent = file_get_contents($composer->getConfigPath($project->getDirectoryPath()));
 
         $this->assertSame(
             [
@@ -231,7 +231,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             $composer->getConfig()
         );
 
-        file_put_contents($composer->getConfigPath(), $fileContent);
+        file_put_contents($composer->getConfigPath($project->getDirectoryPath()), $fileContent);
     }
 
     public function testResetConfigWithOverride()
@@ -239,7 +239,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project = new Project();
         $project->setDirectoryPath(__DIR__ . '/../resources');
         $composer = new Composer($project, new Executor());
-        $fileContent = file_get_contents($composer->getConfigPath());
+        $fileContent = file_get_contents($composer->getConfigPath($project->getDirectoryPath()));
 
         $this->assertSame(
             [
@@ -265,7 +265,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             $composer->getConfig()
         );
 
-        file_put_contents($composer->getConfigPath(), $fileContent);
+        file_put_contents($composer->getConfigPath($project->getDirectoryPath()), $fileContent);
     }
 
     public function testDumpAutoload()
