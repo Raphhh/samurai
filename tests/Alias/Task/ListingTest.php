@@ -36,7 +36,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertTrue($saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nsource:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
     public function testExecuteWithLocal()
@@ -58,7 +58,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertTrue($saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nsource:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
     public function testExecuteWithAll()
@@ -79,7 +79,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertTrue($saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\nbootstrap: bootstrap\nversion: version\nsource:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
     /**
@@ -110,7 +110,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
         $alias = new Alias();
         $alias->setName($args['name']);
         $alias->setDescription($args['description']);
-        $alias->setBootstrap($args['bootstrap']);
+        $alias->setPackage($args['bootstrap']);
         $alias->setVersion($args['version']);
         return $alias;
     }

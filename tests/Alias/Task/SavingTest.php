@@ -140,7 +140,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
         $alias = new Alias();
         $alias->setName($args['name']);
         $alias->setDescription($args['description']);
-        $alias->setBootstrap($args['bootstrap']);
+        $alias->setPackage($args['bootstrap']);
         $alias->setVersion($args['version']);
         $alias->setSource($args['source']);
         return $alias;
@@ -156,7 +156,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
     {
         $oldAlias = clone $newAlias;
         $oldAlias->setDescription($newAlias->getDescription() . '_old');
-        $oldAlias->setBootstrap($newAlias->getBootstrap() . '_old');
+        $oldAlias->setPackage($newAlias->getPackage() . '_old');
         $oldAlias->setVersion($newAlias->getVersion() . '_old');
 
         $aliasManager = $this->getMockBuilder('Samurai\Alias\AliasManager')

@@ -37,7 +37,7 @@ class Saving extends Task
         $alias = new Alias();
         $alias->setName($input->getArgument('name'));
         $alias->setDescription($input->getArgument('description'));
-        $alias->setBootstrap($input->getArgument('bootstrap'));
+        $alias->setPackage($input->getArgument('bootstrap'));
         $alias->setVersion($input->getArgument('version'));
         $alias->setSource($input->getArgument('source'));
         return $alias;
@@ -89,8 +89,8 @@ class Saving extends Task
         return new ConfirmationQuestion(
             sprintf(
                 '<question>Do you want to override the bootstrap "%s" with "%s" </question>[y]',
-                trim($oldAlias->getBootstrap() . ' ' . $oldAlias->getVersion()),
-                trim($newAlias->getBootstrap() . ' ' . $newAlias->getVersion())
+                trim($oldAlias->getPackage() . ' ' . $oldAlias->getVersion()),
+                trim($newAlias->getPackage() . ' ' . $newAlias->getVersion())
             )
         );
     }

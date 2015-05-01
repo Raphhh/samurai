@@ -55,7 +55,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
         $alias = new Alias();
         $alias->setName('name');
         $alias->setDescription('desc');
-        $alias->setBootstrap('boots');
+        $alias->setPackage('boots');
         $alias->setVersion('vers');
 
         $factory = new AliasManagerFactory();
@@ -86,7 +86,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
         $alias = new Alias();
         $alias->setName('lib');
         $alias->setDescription('desc');
-        $alias->setBootstrap('boots');
+        $alias->setPackage('boots');
         $alias->setVersion('vers');
 
         $factory = new AliasManagerFactory();
@@ -154,7 +154,7 @@ class AliasManagerTest extends \PHPUnit_Framework_TestCase
         $alias = new Alias();
         $alias->setName($name);
         $alias->setDescription($desc);
-        $alias->setBootstrap($bootstrap);
+        $alias->setPackage($bootstrap);
         $alias->setVersion($version);
         $alias->setSource($source);
         return $alias;

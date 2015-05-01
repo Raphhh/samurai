@@ -23,7 +23,7 @@ class Alias implements IArrayCastable
     /**
      * @var string
      */
-    private $bootstrap;
+    private $package;
 
     /**
      * @var string
@@ -76,23 +76,23 @@ class Alias implements IArrayCastable
     }
 
     /**
-     * Getter of $bootstrap
+     * Getter of $package
      *
      * @return string
      */
-    public function getBootstrap()
+    public function getPackage()
     {
-        return $this->bootstrap;
+        return $this->package;
     }
 
     /**
-     * Setter of $bootstrap
+     * Setter of $package
      *
-     * @param string $bootstrap
+     * @param string $package
      */
-    public function setBootstrap($bootstrap)
+    public function setPackage($package)
     {
-        $this->bootstrap = (string)$bootstrap;
+        $this->package = (string)$package;
     }
 
     /**
@@ -149,7 +149,7 @@ class Alias implements IArrayCastable
     public function __toString(){
         return $this->getDescription()
         . ' ('
-        . trim($this->getBootstrap() . ' ' . $this->getVersion())
+        . trim($this->getPackage() . ' ' . $this->getVersion())
         . ')';
     }
 }

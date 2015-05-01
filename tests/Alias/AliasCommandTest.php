@@ -33,7 +33,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
 
         $alias = $samurai->getServices()['alias_manager']->getLocal();
         $this->assertArrayHasKey('test', $alias);
-        $this->assertSame('vendor/package', $alias['test']->getBootstrap());
+        $this->assertSame('vendor/package', $alias['test']->getPackage());
         $this->assertSame('@stable', $alias['test']->getVersion());
         $this->assertSame('description', $alias['test']->getDescription());
     }
@@ -49,7 +49,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertStringStartsWith(
-            "name: lib\ndescription: Basic PHP library\nbootstrap: raphhh/php-lib-bootstrap\nversion: \nsource:",
+            "name: lib\ndescription: Basic PHP library\npackage: raphhh/php-lib-bootstrap\nversion: \nsource:",
             $commandTester->getDisplay()
         );
     }
@@ -66,7 +66,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertStringStartsWith(
-            "name: lib\ndescription: Basic PHP library\nbootstrap: raphhh/php-lib-bootstrap\nversion: \nsource:",
+            "name: lib\ndescription: Basic PHP library\npackage: raphhh/php-lib-bootstrap\nversion: \nsource:",
             $commandTester->getDisplay()
         );
     }
@@ -86,7 +86,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertStringStartsWith(
-            "name: test\ndescription: description\nbootstrap: vendor/package\nversion: @stable\nsource:",
+            "name: test\ndescription: description\npackage: vendor/package\nversion: @stable\nsource:",
             $commandTester->getDisplay()
         );
     }

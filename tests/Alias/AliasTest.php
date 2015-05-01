@@ -14,14 +14,14 @@ class AliasTest extends \PHPUnit_Framework_TestCase
         $alias = new Alias();
         $alias->setName('name');
         $alias->setDescription('description');
-        $alias->setBootstrap('bootstrap');
+        $alias->setPackage('bootstrap');
         $alias->setVersion('version');
         $alias->setSource('source');
         $this->assertSame(
             [
               'name' => 'name',
               'description' => 'description',
-              'bootstrap' => 'bootstrap',
+              'package' => 'bootstrap',
               'version' => 'version',
               'source' => 'source',
             ],

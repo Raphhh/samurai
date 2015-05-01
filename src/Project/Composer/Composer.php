@@ -54,7 +54,7 @@ class Composer
             trim(
                 sprintf(
                     'composer create-project --prefer-dist %s %s %s',
-                    $project->getBootstrap()->getBootstrap(),
+                    $project->getBootstrap()->getPackage(),
                     $project->getDirectoryPath(),
                     $project->getBootstrap()->getVersion()
                 )

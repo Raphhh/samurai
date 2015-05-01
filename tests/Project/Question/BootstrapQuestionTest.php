@@ -28,7 +28,7 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new BootstrapQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('raphhh/php-lib-bootstrap', $services['project']->getBootstrap()->getBootstrap());
+        $this->assertSame('raphhh/php-lib-bootstrap', $services['project']->getBootstrap()->getPackage());
         $this->assertSame('', $services['project']->getBootstrap()->getVersion());
     }
 
@@ -40,7 +40,7 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new BootstrapQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('vendor/package', $services['project']->getBootstrap()->getBootstrap());
+        $this->assertSame('vendor/package', $services['project']->getBootstrap()->getPackage());
         $this->assertSame('', $services['project']->getBootstrap()->getVersion());
     }
 
@@ -52,7 +52,7 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new BootstrapQuestion($services);
         $this->assertTrue($question->execute($input, $output));
-        $this->assertSame('vendor/package', $services['project']->getBootstrap()->getBootstrap());
+        $this->assertSame('vendor/package', $services['project']->getBootstrap()->getPackage());
         $this->assertSame('1.0.0', $services['project']->getBootstrap()->getVersion());
     }
 

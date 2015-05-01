@@ -25,7 +25,7 @@ class BootstrapQuestion extends Question
         }else{
             $this->setFromAlias($this->askForAlias($input, $output));
         }
-        return (bool)$this->getProject()->getBootstrap()->getBootstrap();
+        return (bool)$this->getProject()->getBootstrap()->getPackage();
     }
 
     /**
@@ -62,7 +62,7 @@ class BootstrapQuestion extends Question
             $this->setFromAlias($this->getService('alias_manager')->get($input->getArgument('bootstrap')));
         } else {
             $alias = new Alias();
-            $alias->setBootstrap($input->getArgument('bootstrap'));
+            $alias->setPackage($input->getArgument('bootstrap'));
             $alias->setVersion($input->getArgument('version'));
             $this->setFromAlias($alias);
         }

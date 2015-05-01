@@ -32,7 +32,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testCreateProjectWithBootstrap()
     {
         $alias = new Alias();
-        $alias->setBootstrap('vendor/package');
+        $alias->setPackage('vendor/package');
 
         $project = new Project();
         $project->setBootstrap($alias);
@@ -50,7 +50,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testCreateProjectWithBootstrapAndOptions()
     {
         $alias = new Alias();
-        $alias->setBootstrap('vendor/package');
+        $alias->setPackage('vendor/package');
 
         $project = new Project();
         $project->setBootstrap($alias);
@@ -68,7 +68,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testCreateProjectWithDirectoryPath()
     {
         $alias = new Alias();
-        $alias->setBootstrap('vendor/package');
+        $alias->setPackage('vendor/package');
 
         $project = new Project();
         $project->setBootstrap($alias);
@@ -87,7 +87,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testCreateProjectWithDirectoryPathAndOptions()
     {
         $alias = new Alias();
-        $alias->setBootstrap('vendor/package');
+        $alias->setPackage('vendor/package');
 
         $project = new Project();
         $project->setBootstrap($alias);
@@ -106,7 +106,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testCreateProjectWithVersion()
     {
         $alias = new Alias();
-        $alias->setBootstrap('vendor/package');
+        $alias->setPackage('vendor/package');
         $alias->setVersion('1.0.0');
 
         $project = new Project();
@@ -126,7 +126,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     public function testCreateProjectWithVersionAndOptions()
     {
         $alias = new Alias();
-        $alias->setBootstrap('vendor/package');
+        $alias->setPackage('vendor/package');
         $alias->setVersion('1.0.0');
 
         $project = new Project();

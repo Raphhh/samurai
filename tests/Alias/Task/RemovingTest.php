@@ -144,7 +144,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
         $alias = new Alias();
         $alias->setName($args['name']);
         $alias->setDescription($args['description']);
-        $alias->setBootstrap($args['bootstrap']);
+        $alias->setPackage($args['bootstrap']);
         $alias->setVersion($args['version']);
         return $alias;
     }

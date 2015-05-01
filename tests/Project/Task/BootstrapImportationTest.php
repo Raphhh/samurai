@@ -38,7 +38,7 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
 
         $alias = new Alias();
-        $alias->setBootstrap('vendor/bootstrap');
+        $alias->setPackage('vendor/bootstrap');
         
         $services = $this->provideServices($this->provideExecutor(1));
         $services['project']->setName('vendor/package');
@@ -56,7 +56,7 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
 
         $alias = new Alias();
-        $alias->setBootstrap('vendor/bootstrap');
+        $alias->setPackage('vendor/bootstrap');
 
         $services = $this->provideServices($this->provideExecutor(1, ' --repository-url=specific/url'));
         $services['project']->setName('vendor/package');

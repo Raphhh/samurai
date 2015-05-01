@@ -95,7 +95,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
          */
         $project = $samurai->getServices()['project'];
         $this->assertSame('vendor/package', $project->getName());
-        $this->assertSame('raphhh/php-lib-bootstrap', $project->getBootstrap()->getBootstrap());
+        $this->assertSame('raphhh/php-lib-bootstrap', $project->getBootstrap()->getPackage());
         $this->assertSame('', $project->getBootstrap()->getVersion());
         $this->assertSame('vendor/package', $project->getDirectoryPath());
         $this->assertSame('desc', $project->getDescription());
@@ -194,7 +194,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
          */
         $project = $samurai->getServices()['project'];
         $this->assertSame('vendor/package', $project->getName());
-        $this->assertSame('vendor/bootstrap', $project->getBootstrap()->getBootstrap());
+        $this->assertSame('vendor/bootstrap', $project->getBootstrap()->getPackage());
         $this->assertSame('1.0.0', $project->getBootstrap()->getVersion());
         $this->assertSame('dir/path', $project->getDirectoryPath());
         $this->assertSame('desc', $project->getDescription());

@@ -34,7 +34,7 @@ class BootstrapImportation extends Task
         $output->writeln(sprintf(
             '<info>Installing project %s from %s</info>',
             $this->getService('project')->getName(),
-            $this->getService('project')->getBootstrap()->getBootstrap()
+            $this->getService('project')->getBootstrap()->getPackage()
         ));
 
         return $this->getService('composer')->createProject($this->getService('project'), $this->filter($input->getOptions()));
