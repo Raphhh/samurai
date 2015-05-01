@@ -84,33 +84,22 @@ class Composer
     }
 
     /**
+     * @param array $config
+     * @param string $cwd
+     * @return int
+     */
+    public function setConfig(array $config, $cwd = '')
+    {
+        return $this->getComposerConfigManager()->set($this->getConfigPath($cwd), $config);
+    }
+
+    /**
      * @param string $cwd
      * @return bool
      */
     public function validateConfig($cwd = '')
     {
         return $this->getExecutor()->flush($this->cd($cwd) . 'composer validate');
-    }
-
-    /**
-     * @param array $newConfig
-     * @param string $cwd
-     * @return int
-     */
-    public function resetConfig(array $newConfig, $cwd = '')
-    {
-        $config = $this->getConfig($cwd);
-        if($config===null){
-            throw new \RuntimeException(sprintf(
-                'Impossible to load the composer config from file "%s"',
-                $this->getConfigPath($cwd)
-            ));
-        }
-
-        return $this->getComposerConfigManager()->set(
-            $this->getConfigPath($cwd),
-            $this->getComposerConfigMerger()->merge($config, $newConfig)
-        );
     }
 
     /**

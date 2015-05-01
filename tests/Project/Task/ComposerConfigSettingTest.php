@@ -68,7 +68,11 @@ class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $composer->expects($this->once())
-            ->method('resetConfig');
+            ->method('getConfig')
+            ->will($this->returnValue([]));
+
+        $composer->expects($this->once())
+            ->method('setConfig');
 
         $composer->expects($this->once())
             ->method('validateConfig')

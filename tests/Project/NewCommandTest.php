@@ -249,7 +249,11 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $composer->expects($this->any())
-            ->method('resetConfig');
+            ->method('getConfig')
+            ->will($this->returnValue([]));
+
+        $composer->expects($this->any())
+            ->method('setConfig');
 
         $composer->expects($this->any())
             ->method('validateConfig')

@@ -1,6 +1,8 @@
 <?php
 namespace Samurai\Project\Composer;
 
+use Samurai\Project\Project;
+
 /**
  * Class ComposerConfigMergerTest
  * @package Samurai\Project\Composer
@@ -16,6 +18,8 @@ class ComposerConfigMergerTest extends \PHPUnit_Framework_TestCase
             'description' => 'init-description',
             'keywords' => ['init-k1', 'init-k2'],
             'homepage' => 'http://init-homepage.com',
+            'version' => '1.0.0',
+            'time' => '1999-12-31',
             'authors' => [
                 [
                     'name' => 'init-author-name',

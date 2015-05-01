@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Task;
 
+use Samurai\Project\Composer\ComposerConfigMerger;
 use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,10 +22,7 @@ class ComposerConfigSetting extends Task
     {
         $output->writeln('<info>Initializing composer config</info>');
 
-        $this->getService('composer')->resetConfig(
-            $this->getService('project')->toConfig(),
-            $this->getService('project')->getDirectoryPath()
-        );
+        $this->resetConfig();
 
         if(!$this->getService('composer')->validateConfig($this->getService('project')->getDirectoryPath())) {
             $output->writeln('<error>Error: Composer config is not valid</error>');
@@ -34,5 +32,34 @@ class ComposerConfigSetting extends Task
         }
 
         return true;
+    }
+
+    /**
+     *
+     */
+    public function resetConfig()
+    {
+        $merger = new ComposerConfigMerger();
+        $this->getService('composer')->setConfig(
+            $merger->merge($this->retrieveCurrentConfig(), $this->getService('project')->toConfig()),
+            $this->getService('project')->getDirectoryPath()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function retrieveCurrentConfig()
+    {
+        $config = $this->getService('composer')->getConfig($this->getService('project')->getDirectoryPath());
+        if ($config === null) {
+            throw new \RuntimeException(
+                sprintf(
+                    'Impossible to load the composer config from file "%s"',
+                    $this->getService('composer')->getConfigPath($this->getService('project')->getDirectoryPath())
+                )
+            );
+        }
+        return $config;
     }
 }
