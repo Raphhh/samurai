@@ -86,8 +86,8 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $services['project'] = function () {
             return new Project();
         };
-        $services['composer'] = function (Container $services) use ($executor) {//todo
-            return new Composer($services['project'], $executor);
+        $services['composer'] = function () use ($executor) {
+            return new Composer($executor);
         };
         return $services;
     }

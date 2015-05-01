@@ -149,8 +149,8 @@ class Samurai
             return new Project();
         };
 
-        $services['composer'] = function (Container $services) use ($executor) {
-            return new Composer($services['project'], $executor);
+        $services['composer'] = function () use ($executor) {
+            return new Composer($executor);
         };
 
         $services['question'] = function () use ($application) {

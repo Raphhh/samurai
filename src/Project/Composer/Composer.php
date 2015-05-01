@@ -14,11 +14,6 @@ use TRex\Cli\Executor;
 class Composer
 {
     /**
-     * @var Project
-     */
-    private $project;
-
-    /**
      * @var JsonFileManager
      */
     private $composerConfigManager;
@@ -34,25 +29,13 @@ class Composer
     private $executor;
 
     /**
-     * @param Project $project
      * @param Executor $executor
      */
-    public function __construct(Project $project, Executor $executor)
+    public function __construct(Executor $executor)
     {
-        $this->setProject($project);
         $this->setComposerConfigManager(new JsonFileManager()); //todo DI => use pimple
         $this->setComposerConfigMerger(new ComposerConfigMerger()); //todo DI => use pimple
         $this->setExecutor($executor);
-    }
-
-    /**
-     * Getter of $project
-     *
-     * @return Project
-     */
-    private function getProject() //todo should be private
-    {
-        return $this->project;
     }
 
     /**
@@ -162,16 +145,6 @@ class Composer
             $result .= ' --' . $option . '=' . $value;
         }
         return $result;
-    }
-
-    /**
-     * Setter of $project
-     *
-     * @param Project $project
-     */
-    private function setProject(Project $project)
-    {
-        $this->project = $project;
     }
 
     /**
