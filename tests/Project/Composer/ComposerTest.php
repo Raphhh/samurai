@@ -142,7 +142,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project = new Project();
         $project->setDirectoryPath('no-such-dir');
         $composer = new Composer(new Executor());
-        $this->assertNull($composer->getConfig($project->getDirectoryPath()), 'config path: ' . $composer->getConfigPath($project->getDirectoryPath()));
+        $this->assertSame([], $composer->getConfig($project->getDirectoryPath()), 'config path: ' . $composer->getConfigPath($project->getDirectoryPath()));
     }
 
     public function testGetConfigWithFile()

@@ -1,8 +1,9 @@
 <?php
 namespace Samurai\Project\Composer;
 
+use Balloon\Balloon;
+use Balloon\Factory\BalloonFactory;
 use InvalidArgumentException;
-use Samurai\File\JsonFileManager;
 use Samurai\Project\Project;
 use TRex\Cli\Executor;
 
@@ -14,9 +15,9 @@ use TRex\Cli\Executor;
 class Composer
 {
     /**
-     * @var JsonFileManager
+     * @var Balloon[]
      */
-    private $composerConfigManager;
+    private $composerConfigManager = [];
 
     /**
      * @var Executor
@@ -28,7 +29,6 @@ class Composer
      */
     public function __construct(Executor $executor)
     {
-        $this->setComposerConfigManager(new JsonFileManager()); //todo DI => use pimple
         $this->setExecutor($executor);
     }
 
@@ -70,11 +70,11 @@ class Composer
 
     /**
      * @param string $cwd
-     * @return array|null
+     * @return array
      */
     public function getConfig($cwd = '')
     {
-        return $this->getComposerConfigManager()->get($this->getConfigPath($cwd));
+        return $this->getComposerConfigManager($cwd)->getAll();
     }
 
     /**
@@ -84,7 +84,8 @@ class Composer
      */
     public function setConfig(array $config, $cwd = '')
     {
-        return $this->getComposerConfigManager()->set($this->getConfigPath($cwd), $config);
+        $this->getComposerConfigManager($cwd)->removeAll();
+        return $this->getComposerConfigManager($cwd)->add($config);
     }
 
     /**
@@ -133,21 +134,16 @@ class Composer
     /**
      * Getter of $composerConfigManager
      *
-     * @return JsonFileManager
+     * @param $cwd
+     * @return Balloon
      */
-    public function getComposerConfigManager()
+    public function getComposerConfigManager($cwd)
     {
-        return $this->composerConfigManager;
-    }
-
-    /**
-     * Setter of $composerConfigManager
-     *
-     * @param JsonFileManager $composerConfigManager
-     */
-    public function setComposerConfigManager(JsonFileManager $composerConfigManager)
-    {
-        $this->composerConfigManager = $composerConfigManager;
+        if(empty($this->composerConfigManager[$cwd])){
+            $balloonFactory = new BalloonFactory();
+            $this->composerConfigManager[$cwd] = $balloonFactory->create($this->getConfigPath($cwd));
+        }
+        return $this->composerConfigManager[$cwd];
     }
 
     /**

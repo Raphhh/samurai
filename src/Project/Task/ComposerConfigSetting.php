@@ -51,15 +51,6 @@ class ComposerConfigSetting extends Task
      */
     public function retrieveCurrentConfig()
     {
-        $config = $this->getService('composer')->getConfig($this->getService('project')->getDirectoryPath());
-        if ($config === null) {
-            throw new \RuntimeException(
-                sprintf(
-                    'Impossible to load the composer config from file "%s"',
-                    $this->getService('composer')->getConfigPath($this->getService('project')->getDirectoryPath())
-                )
-            );
-        }
-        return $config;
+        return $this->getService('composer')->getConfig($this->getService('project')->getDirectoryPath());
     }
 }
