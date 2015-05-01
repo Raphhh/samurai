@@ -64,6 +64,7 @@ class BootstrapQuestion extends Question
             $alias = new Alias();
             $alias->setPackage($input->getArgument('bootstrap'));
             $alias->setVersion($input->getArgument('version'));
+            $alias->setSource($input->getArgument('source'));
             $this->setFromAlias($alias);
         }
     }

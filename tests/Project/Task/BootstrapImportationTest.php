@@ -52,11 +52,12 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
 
     public function testExecuteWithOptions()
     {
-        $input = $this->provideInput(['--url' => 'specific/url']);
+        $input = $this->provideInput([]);
         $output = new BufferedOutput();
 
         $alias = new Alias();
         $alias->setPackage('vendor/bootstrap');
+        $alias->setSource('specific/url');
 
         $services = $this->provideServices($this->provideExecutor(1, ' --repository-url=specific/url'));
         $services['project']->setName('vendor/package');

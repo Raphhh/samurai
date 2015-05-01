@@ -97,7 +97,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
             $args,
             new InputDefinition([
                 new InputArgument('bootstrap'),
-                new InputArgument('version')
+                new InputArgument('version'),
+                new InputArgument('source'),
             ])
         );
     }

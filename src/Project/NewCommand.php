@@ -34,6 +34,11 @@ class NewCommand extends Command
                 InputArgument::OPTIONAL,
                 'package version'
             )
+            ->addArgument(
+                'source',
+                InputArgument::OPTIONAL,
+                'package source'
+            )
             ->addOption(
                 'dir',
                 'd',

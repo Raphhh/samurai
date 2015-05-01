@@ -13,20 +13,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class BootstrapImportation extends Task
 {
     /**
-     * @var array
-     */
-    private $optionsMapping = [
-        'url' => 'repository-url',//todo use alias::source instead. this options is not allowed anymore
-    ];
-
-    /**
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return bool
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
         if(!$this->getService('project')->getBootstrap()){
            throw new \InvalidArgumentException('The bootstrap of the project is not defined');
         }
@@ -37,21 +29,16 @@ class BootstrapImportation extends Task
             $this->getService('project')->getBootstrap()->getPackage()
         ));
 
-        return $this->getService('composer')->createProject($this->getService('project'), $this->filter($input->getOptions()));
+        return $this->getService('composer')->createProject($this->getService('project'), $this->getOptions());
     }
 
     /**
-     * @param array $options
      * @return array
      */
-    private function filter(array $options)
+    private function getOptions()
     {
-        $result = [];
-        foreach($this->optionsMapping as $alias => $option){
-            if(!empty($options[$alias])){
-                $result[$option] = $options[$alias];
-            }
-        }
-        return $result;
+        return array_filter([
+            'repository-url' => $this->getService('project')->getBootstrap()->getSource()
+        ]);
     }
 }
