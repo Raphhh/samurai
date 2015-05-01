@@ -32,7 +32,7 @@ class BootstrapImportation extends Task
             $this->getService('project')->getBootstrapName()
         ));
 
-        return $this->getService('composer')->createProject($this->filter($input->getOptions()));
+        return $this->getService('composer')->createProject($this->getService('project'), $this->filter($input->getOptions()));
     }
 
     /**

@@ -23,7 +23,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $composer = new Composer($project, $executor);
 
         $this->setExpectedException('\InvalidArgumentException', 'The bootstrap of the project is not defined');
-        $composer->createProject();
+        $composer->createProject($project);
     }
 
     public function testCreateProjectWithBootstrap()
@@ -38,7 +38,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
-        $this->assertSame('result', $composer->createProject());
+        $this->assertSame('result', $composer->createProject($project));
     }
 
     public function testCreateProjectWithBootstrapAndOptions()
@@ -53,7 +53,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
-        $this->assertSame('result', $composer->createProject(['repository-url' => 'url']));
+        $this->assertSame('result', $composer->createProject($project, ['repository-url' => 'url']));
     }
 
     public function testCreateProjectWithDirectoryPath()
@@ -69,7 +69,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
-        $this->assertSame('result', $composer->createProject());
+        $this->assertSame('result', $composer->createProject($project));
     }
 
     public function testCreateProjectWithDirectoryPathAndOptions()
@@ -85,7 +85,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
-        $this->assertSame('result', $composer->createProject(['repository-url' => 'url']));
+        $this->assertSame('result', $composer->createProject($project, ['repository-url' => 'url']));
     }
 
     public function testCreateProjectWithVersion()
@@ -102,7 +102,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
-        $this->assertSame('result', $composer->createProject());
+        $this->assertSame('result', $composer->createProject($project));
     }
 
     public function testCreateProjectWithVersionAndOptions()
@@ -119,7 +119,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('result'));
 
         $composer = new Composer($project, $executor);
-        $this->assertSame('result', $composer->createProject(['repository-url' => 'url']));
+        $this->assertSame('result', $composer->createProject($project, ['repository-url' => 'url']));
     }
 
     public function testGetConfigPath()
