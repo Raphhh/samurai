@@ -13,7 +13,7 @@ use Samurai\Task\Planner;
  * @package Samurai\Project\Task\Factory
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ProjectCreationTaskFactory
+class BootstrapImportationTaskFactory
 {
     /**
      * @param Container $services

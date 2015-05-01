@@ -2,7 +2,7 @@
 namespace Samurai\Project;
 
 use Samurai\Command\Command;
-use Samurai\Project\Task\Factory\ProjectCreationTaskFactory;
+use Samurai\Project\Task\Factory\BootstrapImportationTaskFactory;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -61,7 +61,7 @@ class NewCommand extends Command
      */
     private function getTask()
     {
-        return ProjectCreationTaskFactory::create($this->getServices());
+        return BootstrapImportationTaskFactory::create($this->getServices());
     }
 }
 
