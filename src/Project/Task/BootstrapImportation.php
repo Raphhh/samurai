@@ -6,11 +6,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class ProjectDownload
+ * Class BootstrapImportation
  * @package Samurai\Project\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ProjectDownload extends Task
+class BootstrapImportation extends Task
 {
     /**
      * @var array

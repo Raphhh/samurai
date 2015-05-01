@@ -10,11 +10,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
- * Class ProjectDownloadTest
+ * Class BootstrapImportationTest
  * @package Samurai\Project\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ProjectDownloadTest extends \PHPUnit_Framework_TestCase
+class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testExecuteWithoutBootstrap()
@@ -24,7 +24,7 @@ class ProjectDownloadTest extends \PHPUnit_Framework_TestCase
 
         $services = $this->provideServices($this->provideExecutor(0));
 
-        $task = new ProjectDownload($services);
+        $task = new BootstrapImportation($services);
         $this->setExpectedException('InvalidArgumentException', 'The bootstrap of the project is not defined');
         $this->assertFalse($task->execute($input, $output));
     }
@@ -38,7 +38,7 @@ class ProjectDownloadTest extends \PHPUnit_Framework_TestCase
         $services['project']->setName('vendor/package');
         $services['project']->setBootstrapName('vendor/bootstrap');
 
-        $task = new ProjectDownload($services);
+        $task = new BootstrapImportation($services);
         $this->assertTrue($task->execute($input, $output));
 
         $this->assertSame("Installing project vendor/package from vendor/bootstrap\n", $output->fetch());
@@ -53,7 +53,7 @@ class ProjectDownloadTest extends \PHPUnit_Framework_TestCase
         $services['project']->setName('vendor/package');
         $services['project']->setBootstrapName('vendor/bootstrap');
 
-        $task = new ProjectDownload($services);
+        $task = new BootstrapImportation($services);
         $this->assertTrue($task->execute($input, $output));
 
         $this->assertSame("Installing project vendor/package from vendor/bootstrap\n", $output->fetch());
