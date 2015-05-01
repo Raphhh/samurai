@@ -2,6 +2,7 @@
 namespace Samurai\Project\Task;
 
 use Pimple\Container;
+use Samurai\Project\Project;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -50,6 +51,10 @@ class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
         $composer = $this->provideComposer($result);
 
         $services = new Container();
+        $services['project'] = function () use ($composer) {
+            return new Project();
+        };
+
         $services['composer'] = function () use ($composer) {
             return $composer;
         };

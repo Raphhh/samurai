@@ -109,20 +109,21 @@ class Composer
     }
 
     /**
+     * @param string $cwd
      * @return int
      */
-    public function resetConfig()
+    public function resetConfig($cwd = '')
     {
-        $config = $this->getConfig($this->getProject()->getDirectoryPath());
+        $config = $this->getConfig($cwd);
         if($config===null){
             throw new \RuntimeException(sprintf(
                 'Impossible to load the composer config from file "%s"',
-                $this->getConfigPath($this->getProject()->getDirectoryPath())
+                $this->getConfigPath($cwd)
             ));
         }
 
         return $this->getComposerConfigManager()->set(
-            $this->getConfigPath($this->getProject()->getDirectoryPath()),
+            $this->getConfigPath($cwd),
             $this->getComposerConfigMerger()->merge($config, $this->getProject()->toConfig())
         );
     }

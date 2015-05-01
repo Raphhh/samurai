@@ -201,7 +201,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             '\RuntimeException',
             'Impossible to load the composer config from file "no-such-dir/composer.json"'
         );
-        $composer->resetConfig();
+        $composer->resetConfig($project->getDirectoryPath());
     }
 
     public function testResetConfigWithFile()
@@ -223,7 +223,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             $composer->getConfig($project->getDirectoryPath())
         );
 
-        $composer->resetConfig();
+        $composer->resetConfig($project->getDirectoryPath());
         $this->assertSame(
             [
                 'license' => 'MIT',
@@ -255,7 +255,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $project->setName('raphhh/samurai2');
         $project->setDescription('desc2');
 
-        $composer->resetConfig();
+        $composer->resetConfig($project->getDirectoryPath());
         $this->assertSame(
             [
                 'name' => 'raphhh/samurai2',

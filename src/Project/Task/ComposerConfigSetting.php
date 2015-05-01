@@ -21,7 +21,7 @@ class ComposerConfigSetting extends Task
     {
         $output->writeln('<info>Initializing composer config</info>');
 
-        $this->getService('composer')->resetConfig();
+        $this->getService('composer')->resetConfig($this->getService('project')->getDirectoryPath());
         if(!$this->getService('composer')->validateConfig()) {
             $output->writeln('<error>Error: Composer config is not valid</error>');
         }
