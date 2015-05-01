@@ -173,7 +173,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(false));
 
         $composer = new Composer($project, $executor);
-        $this->assertFalse($composer->validateConfig());
+        $this->assertFalse($composer->validateConfig($project->getDirectoryPath()));
     }
 
     public function testValidateConfigWithFile()
@@ -188,7 +188,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
 
         $composer = new Composer($project, $executor);
-        $this->assertTrue($composer->validateConfig());
+        $this->assertTrue($composer->validateConfig($project->getDirectoryPath()));
     }
 
     public function testResetConfig()
@@ -280,6 +280,6 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
 
         $composer = new Composer($project, $executor);
-        $this->assertTrue($composer->dumpAutoload());
+        $this->assertTrue($composer->dumpAutoload($project->getDirectoryPath()));
     }
 }

@@ -22,10 +22,10 @@ class ComposerConfigSetting extends Task
         $output->writeln('<info>Initializing composer config</info>');
 
         $this->getService('composer')->resetConfig($this->getService('project')->getDirectoryPath());
-        if(!$this->getService('composer')->validateConfig()) {
+        if(!$this->getService('composer')->validateConfig($this->getService('project')->getDirectoryPath())) {
             $output->writeln('<error>Error: Composer config is not valid</error>');
         }
-        if(!$this->getService('composer')->dumpAutoload()) {
+        if(!$this->getService('composer')->dumpAutoload($this->getService('project')->getDirectoryPath())) {
             $output->writeln('<error>Error: autoload is not up-to-date. Process to "composer dump-autoload".</error>');
         }
 

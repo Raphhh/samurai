@@ -101,11 +101,12 @@ class Composer
     }
 
     /**
+     * @param string $cwd
      * @return bool
      */
-    public function validateConfig()
+    public function validateConfig($cwd = '')
     {
-        return $this->getExecutor()->flush($this->cd() . 'composer validate');
+        return $this->getExecutor()->flush($this->cd($cwd) . 'composer validate');
     }
 
     /**
@@ -129,20 +130,22 @@ class Composer
     }
 
     /**
+     * @param string $cwd
      * @return bool
      */
-    public function dumpAutoload()
+    public function dumpAutoload($cwd = '')
     {
-        return $this->getExecutor()->flush($this->cd() . 'composer dump-autoload');
+        return $this->getExecutor()->flush($this->cd($cwd) . 'composer dump-autoload');
     }
 
     /**
+     * @param $cwd
      * @return string
      */
-    private function cd()
+    private function cd($cwd)
     {
-        if($this->getProject()->getDirectoryPath()) {
-            return 'cd ' . $this->getProject()->getDirectoryPath() . ' && ';
+        if($cwd) {
+            return 'cd ' . $cwd . ' && ';
         }
         return '';
     }
