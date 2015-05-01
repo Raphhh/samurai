@@ -79,7 +79,8 @@ class AliasCommand extends Command
      */
     private function getTask(InputInterface $input)
     {
-        return AliasManagementTaskFactory::create($input, $this->getServices());
+        $factory = new AliasManagementTaskFactory();
+        return $factory->create($input, $this->getServices());
     }
 }
 
