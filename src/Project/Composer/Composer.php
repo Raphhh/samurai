@@ -80,6 +80,14 @@ class Composer
     }
 
     /**
+     * @return string
+     */
+    public function getHomePath()
+    {
+        return $this->getExecutor()->read('composer config home --absolute');
+    }
+
+    /**
      * @param $cwd
      * @return string
      */
