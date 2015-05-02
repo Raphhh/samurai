@@ -236,4 +236,28 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame(0, $composer->dumpAutoload($project->getDirectoryPath()));
     }
+
+    public function testRequirePackageGlobal()
+    {
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('flush')
+            ->with('composer global require name version')
+            ->will($this->returnValue(0));
+
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
+        $this->assertSame(0, $composer->requirePackage('name', 'version', true));
+    }
+
+    public function testRequirePackageLocal()
+    {
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('flush')
+            ->with('composer require name version')
+            ->will($this->returnValue(0));
+
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
+        $this->assertSame(0, $composer->requirePackage('name', 'version', false));
+    }
 }

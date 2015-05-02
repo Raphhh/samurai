@@ -64,6 +64,22 @@ class Composer
     }
 
     /**
+     * @param string $name
+     * @param string $version
+     * @param bool $isGlobal
+     * @param array $options
+     * @return int
+     */
+    public function requirePackage($name, $version = '', $isGlobal = false, array $options = array())
+    {
+        $global = $isGlobal ? 'global ' : '';
+        return $this->execute(
+            trim(sprintf('composer %srequire %s %s', $global, $name, $version))
+            . $this->mapOptions($options)
+        );
+    }
+
+    /**
      * @param $cwd
      * @return string
      */
