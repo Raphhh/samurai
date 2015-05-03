@@ -80,6 +80,10 @@ class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($result));
 
         $composer->expects($this->once())
+            ->method('flushConfig')
+            ->will($this->returnValue($result));
+
+        $composer->expects($this->once())
             ->method('dumpAutoload')
             ->will($this->returnValue($result));
 

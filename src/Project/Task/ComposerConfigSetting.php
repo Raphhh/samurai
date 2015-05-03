@@ -48,6 +48,7 @@ class ComposerConfigSetting extends Task
             $merger->merge($this->retrieveCurrentConfig(), $this->getService('project')->toConfig()),
             $this->getService('project')->getDirectoryPath()
         );
+        $this->getService('composer')->flushConfig($this->getService('project')->getDirectoryPath());
     }
 
     /**
