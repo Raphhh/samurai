@@ -26,6 +26,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
+            'source' => 'source',
         ];
         $input = $this->provideInput($args);
         $output = new BufferedOutput();
@@ -37,7 +38,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource: source\n", $output->fetch());
     }
 
     public function testExecuteWithLocal()
@@ -48,6 +49,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
+            'source' => 'source',
         ];
         $input = $this->provideInput($args);
         $output = new BufferedOutput();
@@ -59,7 +61,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource: source\n", $output->fetch());
     }
 
     public function testExecuteWithAll()
@@ -69,6 +71,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
+            'source' => 'source',
         ];
         $input = $this->provideInput($args);
         $output = new BufferedOutput();
@@ -80,7 +83,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
-        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
+        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource: source\n", $output->fetch());
     }
 
     /**
@@ -98,6 +101,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
                 new InputArgument('description'),
                 new InputArgument('bootstrap'),
                 new InputArgument('version'),
+                new InputArgument('source'),
             ])
         );
     }
@@ -113,6 +117,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
         $alias->setDescription($args['description']);
         $alias->setPackage($args['bootstrap']);
         $alias->setVersion($args['version']);
+        $alias->setSource($args['source']);
         return $alias;
     }
 
