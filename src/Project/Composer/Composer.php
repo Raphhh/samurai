@@ -99,6 +99,15 @@ class Composer
      * @param string $cwd
      * @return int
      */
+    public function flushConfig($cwd = '')
+    {
+        return $this->getComposerConfigManager($cwd)->flush();
+    }
+
+    /**
+     * @param string $cwd
+     * @return int
+     */
     public function validateConfig($cwd = '')
     {
         return $this->execute($this->cd($cwd) . 'composer validate');
