@@ -17,7 +17,7 @@ class DummyTask implements ITask
     private $result;
 
     /**
-     * @param bool $result
+     * @param int $result
      */
     public function __construct($result)
     {
@@ -27,7 +27,7 @@ class DummyTask implements ITask
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {

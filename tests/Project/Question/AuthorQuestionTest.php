@@ -4,6 +4,7 @@ namespace Samurai\Project\Question;
 use Pimple\Container;
 use Samurai\Project\Author;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,7 +26,7 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServicesForOneAuthorWithGit();
 
         $question = new AuthorQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $authors = $services['project']->getAuthors();
         $this->assertCount(1, $authors);
         $this->assertSame('git.name', $authors[0]->getName());
@@ -104,7 +105,7 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServicesForTwoAuthorsWithGit();
 
         $question = new AuthorQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $authors = $services['project']->getAuthors();
         $this->assertCount(2, $authors);
         $this->assertSame('git.name', $authors[0]->getName());
@@ -202,7 +203,7 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServicesForTwoAuthorsWithoutGit();
 
         $question = new AuthorQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $authors = $services['project']->getAuthors();
         $this->assertCount(2, $authors);
         $this->assertSame('main.name', $authors[0]->getName());

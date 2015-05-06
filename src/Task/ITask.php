@@ -11,10 +11,14 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 interface ITask
 {
+    const NO_ERROR_CODE = 0;
+    const NON_BLOCKING_ERROR_CODE = 1;
+    const BLOCKING_ERROR_CODE = 2;
+
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int|null
      */
     public function execute(InputInterface $input, OutputInterface $output);
 }

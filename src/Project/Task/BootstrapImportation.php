@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Task;
 
+use Samurai\Task\ITask;
 use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -15,7 +16,7 @@ class BootstrapImportation extends Task
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -29,7 +30,7 @@ class BootstrapImportation extends Task
             $this->getService('project')->getBootstrap()->getPackage()
         ));
 
-        return $this->getService('composer')->createProject($this->getService('project'), $this->getOptions());
+        return $this->getService('composer')->createProject($this->getService('project'), $this->getOptions()) ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
     }
 
     /**

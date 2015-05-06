@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Alias\Task;
 
+use Samurai\Task\ITask;
 use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,13 +24,13 @@ class Removing extends Task
         $aliasName = $input->getArgument('name');
         if(!$this->getService('alias_manager')->hasLocal($aliasName)){
             $output->writeln(sprintf('<error>Error: no alias "%s" found</error>', $aliasName));
-            return false;
+            return ITask::BLOCKING_ERROR_CODE;
         }
 
         if($this->confirmRemove($input, $output, $aliasName)){
             $this->getService('alias_manager')->remove($aliasName);
         }
-        return true;
+        return ITask::NO_ERROR_CODE;
     }
 
     /**

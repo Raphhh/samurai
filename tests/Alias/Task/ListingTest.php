@@ -3,6 +3,7 @@ namespace Samurai\Alias\Task;
 
 use Pimple\Container;
 use Samurai\Alias\Alias;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -35,7 +36,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
                 'getGlobal'
             )
         );
-        $this->assertTrue($saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
         $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
@@ -57,7 +58,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
                 'getLocal'
             )
         );
-        $this->assertTrue($saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
         $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 
@@ -78,7 +79,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
                 'getAll'
             )
         );
-        $this->assertTrue($saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
         $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource:\n", $output->fetch());
     }
 

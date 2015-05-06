@@ -3,6 +3,7 @@ namespace Samurai\Project\Question;
 
 use Pimple\Container;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -24,7 +25,7 @@ class KeywordsQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($services['project']->getKeywords());
 
         $question = new KeywordsQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
 
         $this->assertSame(['k1', 'k2'], $services['project']->getKeywords());
     }
@@ -38,7 +39,7 @@ class KeywordsQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($services['project']->getKeywords());
 
         $question = new KeywordsQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
 
         $this->assertSame([], $services['project']->getKeywords());
     }

@@ -18,11 +18,13 @@ class Planner extends \ArrayObject implements ITask
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        $result = 0;
         foreach($this as $task){
-            if(!$task->execute($input, $output)){
-                return false;
+            $result |= $task->execute($input, $output);
+            if($result & ITask::BLOCKING_ERROR_CODE){
+                return $result;
             }
         }
-        return true;
+        return $result;
     }
 }

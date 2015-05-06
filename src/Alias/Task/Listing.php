@@ -2,6 +2,7 @@
 namespace Samurai\Alias\Task;
 
 use Samurai\Alias\Alias;
+use Samurai\Task\ITask;
 use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,7 +18,7 @@ class Listing extends Task
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -28,7 +29,7 @@ class Listing extends Task
         }else{
             $output->writeln($this->mapAlias($this->getService('alias_manager')->getAll()));
         }
-        return true;
+        return ITask::NO_ERROR_CODE;
     }
 
     /**

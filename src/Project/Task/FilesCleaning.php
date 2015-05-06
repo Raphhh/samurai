@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Task;
 
+use Samurai\Task\ITask;
 use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,15 +22,18 @@ class FilesCleaning extends Task
         'UPGRADE*',
     ];
 
+    private $hasError = false;
+
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<info>Cleaning files</info>');
         $this->remove($output);
+        return $this->hasError ? ITask::NO_ERROR_CODE : ITask::NON_BLOCKING_ERROR_CODE;
     }
 
     /**
@@ -53,6 +57,7 @@ class FilesCleaning extends Task
             $output->writeln('Removing file '.$filename);
             if(!unlink($filename)){
                 $output->writeln('<error>Error: file '.$filename.' not deleted!</error>');
+                $this->hasError = true;
             }
         }
     }

@@ -3,6 +3,7 @@ namespace Samurai\Project\Task;
 
 use Pimple\Container;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -21,7 +22,7 @@ class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServices(true);
 
         $task = new ComposerConfigSetting($services);
-        $this->assertTrue($task->execute($input, $output));
+        $this->assertSame(ITask::NON_BLOCKING_ERROR_CODE, $task->execute($input, $output));
 
         $this->assertSame("Initializing composer config\n", $output->fetch());
     }
@@ -34,7 +35,7 @@ class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServices(false);
 
         $task = new ComposerConfigSetting($services);
-        $this->assertTrue($task->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $task->execute($input, $output));
 
         $this->assertSame(
             "Initializing composer config\nError: Composer config is not valid\nError: autoload is not up-to-date. Process to \"composer dump-autoload\".\n",

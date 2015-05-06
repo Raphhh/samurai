@@ -5,6 +5,7 @@ use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManagerFactory;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,7 +29,7 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServices();
 
         $question = new BootstrapQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $this->assertSame('raphhh/php-lib-bootstrap', $services['project']->getBootstrap()->getPackage());
         $this->assertSame('', $services['project']->getBootstrap()->getVersion());
     }
@@ -40,7 +41,7 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServices();
 
         $question = new BootstrapQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $this->assertSame('vendor/package', $services['project']->getBootstrap()->getPackage());
         $this->assertSame('', $services['project']->getBootstrap()->getVersion());
     }
@@ -52,7 +53,7 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServices();
 
         $question = new BootstrapQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $this->assertSame('vendor/package', $services['project']->getBootstrap()->getPackage());
         $this->assertSame('1.0.0', $services['project']->getBootstrap()->getVersion());
     }

@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Question;
 
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -14,7 +15,7 @@ class DirectoryPathQuestion extends Question
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -24,6 +25,6 @@ class DirectoryPathQuestion extends Question
         }else{
             $this->getProject()->setDirectoryPath($this->getProject()->getName());
         }
-        return (bool)$this->getProject()->getDirectoryPath();
+        return $this->getProject()->getDirectoryPath() ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
     }
 }

@@ -3,6 +3,7 @@ namespace Samurai\Project\Question;
 
 use Pimple\Container;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,7 +28,7 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($services['project']->getDescription());
 
         $question = new DescriptionQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
 
         $this->assertSame('result', $services['project']->getDescription());
     }
@@ -41,7 +42,7 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($services['project']->getDescription());
 
         $question = new DescriptionQuestion($services);
-        $this->assertFalse($question->execute($input, $output));
+        $this->assertSame(ITask::BLOCKING_ERROR_CODE, $question->execute($input, $output));
 
         $this->assertSame('', $services['project']->getDescription());
     }

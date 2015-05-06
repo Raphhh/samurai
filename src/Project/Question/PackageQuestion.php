@@ -3,6 +3,7 @@ namespace Samurai\Project\Question;
 
 use ICanBoogie\Inflector;
 use Samurai\Project\Package;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
@@ -18,7 +19,7 @@ class PackageQuestion extends Question
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -28,7 +29,7 @@ class PackageQuestion extends Question
                 $this->setPackage($input, $output, false);
             }
         }
-        return true;
+        return ITask::NO_ERROR_CODE;
     }
 
     /**

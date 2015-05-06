@@ -3,6 +3,7 @@ namespace Samurai\Project\Question;
 
 use Pimple\Container;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
@@ -23,7 +24,7 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
         $services['project']->setName('vendor/package');
 
         $question = new DirectoryPathQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $this->assertSame('vendor/package', $services['project']->getDirectoryPath());
     }
 
@@ -35,7 +36,7 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
         $services['project']->setName('vendor/package');
 
         $question = new DirectoryPathQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
         $this->assertSame('dir/path', $services['project']->getDirectoryPath());
     }
 
@@ -46,7 +47,7 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
         $services = $this->provideServices();
 
         $question = new DirectoryPathQuestion($services);
-        $this->assertFalse($question->execute($input, $output));
+        $this->assertSame(ITask::BLOCKING_ERROR_CODE, $question->execute($input, $output));
         $this->assertSame('', $services['project']->getDirectoryPath());
     }
 

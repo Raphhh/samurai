@@ -3,6 +3,7 @@ namespace Samurai\Alias\Task;
 
 use Pimple\Container;
 use Samurai\Alias\Alias;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -40,7 +41,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
                 $output
             )
         );
-        $this->assertTrue($saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
     }
 
     public function testBuildAliasWithoutOverride()
@@ -64,7 +65,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
                 $output
             )
         );
-        $this->assertTrue($saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
     }
 
     public function testBuildAliasWithOverride()
@@ -88,7 +89,7 @@ class SavingTest extends \PHPUnit_Framework_TestCase
                 $output
             )
         );
-        $this->assertTrue($saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
     }
 
     /**

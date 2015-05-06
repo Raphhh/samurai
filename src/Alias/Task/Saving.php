@@ -2,6 +2,7 @@
 namespace Samurai\Alias\Task;
 
 use Samurai\Alias\Alias;
+use Samurai\Task\ITask;
 use Samurai\Task\Task;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,7 +26,7 @@ class Saving extends Task
         if($this->canBeSaved($input, $output, $alias)) {
             $this->getService('alias_manager')->add($alias);
         }
-        return true;
+        return ITask::NO_ERROR_CODE;
     }
 
     /**

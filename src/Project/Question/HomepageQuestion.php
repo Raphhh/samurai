@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Question;
 
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question as SimpleQuestion;
@@ -15,7 +16,7 @@ class HomepageQuestion extends Question
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -24,7 +25,7 @@ class HomepageQuestion extends Question
         }catch(\Exception $e){
             $this->getProject()->setHomepage('');
         }
-        return true;
+        return ITask::NO_ERROR_CODE;
     }
 
     /**

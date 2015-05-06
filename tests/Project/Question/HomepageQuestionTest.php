@@ -3,6 +3,7 @@ namespace Samurai\Project\Question;
 
 use Pimple\Container;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -24,7 +25,7 @@ class HomepageQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($services['project']->getHomepage());
 
         $question = new HomepageQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
 
         $this->assertSame('http://website.com', $services['project']->getHomepage());
     }
@@ -39,7 +40,7 @@ class HomepageQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($services['project']->getHomepage());
 
         $question = new HomepageQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
 
         $this->assertSame('', $services['project']->getHomepage());
     }
@@ -53,7 +54,7 @@ class HomepageQuestionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($services['project']->getHomepage());
 
         $question = new HomepageQuestion($services);
-        $this->assertTrue($question->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
 
         $this->assertSame('', $services['project']->getHomepage());
     }

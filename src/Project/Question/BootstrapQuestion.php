@@ -2,6 +2,7 @@
 namespace Samurai\Project\Question;
 
 use Samurai\alias\Alias;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
@@ -16,7 +17,7 @@ class BootstrapQuestion extends Question
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -25,7 +26,7 @@ class BootstrapQuestion extends Question
         }else{
             $this->setFromAlias($this->askForAlias($input, $output));
         }
-        return (bool)$this->getProject()->getBootstrap()->getPackage();
+        return $this->getProject()->getBootstrap()->getPackage() ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
     }
 
     /**

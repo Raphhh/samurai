@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Question;
 
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question as SimpleQuestion;
@@ -15,7 +16,7 @@ class DescriptionQuestion extends Question
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -29,7 +30,7 @@ class DescriptionQuestion extends Question
             $question
         ));
 
-        return (bool) $this->getProject()->getDescription();
+        return $this->getProject()->getDescription() ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
     }
 
     /**

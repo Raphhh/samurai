@@ -17,7 +17,8 @@ class PlannerTest extends \PHPUnit_Framework_TestCase
     public function testExecuteWithEmptyTasks()
     {
         $planner = new Planner();
-        $this->assertTrue(
+        $this->assertSame(
+            ITask::NO_ERROR_CODE,
             $planner->execute($this->provideInput(), $this->provideOutput())
         );
     }
@@ -25,17 +26,18 @@ class PlannerTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testExecuteWithTrueTasks()
+    public function testExecuteWithNoErrorTasks()
     {
         $input = $this->provideInput();
         $output = $this->provideOutput();
 
         $planner = new Planner([
-            $this->provideTask(true, true, $input, $output),
-            $this->provideTask(true, true, $input, $output),
+            $this->provideTask(null, true, $input, $output),
+            $this->provideTask(ITask::NO_ERROR_CODE, true, $input, $output),
         ]);
 
-        $this->assertTrue(
+        $this->assertSame(
+            ITask::NO_ERROR_CODE,
             $planner->execute($input, $output)
         );
     }
@@ -43,18 +45,40 @@ class PlannerTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testExecuteWithFalseTasks()
+    public function testExecuteWithBlockingTasks()
     {
         $input = $this->provideInput();
         $output = $this->provideOutput();
 
         $planner = new Planner([
-            $this->provideTask(true, true, $input, $output),
-            $this->provideTask(false, true, $input, $output),
-            $this->provideTask(false, false, $input, $output),
+            $this->provideTask(ITask::NO_ERROR_CODE, true, $input, $output),
+            $this->provideTask(ITask::NON_BLOCKING_ERROR_CODE, true, $input, $output),
+            $this->provideTask(ITask::BLOCKING_ERROR_CODE, true, $input, $output),
+            $this->provideTask(ITask::BLOCKING_ERROR_CODE, false, $input, $output),
         ]);
 
-        $this->assertFalse(
+        $this->assertSame(
+            ITask::NO_ERROR_CODE | ITask::NON_BLOCKING_ERROR_CODE | ITask::BLOCKING_ERROR_CODE,
+            $planner->execute($input, $output)
+        );
+    }
+
+    /**
+     *
+     */
+    public function testExecuteWithNonBlockingTasks()
+    {
+        $input = $this->provideInput();
+        $output = $this->provideOutput();
+
+        $planner = new Planner([
+            $this->provideTask(ITask::NO_ERROR_CODE, true, $input, $output),
+            $this->provideTask(ITask::NON_BLOCKING_ERROR_CODE, true, $input, $output),
+            $this->provideTask(ITask::NON_BLOCKING_ERROR_CODE, true, $input, $output),
+        ]);
+
+        $this->assertSame(
+            ITask::NO_ERROR_CODE | ITask::NON_BLOCKING_ERROR_CODE,
             $planner->execute($input, $output)
         );
     }

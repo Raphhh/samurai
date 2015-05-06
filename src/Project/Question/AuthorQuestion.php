@@ -2,6 +2,7 @@
 namespace Samurai\Project\Question;
 
 use Samurai\Project\Author;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
@@ -17,14 +18,14 @@ class AuthorQuestion extends Question
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return bool
+     * @return int
      * @throws \Exception
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $this->setInitialAuthor($input, $output);
         $this->setAdditionalAuthors($input, $output);
-        return (bool) $this->getProject()->getAuthors()->count();
+        return $this->getProject()->getAuthors()->count() ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
     }
 
     /**

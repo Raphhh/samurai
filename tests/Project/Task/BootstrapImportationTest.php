@@ -7,6 +7,7 @@ use Pimple\Container;
 use Samurai\Alias\Alias;
 use Samurai\Project\Composer\Composer;
 use Samurai\Project\Project;
+use Samurai\Task\ITask;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
@@ -45,7 +46,7 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $services['project']->setBootstrap($alias);
 
         $task = new BootstrapImportation($services);
-        $this->assertTrue($task->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $task->execute($input, $output));
 
         $this->assertSame("Installing project vendor/package from vendor/bootstrap\n", $output->fetch());
     }
@@ -64,7 +65,7 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $services['project']->setBootstrap($alias);
 
         $task = new BootstrapImportation($services);
-        $this->assertTrue($task->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $task->execute($input, $output));
 
         $this->assertSame("Installing project vendor/package from vendor/bootstrap\n", $output->fetch());
     }
