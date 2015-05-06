@@ -8,7 +8,7 @@ use Samurai\Project\Project;
  * @package Samurai\Project\Question
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-abstract class Question extends \Samurai\Question\Question
+abstract class Question extends \Samurai\Task\Question
 {
 
     /**
