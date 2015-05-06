@@ -4,6 +4,7 @@ namespace Samurai\Project\Question;
 use Pimple\Container;
 use Samurai\Project\Author;
 use Samurai\Project\Project;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -89,8 +90,8 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
                 )
             );
 
-        $services['question'] = function () use ($questionHelper){
-            return $questionHelper;
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         return $services;
@@ -187,8 +188,8 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
                 )
             );
 
-        $services['question'] = function () use ($questionHelper){
-            return $questionHelper;
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         return $services;
@@ -282,8 +283,8 @@ class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
                 )
             );
 
-        $services['question'] = function () use ($questionHelper){
-            return $questionHelper;
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         return $services;

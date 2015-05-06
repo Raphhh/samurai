@@ -5,6 +5,7 @@ use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManagerFactory;
 use Samurai\Project\Project;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -80,8 +81,8 @@ class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
                 return current($choices);
             }));
 
-        $services['question'] = function () use ($questionHelper){
-            return $questionHelper;
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         return $services;

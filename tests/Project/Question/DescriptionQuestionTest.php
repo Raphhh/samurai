@@ -3,6 +3,7 @@ namespace Samurai\Project\Question;
 
 use Pimple\Container;
 use Samurai\Project\Project;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -56,8 +57,8 @@ class DescriptionQuestionTest extends \PHPUnit_Framework_TestCase
         $questionHelper = $this->provideQuestionHelper($input, $output, $result);
 
         $services = new Container();
-        $services['question'] = function () use ($questionHelper) {
-            return $questionHelper;
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         $services['project'] = function () {

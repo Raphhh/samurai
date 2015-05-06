@@ -154,8 +154,8 @@ class Samurai
             return new Composer($executor, new BalloonFactory());
         };
 
-        $services['question'] = function () use ($application) {
-            return $application->getHelperSet()->get('question');
+        $services['helper_set'] = function () use ($application) {
+            return $application->getHelperSet();
         };
 
         $services['config'] = function () {

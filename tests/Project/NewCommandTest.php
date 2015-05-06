@@ -8,6 +8,7 @@ use Samurai\Alias\AliasManager;
 use Samurai\Alias\AliasManagerFactory;
 use Samurai\Samurai;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -226,8 +227,8 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
             return $composer;
         };
 
-        $services['question'] = function () use ($questionHelper) {
-            return $questionHelper;
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         $services['alias_manager'] = function () {

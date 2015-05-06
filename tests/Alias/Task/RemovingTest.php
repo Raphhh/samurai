@@ -3,6 +3,7 @@ namespace Samurai\Alias\Task;
 
 use Pimple\Container;
 use Samurai\Alias\Alias;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -127,8 +128,8 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
 
         if($hasAlias) {
             $questionHelper = $this->provideQuestionHelper($input, $output, $willBeRemoved);
-            $services['question'] = function () use ($questionHelper) {
-                return $questionHelper;
+            $services['helper_set'] = function () use ($questionHelper) {
+                return new HelperSet(['question' => $questionHelper]);
             };
         }
 

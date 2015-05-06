@@ -63,7 +63,7 @@ class Saving extends Task
      */
     private function confirmOverride(InputInterface $input, OutputInterface $output, Alias $alias)
     {
-        return $this->getService('question')->ask(
+        return $this->getService('helper_set')->get('question')->ask(
             $input,
             $output,
             $this->buildQuestion($alias, $this->getInitialAlias($alias))

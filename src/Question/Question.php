@@ -21,6 +21,6 @@ abstract class Question extends Task
      */
     protected function ask(InputInterface $input, OutputInterface $output, SimpleQuestion $question)
     {
-        return $this->getService('question')->ask($input, $output, $question);
+        return $this->getService('helper_set')->get('question')->ask($input, $output, $question);
     }
 }

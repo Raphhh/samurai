@@ -5,6 +5,7 @@ use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Samurai;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Tester\CommandTester;
 
@@ -152,8 +153,8 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
     {
         $services = new Container();
 
-        $services['question'] = function () use ($questionHelper) {
-            return $questionHelper;
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         $services['alias_manager'] = function () {

@@ -40,7 +40,7 @@ class Removing extends Task
      */
     private function confirmRemove(InputInterface $input, OutputInterface $output, $aliasName)
     {
-        return $this->getService('question')->ask(
+        return $this->getService('helper_set')->get('question')->ask(
             $input,
             $output,
             $this->buildQuestion($aliasName)
