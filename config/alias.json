@@ -82,11 +82,5 @@
     "description": "Slim micro-framework application",
     "package": "slim/slim-skeleton",
     "version": ""
-  },
-  "puppy": {
-    "name": "puppy",
-    "description": "Puppy micro-framework application",
-    "package": "raphhh/puppy",
-    "version": ""
   }
 }
