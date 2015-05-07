@@ -134,22 +134,22 @@ You can specify any project loadable with Composer, event if you do not have ali
 $ samurai new <vendor/package> [<version>]
 ```
 
-For example, you can create a new Symfony app by specifying its package. (This is just an example, because the 'symfony' alias already exists)
+For example, you can create a new Puppy app by specifying its package.
 
 ```console
-$ samurai new symfony/framework-standard-edition
+$ samurai new raphhh/puppy
 ```
 
 Or if you want a specific version of a package, add the version you want just after the bootstrap. If you do not specify a version, Samurai will take the last stable version of the bootstrap.
 
 ```console
-$ samurai new symfony/framework-standard-edition 1.0.0
+$ samurai new raphhh/puppy 1.1.0
 ```
 
-If you install a project from a non-aliased bootstrap, do not hesitate to add it in the alias list. It is very simple. See alias section for more information. For example, Symfony is already available with 'symfony' alias.
+If you install a project from a non-aliased bootstrap, do not hesitate to add it in the alias list. It is very simple. See alias section for more information.
 
 ```console
-$ samurai new symfony
+$ samurai new puppy
 ```
 
 ### Specify a project dir
@@ -158,7 +158,7 @@ By default, Samurai will put your project into the same directory as your projec
 
 For example, if you run Samurai from "~/projects" and you name your project "my/lib", it will put your project in "~/projects/my/lib".
 
-But you can specify another directory with the option "--dir" or "-d".
+But you can specify another directory with the option "--dir" or "-d". This must be a relative path from cwd.
 
 ```console
 $ samurai new lib -d specific/path/to/my/project
