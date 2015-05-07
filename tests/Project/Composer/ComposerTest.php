@@ -44,7 +44,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertSame(true, $composer->createProject($project));
+        $this->assertSame(0, $composer->createProject($project));
     }
 
     public function testCreateProjectWithBootstrapAndOptions()
@@ -62,7 +62,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertSame(true, $composer->createProject($project, ['repository-url' => 'url']));
+        $this->assertSame(0, $composer->createProject($project, ['repository-url' => 'url']));
     }
 
     public function testCreateProjectWithDirectoryPath()
@@ -81,7 +81,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertSame(true, $composer->createProject($project));
+        $this->assertSame(0, $composer->createProject($project));
     }
 
     public function testCreateProjectWithDirectoryPathAndOptions()
@@ -100,7 +100,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertSame(true, $composer->createProject($project, ['repository-url' => 'url']));
+        $this->assertSame(0, $composer->createProject($project, ['repository-url' => 'url']));
     }
 
     public function testCreateProjectWithVersion()
@@ -120,7 +120,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertSame(true, $composer->createProject($project));
+        $this->assertSame(0, $composer->createProject($project));
     }
 
     public function testCreateProjectWithVersionAndOptions()
@@ -140,7 +140,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertSame(true, $composer->createProject($project, ['repository-url' => 'url']));
+        $this->assertSame(0, $composer->createProject($project, ['repository-url' => 'url']));
     }
 
     public function testGetConfigPath()
@@ -194,7 +194,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(1));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertFalse($composer->validateConfig($project->getDirectoryPath()));
+        $this->assertSame(1, $composer->validateConfig($project->getDirectoryPath()));
     }
 
     public function testValidateConfigWithFile()
@@ -209,7 +209,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertTrue($composer->validateConfig($project->getDirectoryPath()));
+        $this->assertSame(0, $composer->validateConfig($project->getDirectoryPath()));
     }
 
     public function testDumpAutoload()
@@ -224,6 +224,6 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
-        $this->assertTrue($composer->dumpAutoload($project->getDirectoryPath()));
+        $this->assertSame(0, $composer->dumpAutoload($project->getDirectoryPath()));
     }
 }

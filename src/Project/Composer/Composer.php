@@ -42,7 +42,7 @@ class Composer
     /**
      * @param Project $project
      * @param array $options
-     * @return string
+     * @return int
      */
     public function createProject(Project $project, array $options = array())
     {
@@ -97,7 +97,7 @@ class Composer
 
     /**
      * @param string $cwd
-     * @return bool
+     * @return int
      */
     public function validateConfig($cwd = '')
     {
@@ -106,7 +106,7 @@ class Composer
 
     /**
      * @param string $cwd
-     * @return bool
+     * @return int
      */
     public function dumpAutoload($cwd = '')
     {
@@ -191,9 +191,13 @@ class Composer
     {
         $this->balloonFactory = $balloonFactory;
     }
-    
+
+    /**
+     * @param string $command
+     * @return int
+     */
     private function execute($command)
     {
-        return $this->getExecutor()->flush($command, [STDIN, STDOUT, STDERR]) === 0;
+        return $this->getExecutor()->flush($command, [STDIN, STDOUT, STDERR]);
     }
 }

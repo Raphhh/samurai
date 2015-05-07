@@ -30,7 +30,7 @@ class BootstrapImportation extends Task
             $this->getService('project')->getBootstrap()->getPackage()
         ));
 
-        return $this->getService('composer')->createProject($this->getService('project'), $this->getOptions()) ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
+        return $this->getService('composer')->createProject($this->getService('project'), $this->getOptions()) === 0 ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
     }
 
     /**

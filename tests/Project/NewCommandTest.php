@@ -215,7 +215,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
      */
     private function provideServices(QuestionHelper $questionHelper, Git $git)
     {
-        $composer = $this->provideComposer(true);
+        $composer = $this->provideComposer(0);
 
         $services = new Container();
 

@@ -19,7 +19,7 @@ class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
         $input = new ArrayInput([]);
         $output = new BufferedOutput();
 
-        $services = $this->provideServices(true);
+        $services = $this->provideServices(0);
 
         $task = new ComposerConfigSetting($services);
         $this->assertSame(ITask::NON_BLOCKING_ERROR_CODE, $task->execute($input, $output));
@@ -32,7 +32,7 @@ class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
         $input = new ArrayInput([]);
         $output = new BufferedOutput();
 
-        $services = $this->provideServices(false);
+        $services = $this->provideServices(1);
 
         $task = new ComposerConfigSetting($services);
         $this->assertSame(ITask::NO_ERROR_CODE, $task->execute($input, $output));
