@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "658c80214a9b3c0431b7fcde9cc6aefd",
+    "hash": "a1e72c4e27fdcd60cb2ef0bce22726c8",
     "packages": [
         {
             "name": "icanboogie/inflector",
@@ -259,12 +259,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Raphhh/trex-cli.git",
-                "reference": "866757cf2a7cba8becea5bdba2a98fa912ab2926"
+                "reference": "05eddd277294c5741ca790971709e1b9e5a8283b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Raphhh/trex-cli/zipball/866757cf2a7cba8becea5bdba2a98fa912ab2926",
-                "reference": "866757cf2a7cba8becea5bdba2a98fa912ab2926",
+                "url": "https://api.github.com/repos/Raphhh/trex-cli/zipball/05eddd277294c5741ca790971709e1b9e5a8283b",
+                "reference": "05eddd277294c5741ca790971709e1b9e5a8283b",
                 "shasum": ""
             },
             "require": {
@@ -297,7 +297,7 @@
                 "cli",
                 "shell"
             ],
-            "time": "2015-02-20 13:37:39"
+            "time": "2015-05-07 19:35:35"
         },
         {
             "name": "symfony/console",

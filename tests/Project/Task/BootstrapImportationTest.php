@@ -82,7 +82,7 @@ class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
         $executor->expects($this->exactly($callNumber))
             ->method('flush')
             ->with('composer create-project --prefer-dist vendor/bootstrap'.$options)
-            ->will($this->returnValue(true));
+            ->will($this->returnValue(0));
 
         return $executor;
     }

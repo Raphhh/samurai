@@ -50,7 +50,7 @@ class Composer
             throw new InvalidArgumentException('The bootstrap of the project is not defined');
         }
 
-        return $this->getExecutor()->flush(
+        return $this->execute(
             trim(
                 sprintf(
                     'composer create-project --prefer-dist %s %s %s',
@@ -101,7 +101,7 @@ class Composer
      */
     public function validateConfig($cwd = '')
     {
-        return $this->getExecutor()->flush($this->cd($cwd) . 'composer validate');
+        return $this->execute($this->cd($cwd) . 'composer validate');
     }
 
     /**
@@ -110,7 +110,7 @@ class Composer
      */
     public function dumpAutoload($cwd = '')
     {
-        return $this->getExecutor()->flush($this->cd($cwd) . 'composer dump-autoload');
+        return $this->execute($this->cd($cwd) . 'composer dump-autoload');
     }
 
     /**
@@ -190,5 +190,10 @@ class Composer
     private function setBalloonFactory(BalloonFactory $balloonFactory)
     {
         $this->balloonFactory = $balloonFactory;
+    }
+    
+    private function execute($command)
+    {
+        return $this->getExecutor()->flush($command, [STDIN, STDOUT, STDERR]) === 0;
     }
 }
