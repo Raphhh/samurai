@@ -91,8 +91,7 @@ class Composer
      */
     public function setConfig(array $config, $cwd = '')
     {
-        $this->getComposerConfigManager($cwd)->removeAll();
-        return $this->getComposerConfigManager($cwd)->add($config);
+        return $this->getComposerConfigManager($cwd)->set($config);
     }
 
     /**

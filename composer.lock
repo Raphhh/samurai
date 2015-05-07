@@ -150,16 +150,16 @@
         },
         {
             "name": "raphhh/balloon",
-            "version": "dev-master",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Raphhh/balloon.git",
-                "reference": "181d728b30c04b40d20cad951c4e1ae1e16c2c09"
+                "reference": "7741e382c2e9f5509627e54a1c7572f2d0b5591c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Raphhh/balloon/zipball/02f81c591cb6a1e64aaf8859136673e351ec3094",
-                "reference": "181d728b30c04b40d20cad951c4e1ae1e16c2c09",
+                "url": "https://api.github.com/repos/Raphhh/balloon/zipball/7741e382c2e9f5509627e54a1c7572f2d0b5591c",
+                "reference": "7741e382c2e9f5509627e54a1c7572f2d0b5591c",
                 "shasum": ""
             },
             "require": {
