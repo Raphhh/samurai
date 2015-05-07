@@ -30,11 +30,6 @@ class Samurai
     private $application;
 
     /**
-     * @var Executor
-     */
-    private $executor;
-
-    /**
      * @var Container
      */
     private $services;
@@ -42,15 +37,13 @@ class Samurai
     /**
      * @param Application $application
      * @param Container $services
-     * @param Executor $executor
      */
-    public function __construct(Application $application, Container $services = null, Executor $executor = null)
+    public function __construct(Application $application, Container $services = null)
     {
         $application->setName('Samurai console');
         $application->setVersion('0.0.0');
 
         $this->setApplication($application);
-        $this->setExecutor($executor ? : new Executor());
         $this->setServices($services ? : $this->buildServices());
 
         $this->initCommands();
@@ -117,32 +110,11 @@ class Samurai
     }
 
     /**
-     * Getter of $executor
-     *
-     * @return Executor
-     */
-    private function getExecutor()
-    {
-        return $this->executor;
-    }
-
-    /**
-     * Setter of $executor
-     *
-     * @param Executor $executor
-     */
-    private function setExecutor(Executor $executor)
-    {
-        $this->executor = $executor;
-    }
-
-    /**
      * @return Container
      */
     private function buildServices()
     {
         $application = $this->getApplication();
-        $executor = $this->getExecutor();
 
         $services = new Container();
 
@@ -150,8 +122,12 @@ class Samurai
             return new Project();
         };
 
-        $services['composer'] = function () use ($executor) {
-            return new Composer($executor, new BalloonFactory());
+        $services['executor'] = function () {
+            return new Executor();
+        };
+
+        $services['composer'] = function (Container $services) {
+            return new Composer($services['executor'], new BalloonFactory());
         };
 
         $services['helper_set'] = function () use ($application) {
