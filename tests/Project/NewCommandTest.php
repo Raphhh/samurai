@@ -98,7 +98,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('vendor/package', $project->getName());
         $this->assertSame('raphhh/php-lib-bootstrap', $project->getBootstrap()->getPackage());
         $this->assertSame('', $project->getBootstrap()->getVersion());
-        $this->assertSame('vendor/package', $project->getDirectoryPath());
+        $this->assertSame(getcwd() . DIRECTORY_SEPARATOR . 'vendor/package', $project->getDirectoryPath());
         $this->assertSame('desc', $project->getDescription());
         $this->assertSame('', $project->getHomepage());
         $this->assertSame([], $project->getKeywords());
@@ -197,7 +197,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('vendor/package', $project->getName());
         $this->assertSame('vendor/bootstrap', $project->getBootstrap()->getPackage());
         $this->assertSame('1.0.0', $project->getBootstrap()->getVersion());
-        $this->assertSame('dir/path', $project->getDirectoryPath());
+        $this->assertSame(getcwd() . DIRECTORY_SEPARATOR . 'dir/path', $project->getDirectoryPath());
         $this->assertSame('desc', $project->getDescription());
         $this->assertSame('http://website.com', $project->getHomepage());
         $this->assertSame(['k1', 'k2'], $project->getKeywords());

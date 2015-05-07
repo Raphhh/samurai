@@ -25,7 +25,7 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new DirectoryPathQuestion($services);
         $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
-        $this->assertSame('vendor/package', $services['project']->getDirectoryPath());
+        $this->assertSame(getcwd() . DIRECTORY_SEPARATOR . 'vendor/package', $services['project']->getDirectoryPath());
     }
 
     public function testExecuteValid()
@@ -37,7 +37,7 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new DirectoryPathQuestion($services);
         $this->assertSame(ITask::NO_ERROR_CODE, $question->execute($input, $output));
-        $this->assertSame('dir/path', $services['project']->getDirectoryPath());
+        $this->assertSame(getcwd() . DIRECTORY_SEPARATOR . 'dir/path', $services['project']->getDirectoryPath());
     }
 
     public function testExecuteEmpty()
@@ -48,7 +48,7 @@ class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
 
         $question = new DirectoryPathQuestion($services);
         $this->assertSame(ITask::BLOCKING_ERROR_CODE, $question->execute($input, $output));
-        $this->assertSame('', $services['project']->getDirectoryPath());
+        $this->assertNull($services['project']->getDirectoryPath());
     }
 
     /**

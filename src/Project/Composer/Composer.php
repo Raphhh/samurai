@@ -109,7 +109,7 @@ class Composer
      */
     public function validateConfig($cwd = '')
     {
-        return $this->execute($this->cd($cwd) . 'composer validate');
+        return $this->execute('composer validate', $cwd);
     }
 
     /**
@@ -118,19 +118,7 @@ class Composer
      */
     public function dumpAutoload($cwd = '')
     {
-        return $this->execute($this->cd($cwd) . 'composer dump-autoload');
-    }
-
-    /**
-     * @param $cwd
-     * @return string
-     */
-    private function cd($cwd)
-    {
-        if($cwd) {
-            return 'cd ' . $cwd . ' && ';
-        }
-        return '';
+        return $this->execute('composer dump-autoload', $cwd);
     }
 
     /**
@@ -202,10 +190,12 @@ class Composer
 
     /**
      * @param string $command
+     * @param string $cwd
      * @return int
      */
-    private function execute($command)
+    private function execute($command, $cwd = null)
     {
-        return $this->getExecutor()->flush($command, [STDIN, STDOUT, STDERR]);
+        $pipes = [];
+        return $this->getExecutor()->flush($command, [STDIN, STDOUT, STDERR], $pipes, $cwd);
     }
 }

@@ -205,7 +205,12 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('cd '.__DIR__ .'/../resources && composer validate')
+            ->with(
+                'composer validate',
+                [STDIN, STDOUT, STDERR],
+                [],
+                __DIR__ . '/../resources'
+            )
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
@@ -220,7 +225,12 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('flush')
-            ->with('cd '.__DIR__ .'/../resources && composer dump-autoload')
+            ->with(
+                'composer dump-autoload',
+                [STDIN, STDOUT, STDERR],
+                [],
+                __DIR__ . '/../resources'
+            )
             ->will($this->returnValue(0));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));

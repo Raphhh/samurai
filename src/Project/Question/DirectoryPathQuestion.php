@@ -21,9 +21,9 @@ class DirectoryPathQuestion extends Question
     {
         $optionValue = $input->getOption('dir');
         if($optionValue){
-            $this->getProject()->setDirectoryPath($optionValue);
-        }else{
-            $this->getProject()->setDirectoryPath($this->getProject()->getName());
+            $this->getProject()->setDirectoryPath(getcwd() . DIRECTORY_SEPARATOR . $optionValue);
+        }elseif($this->getProject()->getName()){
+            $this->getProject()->setDirectoryPath(getcwd() . DIRECTORY_SEPARATOR . $this->getProject()->getName());
         }
         return $this->getProject()->getDirectoryPath() ? ITask::NO_ERROR_CODE : ITask::BLOCKING_ERROR_CODE;
     }

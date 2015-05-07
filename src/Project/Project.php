@@ -111,6 +111,7 @@ class Project
 
     /**
      * Setter of $directoryPath
+     * must be an absolute path.
      *
      * @param string $directoryPath
      */
