@@ -77,8 +77,8 @@
     "package": "fabpot/silex-skeleton",
     "version": ""
   },
-  "silex": {
-    "name": "silex",
+  "slim": {
+    "name": "slim",
     "description": "Slim micro-framework application",
     "package": "slim/slim-skeleton",
     "version": ""
