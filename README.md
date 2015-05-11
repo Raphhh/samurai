@@ -84,6 +84,9 @@ setx PATH "%PATH%;C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin"
 
 For a better experience, you should also install [Git](http://git-scm.com/).
 
+Do not forget to add a [global .gitignore](https://help.github.com/articles/ignoring-files/#explicit-repository-excludes), to exlude [folders of your IDE or OS.](https://github.com/github/gitignore/tree/master/Global)
+
+
 ### Install Samurai
 
 First, download Samurai with [Composer](https://getcomposer.org) in the global env.
