@@ -33,19 +33,30 @@ Samurai installs and params your project:
 
 ## Installation of Samurai
 
-### Download Samurai
+Samurai uses Composer and Git. So, you have to install them first.
 
-First, download Samurai with [Composer](https://getcomposer.org) in the global env.
+### Install Composer
+
+#### Set the executable
+
+See the Composer documentation for [installation process](https://getcomposer.org/doc/00-intro.md).
+
+For Unix system be sure that you have installed [Composer globally](https://getcomposer.org/doc/00-intro.md#globally):
 
 ```console
-$ composer global require raphhh/samurai
+# mv composer.phar /usr/local/bin/composer
 ```
 
-### Set the PATH of Composer
+So, you can execute directly the composer command:
+```console
+$ composer --version
+```
 
-Make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/03-cli.md#composer-bin-dir) directory in your PATH.
+#### Set the PATH
 
-#### Unix system
+Second, make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/03-cli.md#composer-bin-dir) directory in your PATH.
+
+##### Unix system
 
 By default, the COMPOSER_BIN_DIR is the directory "~/.composer/vendor/bin".
 
@@ -61,7 +72,7 @@ For current user (relogin):
 $ echo "export PATH=$PATH:~/.composer/vendor/bin" >> ~/.profile
 ```
 
-#### Windows
+##### Windows
 
 By default, the COMPOSER_BIN_DIR is the directory "C:\Users\<user>\AppData\Roaming\Composer\vendor\bin". 
 
@@ -69,10 +80,17 @@ By default, the COMPOSER_BIN_DIR is the directory "C:\Users\<user>\AppData\Roami
 setx PATH "%PATH%;C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin"
 ```
 
-### Download Git
+### Install Git
 
 For a better experience, you should also install [Git](http://git-scm.com/).
 
+### Install Samurai
+
+First, download Samurai with [Composer](https://getcomposer.org) in the global env.
+
+```console
+$ composer global require raphhh/samurai
+```
 
 ### Test Samurai
 
