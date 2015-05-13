@@ -200,14 +200,14 @@ $ samurai alias
 
 You can easily add any bootstrap you want, event yours! To add or redefine an alias, execute the command:
 ```console
-$ samurai alias <alias_name> <bootstrap> [<version>] [<description>] [<source>]
+$ samurai alias save <alias_name> <bootstrap> [<version>] [<description>] [<source>]
 ```
 
 ### Remove an alias
 
 To remove an alias, execute the command:
 ```console
-$ samurai alias <alias_name>
+$ samurai alias rm <alias_name>
 ```
 
 
@@ -268,7 +268,7 @@ $ samurai module save <module_name> <vendor/package> [<version>] [<description>]
 For example, if you want to load the git module:
 
 ```console
-$ samurai module raphhh/samurai-module-git
+$ samurai module save raphhh/samurai-module-git
 ```
 
 If this module was already present, it will be overridden.
@@ -286,6 +286,23 @@ If you want to enable a module, execute the command:
 ```console
 $ samurai module enable <module_name>
 ```
+
+### Update a module
+
+If you want to update a module to a more recent version, execute the command:
+
+```console
+$ samurai module update <module_name>
+```
+
+If you want to update all the modules to a more recent version, execute the command:
+
+```console
+$ samurai module update <module_name>
+```
+
+Note that the update command will respect your version restriction as specified by Composer. See the [Composer update documentation](https://getcomposer.org/doc/03-cli.md#update) for more information.
+
 
 ### Remove a module
 
