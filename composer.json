@@ -28,7 +28,7 @@
         "symfony/console": "~2.6",
         "raphhh/trex-cli": "dev-master#05eddd277294c5741ca790971709e1b9e5a8283b",
         "pimple/pimple": "~3.0",
-        "raphhh/puppy-config": "@dev",
+        "raphhh/puppy-config": "~1.0",
         "kzykhys/git": "0.1.*",
         "icanboogie/inflector": "~1.3",
         "raphhh/balloon": "~1.1"
