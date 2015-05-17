@@ -170,6 +170,7 @@ $ samurai new raphhh/puppy 1.1.0
 If you install a project from a non-aliased bootstrap, do not hesitate to add it in the alias list. It is very simple. See alias section for more information.
 
 ```console
+$ samurai alias puppy raphhh/puppy
 $ samurai new puppy
 ```
 
@@ -193,7 +194,11 @@ Alias are simple words linked to a specific bootstrap at a specific version. For
 
 To list all the alias, execute the command:
 ```console
-$ samurai alias
+$ samurai alias list
+```
+To list a specific alias, execute the same command but with the name of the alias:
+```console
+$ samurai module list <alias_name>
 ```
 
 ### Add or redefine an alias
@@ -221,6 +226,10 @@ A module is a plugin added to Samurai. This plugin will execute some specific co
 
 By default, all the enable modules you have installed will be called during the "new command".
 
+```console
+$ samurai new
+```
+
 If you want to avoid to execute the modules during this command, you can specify the option "--no-module".
 ```console
 $ samurai new --no-module
@@ -237,7 +246,7 @@ $ samurai module
 You can also specify a module to execute only this one.
 
 ```console
-$ samurai module <module_name>
+$ samurai module run <module_name>
 ```
 
 ### List the modules
