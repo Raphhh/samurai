@@ -80,6 +80,21 @@ class Composer
     }
 
     /**
+     * @param string $name
+     * @param bool $isGlobal
+     * @param array $options
+     * @return int
+     */
+    public function removePackage($name, $isGlobal = false, array $options = array())
+    {
+        $global = $isGlobal ? 'global ' : '';
+        return $this->execute(
+            trim(sprintf('composer %sremove %s', $global, $name))
+            . $this->mapOptions($options)
+        );
+    }
+
+    /**
      * @return string
      */
     public function getHomePath()
