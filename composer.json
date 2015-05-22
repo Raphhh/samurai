@@ -31,7 +31,8 @@
         "raphhh/puppy-config": "~1.0",
         "kzykhys/git": "0.1.*",
         "icanboogie/inflector": "~1.3",
-        "raphhh/balloon": "~1.1"
+        "raphhh/balloon": "~1.1",
+        "rap2hpoutre/similar-text-finder": "0.1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable",
