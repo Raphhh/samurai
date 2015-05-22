@@ -207,7 +207,12 @@ $ samurai new --no-module
 
 #### Separately
 
-Separateliy of the "new command", you can (re)execute all the enable modules with the command "module'.
+Separately of the "new command", you can (re)execute all the enable modules with the command "module'.
+
+```console
+$ samurai module run
+```
+But in this case, the "run" action is not mandatory:
 
 ```console
 $ samurai module
@@ -216,7 +221,7 @@ $ samurai module
 You can also specify a module to execute only this one.
 
 ```console
-$ samurai module <module_name>
+$ samurai module run <module_name>
 ```
 
 ### List the modules
