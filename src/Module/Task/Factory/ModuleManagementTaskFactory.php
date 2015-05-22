@@ -29,7 +29,7 @@ class ModuleManagementTaskFactory
         if($input->getArgument('action') === 'save'){
             return new Saving($services);
         }
-        if($input->getArgument('action') === 'remove'){
+        if($input->getArgument('action') === 'rm' || $input->getArgument('action') === 'remove'){
             throw new \RuntimeException('sorry, not yet set');
         }
         if($input->getArgument('action') === 'enable'){
@@ -42,7 +42,7 @@ class ModuleManagementTaskFactory
             return new Running($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), ['save', 'remove', 'list', 'enable', 'disable', 'run']);
+        $textFinder = new Finder($input->getArgument('action'), ['save', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),
