@@ -26,6 +26,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
+            'action' => 'save',
             'bootstrap' => 'vendor/package',
             'name' => 'test',
             'version' => '@stable',
@@ -47,6 +48,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
+            'action' => 'list',
         ]);
 
         $this->assertStringStartsWith(
@@ -63,6 +65,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
+            'action' => 'list',
             '--global' => true,
         ]);
 
@@ -83,6 +86,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
+            'action' => 'list',
             '--local' => true,
         ]);
 
@@ -111,6 +115,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
+            'action' => 'rm',
             'name' => 'test',
         ]);
 
@@ -137,6 +142,7 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
+            'action' => 'rm',
             'name' => 'test',
         ]);
 

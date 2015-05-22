@@ -14,24 +14,24 @@ use Symfony\Component\Console\Input\InputDefinition;
 class AliasManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testCreateWithBootstrap()
+    public function testCreateForSaving()
     {
         $factory = new AliasManagementTaskFactory();
-        $result = $factory->create($this->provideInput(['bootstrap' => 'bootstrap']), new Container());
+        $result = $factory->create($this->provideInput(['action' => 'save']), new Container());
         $this->assertInstanceOf('Samurai\Alias\Task\Saving', $result);
     }
 
-    public function testCreateWithName()
+    public function testCreateForRemoving()
     {
         $factory = new AliasManagementTaskFactory();
-        $result = $factory->create($this->provideInput(['name' => 'name']), new Container());
+        $result = $factory->create($this->provideInput(['action' => 'rm']), new Container());
         $this->assertInstanceOf('Samurai\Alias\Task\Removing', $result);
     }
 
-    public function testCreateDefault()
+    public function testCreateForListing()
     {
         $factory = new AliasManagementTaskFactory();
-        $result = $factory->create($this->provideInput([]), new Container());
+        $result = $factory->create($this->provideInput(['action' => 'list']), new Container());
         $this->assertInstanceOf('Samurai\Alias\Task\Listing', $result);
     }
 
@@ -44,8 +44,7 @@ class AliasManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
         return new ArrayInput(
             $args,
             new InputDefinition([
-                new InputArgument('name'),
-                new InputArgument('bootstrap'),
+                new InputArgument('action'),
             ])
         );
     }

@@ -24,6 +24,11 @@ class AliasCommand extends Command
             ->setName('alias')
             ->setDescription('Handles bootstrap alias')
             ->addArgument(
+                'action',
+                InputArgument::OPTIONAL,
+                'sub-command'
+            )
+            ->addArgument(
                 'name',
                 InputArgument::OPTIONAL,
                 'alias name'
