@@ -5,6 +5,7 @@ use Pimple\Container;
 use Samurai\Project\Task\ComposerConfigSetting;
 use Samurai\Project\Task\FilesCleaning;
 use Samurai\Project\Task\BootstrapImportation;
+use Samurai\Project\Task\ModulesRunning;
 use Samurai\Task\ITask;
 use Samurai\Task\Planner;
 
@@ -26,6 +27,7 @@ class BootstrapImportationTaskFactory
             new BootstrapImportation($services),
             new ComposerConfigSetting($services),
             new FilesCleaning($services),
+            new ModulesRunning($services),
         ]);
     }
 }

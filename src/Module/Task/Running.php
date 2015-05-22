@@ -41,7 +41,7 @@ class Running extends Task
      * @param Modules $modules
      * @return int|null
      */
-    private function runModules(InputInterface $input, OutputInterface $output, Modules $modules)
+    protected function runModules(InputInterface $input, OutputInterface $output, Modules $modules)
     {
         $output->writeln(sprintf('<info>Running %d module(s)</info>', count($modules)));
         $planner = new PlannerAdapter(new ModulesPlannerBuilder($this->getServices(), $modules));

@@ -44,6 +44,12 @@ class NewCommand extends Command
                 'd',
                 InputOption::VALUE_REQUIRED,
                 'Specify a custom directory path for the project. By default, project will be installed in the same directory as the project name.'
+            )
+            ->addOption(
+                'no-module',
+                'm',
+                InputOption::VALUE_NONE,
+                'Avoid to run the modules'
             );
     }
 
