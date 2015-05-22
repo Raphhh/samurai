@@ -20,6 +20,7 @@ class FilesCleaning extends Task
     private static $patterns = [
         'CHANGELOG*',
         'UPGRADE*',
+        'CONTRIBUTING*',
     ];
 
     private $hasError = false;
