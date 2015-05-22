@@ -82,7 +82,7 @@ Second, **make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/
 
 ##### Unix system
 
-By default, the COMPOSER_BIN_DIR is the directory "~/.composer/vendor/bin".
+By default, the COMPOSER_BIN_DIR is the directory `~/.composer/vendor/bin`.
 
 For all users (restart):
 
@@ -98,7 +98,7 @@ $ echo "export PATH=$PATH:~/.composer/vendor/bin" >> ~/.profile
 
 ##### Windows
 
-By default, the COMPOSER_BIN_DIR is the directory "C:\Users\<user>\AppData\Roaming\Composer\vendor\bin". 
+By default, the COMPOSER_BIN_DIR is the directory `C:\Users\<user>\AppData\Roaming\Composer\vendor\bin`. 
 
 ```console
 setx PATH "%PATH%;C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin"
@@ -144,7 +144,7 @@ $ samurai help <command>
 
 ## Scaffold your project
 
-The samurai "new" command will create a **fresh installation of a new project**. 
+The samurai `new` command will create a **fresh installation of a new project**. 
 
 ### Choose between projects
 
@@ -202,9 +202,9 @@ $ samurai new puppy
 
 By default, Samurai will put your project into the same directory as your project name.
 
-For example, if you run Samurai from "~/projects" and you name your project "my/lib", it will put your project in "~/projects/my/lib".
+For example, if you run Samurai from `~/projects` and you name your project `my/lib`, it will put your project in `~/projects/my/lib`.
 
-But you can specify another directory with the option "--dir" or "-d". This must be a relative path from cwd.
+But you can specify another directory with the option `--dir` or `-d`. This must be a relative path from cwd.
 
 ```console
 $ samurai new lib -d specific/path/to/my/project
@@ -252,25 +252,25 @@ A module is a plugin added to Samurai. This plugin will execute some specific co
 
 #### During the scaffoling
 
-By default, all the enable modules you have installed will be called during the "new command".
+By default, all the enable modules you have installed will be called during the `new command`.
 
 ```console
 $ samurai new
 ```
 
-If you want to avoid to execute the modules during this command, you can specify the option "--no-module".
+If you want to avoid to execute the modules during this command, you can specify the option `--no-module`.
 ```console
 $ samurai new --no-module
 ```
 
 #### Separately
 
-Separately of the "new command", you can (re)execute all the enable modules with the command "module'.
+Separately of the `new command`, you can (re)execute all the enable modules with the command `module'.
 
 ```console
 $ samurai module run
 ```
-But in this case, the "run" action is not mandatory:
+But in this case, the `run` action is not mandatory:
 
 ```console
 $ samurai module
@@ -301,7 +301,7 @@ During the installation, Samurai will ask you if you want to load some recommend
 
 #### When you want
 
-Execute the module command with "save" action. You must specify the package of the module you want to add.
+Execute the module command with `save` action. You must specify the package of the module you want to add.
  
 ```console
 $ samurai module save <module_name> <vendor/package> [<version>] [<description>] [<source>]
@@ -317,7 +317,7 @@ If this module was already present, it will be overridden.
 
 ### Enable/disable a module(todo)
 
-If you disable a module, it will be not called during the "new" command, neither with the "module" command.
+If you disable a module, it will be not called during the `new` command, neither with the `module` command.
 
 ```console
 $ samurai module disable <module_name>
