@@ -190,7 +190,7 @@ But you can specify another directory with the option "--dir" or "-d". This must
 $ samurai new lib -d specific/path/to/my/project
 ```
 
-## Alias (todo: align the interface on module)
+## Alias
 
 Alias are simple words linked to a specific bootstrap at a specific version. For example, the alias 'lib' points to the package 'raphhh/php-lib-bootstrap' at last stable version.
 
@@ -220,7 +220,7 @@ $ samurai alias rm <alias_name>
 ```
 
 
-## Modules (todo)
+## Modules
 
 A module is a plugin added to Samurai. This plugin will execute some specific commands. For example, git module will init Git in your project.
 
@@ -258,7 +258,7 @@ You can also specify a module to execute only this one.
 $ samurai module run <module_name>
 ```
 
-### List the modules
+### List the installed modules
 
 To list all the modules, execute the command:
 ```console
@@ -271,7 +271,7 @@ $ samurai module list <module_name>
 
 ### Add or redefine a module
 
-#### When you install Samurai
+#### When you install Samurai(todo)
 
 During the installation, Samurai will ask you if you want to load some recommended modules.
 
@@ -291,7 +291,7 @@ $ samurai module save raphhh/samurai-module-git
 
 If this module was already present, it will be overridden.
 
-### Enable/disable a module
+### Enable/disable a module(todo)
 
 If you disable a module, it will be not called during the "new" command, neither with the "module" command.
 
@@ -305,7 +305,7 @@ If you want to enable a module, execute the command:
 $ samurai module enable <module_name>
 ```
 
-### Update a module
+### Update a module(todo)
 
 If you want to update a module to a more recent version, execute the command:
 
@@ -322,7 +322,7 @@ $ samurai module update <module_name>
 Note that the update command will respect your version restriction as specified by Composer. See the [Composer update documentation](https://getcomposer.org/doc/03-cli.md#update) for more information.
 
 
-### Remove a module
+### Remove a module(todo)
 
 If you want to remove a module, execute the command:
 
