@@ -33,7 +33,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMock('TRex\Cli\executor');
         $executor->expects($this->any())
             ->method('flush')
-            ->will($this->returnValue(true));
+            ->will($this->returnValue(0));
 
         $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));
 
@@ -114,7 +114,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMock('TRex\Cli\executor');
         $executor->expects($this->any())
             ->method('flush')
-            ->will($this->returnValue(true));
+            ->will($this->returnValue(0));
 
         $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));
 
