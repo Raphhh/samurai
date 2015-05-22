@@ -64,6 +64,45 @@ class Composer
     }
 
     /**
+     * @param string $name
+     * @param string $version
+     * @param bool $isGlobal
+     * @param array $options
+     * @return int
+     */
+    public function requirePackage($name, $version = '', $isGlobal = false, array $options = array())
+    {
+        $global = $isGlobal ? 'global ' : '';
+        return $this->execute(
+            trim(sprintf('composer %srequire %s %s', $global, $name, $version))
+            . $this->mapOptions($options)
+        );
+    }
+
+    /**
+     * @param string $name
+     * @param bool $isGlobal
+     * @param array $options
+     * @return int
+     */
+    public function removePackage($name, $isGlobal = false, array $options = array())
+    {
+        $global = $isGlobal ? 'global ' : '';
+        return $this->execute(
+            trim(sprintf('composer %sremove %s', $global, $name))
+            . $this->mapOptions($options)
+        );
+    }
+
+    /**
+     * @return string
+     */
+    public function getHomePath()
+    {
+        return $this->getExecutor()->read('composer config home --absolute');
+    }
+
+    /**
      * @param $cwd
      * @return string
      */

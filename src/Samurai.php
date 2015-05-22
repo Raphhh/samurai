@@ -6,7 +6,11 @@ use PHPGit\Git;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasCommand;
+use Samurai\Module\Factory\ModuleManagerFactory;
+use Samurai\Module\ModuleCommand;
 use Samurai\Alias\AliasManagerFactory;
+use Samurai\Module\ModuleImporter;
+use Samurai\Module\ModulesSorter;
 use Samurai\Project\Composer\Composer;
 use Samurai\Project\NewCommand;
 use Samurai\Project\Project;
@@ -97,6 +101,7 @@ class Samurai
     {
         $this->getApplication()->add(new NewCommand($this->getServices()));
         $this->getApplication()->add(new AliasCommand($this->getServices()));
+        $this->getApplication()->add(new ModuleCommand($this->getServices()));
     }
 
     /**
@@ -141,6 +146,24 @@ class Samurai
         $services['alias_manager'] = function (Container $services) {
             $factory = new AliasManagerFactory();
             return $factory->createFromConfig($services['config']);
+        };
+
+        $services['module_manager'] = function (Container $services) {
+            $factory = new ModuleManagerFactory();
+            return $factory->create($services['config']['module.path']);
+        };
+
+        $services['module_importer'] = function (Container $services) {
+            return new ModuleImporter(
+                $services['module_manager'],
+                $services['composer'],
+                $services['balloon_factory'],
+                new ModulesSorter()
+            );
+        };
+
+        $services['balloon_factory'] = function () {
+            return new BalloonFactory();
         };
 
         $services['git'] = function () {

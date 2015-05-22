@@ -21,7 +21,7 @@ class Listing extends Task
      * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
-    {
+    {//todo align on module
         if($input->getOption('global')){
             $output->writeln($this->mapAlias($this->getService('alias_manager')->getGlobal()));
         }elseif($input->getOption('local')) {

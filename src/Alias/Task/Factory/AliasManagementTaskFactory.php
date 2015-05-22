@@ -21,7 +21,7 @@ class AliasManagementTaskFactory
      * @return ITask
      */
     public function create(InputInterface $input, Container $services)
-    {
+    { //todo align on module
         if($input->getArgument('bootstrap')){
             return new Saving($services);
         }

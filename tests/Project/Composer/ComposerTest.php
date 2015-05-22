@@ -236,4 +236,64 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
         $this->assertSame(0, $composer->dumpAutoload($project->getDirectoryPath()));
     }
+
+    public function testRequirePackageGlobal()
+    {
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('flush')
+            ->with('composer global require name version')
+            ->will($this->returnValue(0));
+
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
+        $this->assertSame(0, $composer->requirePackage('name', 'version', true));
+    }
+
+    public function testRequirePackageLocal()
+    {
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('flush')
+            ->with('composer require name version')
+            ->will($this->returnValue(0));
+
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
+        $this->assertSame(0, $composer->requirePackage('name', 'version', false));
+    }
+
+    public function testRemovePackageGlobal()
+    {
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('flush')
+            ->with('composer global remove name')
+            ->will($this->returnValue(0));
+
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
+        $this->assertSame(0, $composer->removePackage('name', true));
+    }
+
+    public function testRemovePackageLocal()
+    {
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('flush')
+            ->with('composer remove name')
+            ->will($this->returnValue(0));
+
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
+        $this->assertSame(0, $composer->removePackage('name', false));
+    }
+
+    public function testGetHomePath()
+    {
+        $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
+        $executor->expects($this->once())
+            ->method('read')
+            ->with('composer config home --absolute')
+            ->will($this->returnValue('result'));
+
+        $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
+        $this->assertSame('result', $composer->getHomePath());
+    }
 }
