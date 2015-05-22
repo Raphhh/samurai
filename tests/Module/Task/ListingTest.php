@@ -54,12 +54,19 @@ class ListingTest extends \PHPUnit_Framework_TestCase
 
     public function testExecuteNotExisting()
     {
+        $args = [
+            'name' => 'name',
+            'description' => 'description',
+            'bootstrap' => 'bootstrap',
+            'version' => 'version',
+            'source' => 'source',
+        ];
         $input = $this->provideInput(['name' => 'my-module']);
         $output = new BufferedOutput();
 
-        $saving = new Listing($this->provideServicesForNotExisting());
+        $saving = new Listing($this->provideServicesForNotExisting($this->provideModule($args)));
         $this->assertSame(ITask::BLOCKING_ERROR_CODE, $saving->execute($input, $output));
-        $this->assertSame("Module \"my-module\" not found!\n", $output->fetch());
+        $this->assertSame("Module \"my-module\" not found! Did you mean \"name\"?\n", $output->fetch());
     }
 
     /**
@@ -165,13 +172,14 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param Module $module
      * @return Container
      */
-    private function provideServicesForNotExisting()
+    private function provideServicesForNotExisting(Module $module)
     {
         $services = new Container();
 
-        $aliasManager = $this->provideModuleManagerForNotExisting();
+        $aliasManager = $this->provideModuleManagerForNotExisting($module);
         $services['module_manager'] = function () use($aliasManager){
             return $aliasManager;
         };
@@ -180,9 +188,10 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param Module $module
      * @return \Samurai\Module\ModuleManager
      */
-    private function provideModuleManagerForNotExisting()
+    private function provideModuleManagerForNotExisting(Module $module)
     {
         $aliasManager = $this->getMockBuilder('Samurai\Module\ModuleManager')
             ->disableOriginalConstructor()
@@ -195,6 +204,10 @@ class ListingTest extends \PHPUnit_Framework_TestCase
 
         $aliasManager->expects($this->never())
             ->method('get');
+
+        $aliasManager->expects($this->atLeastOnce())
+            ->method('getAll')
+            ->will($this->returnValue(new Modules([$module->getName() => $module])));
 
         return $aliasManager;
     }

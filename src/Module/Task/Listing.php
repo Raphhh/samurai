@@ -5,6 +5,7 @@ use Samurai\Module\Module;
 use Samurai\Module\Modules;
 use Samurai\Task\ITask;
 use Samurai\Task\Task;
+use SimilarText\Finder;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -36,7 +37,12 @@ class Listing extends Task
     private function listModule($moduleName, OutputInterface $output)
     {
         if(!$this->getService('module_manager')->has($moduleName)){
-            $output->writeln(sprintf('<error>Module "%s" not found!</error>', $moduleName));
+            $textFinder = new Finder($moduleName, array_keys($this->getService('module_manager')->getAll()->getArrayCopy()));
+            $output->writeln(sprintf(
+                '<error>Module "%s" not found! Did you mean "%s"?</error>',
+                $moduleName,
+                $textFinder->first()
+            ));
             return ITask::BLOCKING_ERROR_CODE;
         }
         $output->writeln($this->mapModule($this->getService('module_manager')->get($moduleName)));
@@ -49,7 +55,7 @@ class Listing extends Task
      */
     private function listModules(OutputInterface $output)
     {
-        $output->writeln(sprintf('<info>%d module(s) set</info>', count($this->getService('module_manager')->getAll())));
+        $output->writeln(sprintf("<info>%d module(s) set:</info>\n", count($this->getService('module_manager')->getAll())));
         $output->writeln($this->mapModules($this->getService('module_manager')->getAll()));
         return ITask::NO_ERROR_CODE;
     }
