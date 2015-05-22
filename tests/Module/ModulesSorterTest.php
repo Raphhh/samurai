@@ -62,7 +62,7 @@ class ModulesSorterTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testSortRecursiveDependencies()
+    public function testSortCircularDependencies()
     {
         $modules = new Modules();
 
@@ -86,7 +86,7 @@ class ModulesSorterTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException(
             'RuntimeException',
-            'Modules sort not possible. Maybe recursive dependencies in these modules: b, c.'
+            'Modules sort not possible. Maybe circular dependencies between these modules: b, c.'
         );
         $sorter->sort($modules);
     }

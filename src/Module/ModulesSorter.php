@@ -39,7 +39,7 @@ class ModulesSorter
             if (!$this->sortOnce()) {
                 throw new \RuntimeException(
                     sprintf(
-                        'Modules sort not possible. Maybe recursive dependencies in these modules: %s.',
+                        'Modules sort not possible. Maybe circular dependencies between these modules: %s.',
                         implode(', ', array_keys($this->initial))
                     )
                 );
