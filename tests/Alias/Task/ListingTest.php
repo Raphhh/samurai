@@ -21,14 +21,13 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     public function testExecuteWithGlobal()
     {
         $args = [
-            '--global' => '1',
             'name' => 'name',
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
             'source' => 'source',
         ];
-        $input = $this->provideInput($args);
+        $input = $this->provideInput(['--global' => '1']);
         $output = new BufferedOutput();
 
         $saving = new Listing(
@@ -44,14 +43,13 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     public function testExecuteWithLocal()
     {
         $args = [
-            '--local' => '1',
             'name' => 'name',
             'description' => 'description',
             'bootstrap' => 'bootstrap',
             'version' => 'version',
             'source' => 'source',
         ];
-        $input = $this->provideInput($args);
+        $input = $this->provideInput(['--local' => '1']);
         $output = new BufferedOutput();
 
         $saving = new Listing(
@@ -73,7 +71,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             'version' => 'version',
             'source' => 'source',
         ];
-        $input = $this->provideInput($args);
+        $input = $this->provideInput([]);
         $output = new BufferedOutput();
 
         $saving = new Listing(
@@ -84,6 +82,51 @@ class ListingTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
         $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource: source\n", $output->fetch());
+    }
+
+    public function testExecuteWithOne()
+    {
+        $args = [
+            'name' => 'name',
+            'description' => 'description',
+            'bootstrap' => 'bootstrap',
+            'version' => 'version',
+            'source' => 'source',
+        ];
+        $input = $this->provideInput(['name' => 'name']);
+        $output = new BufferedOutput();
+
+        $saving = new Listing(
+            $this->provideServices(
+                $this->provideAlias($args),
+                'get'
+            )
+        );
+        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
+        $this->assertSame("name: name\ndescription: description\npackage: bootstrap\nversion: version\nsource: source\n", $output->fetch());
+    }
+
+    public function testExecuteWithOneNotExisting()
+    {
+        $args = [
+            'name' => 'name',
+            'description' => 'description',
+            'bootstrap' => 'bootstrap',
+            'version' => 'version',
+            'source' => 'source',
+        ];
+        $input = $this->provideInput(['name' => 'my-alias']);
+        $output = new BufferedOutput();
+
+        $saving = new Listing(
+            $this->provideServices(
+                $this->provideAlias($args),
+                'get',
+                false
+            )
+        );
+        $this->assertSame(ITask::BLOCKING_ERROR_CODE, $saving->execute($input, $output));
+        $this->assertSame("Alias \"my-alias\" not found! Did you mean \"name\"?\n", $output->fetch());
     }
 
     /**
@@ -98,10 +141,6 @@ class ListingTest extends \PHPUnit_Framework_TestCase
                 new InputOption('global'),
                 new InputOption('local'),
                 new InputArgument('name'),
-                new InputArgument('description'),
-                new InputArgument('bootstrap'),
-                new InputArgument('version'),
-                new InputArgument('source'),
             ])
         );
     }
@@ -124,13 +163,14 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     /**
      * @param Alias $alias
      * @param string $useMethod
+     * @param bool $hasAlias
      * @return Container
      */
-    private function provideServices(Alias $alias, $useMethod)
+    private function provideServices(Alias $alias, $useMethod, $hasAlias = true)
     {
         $services = new Container();
 
-        $aliasManager = $this->provideAliasManager($alias, $useMethod);
+        $aliasManager = $this->provideAliasManager($alias, $useMethod, $hasAlias);
         $services['alias_manager'] = function () use($aliasManager){
             return $aliasManager;
         };
@@ -141,9 +181,10 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     /**
      * @param Alias $alias
      * @param string $useMethod
+     * @param bool $hasAlias
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function provideAliasManager(Alias $alias, $useMethod)
+    private function provideAliasManager(Alias $alias, $useMethod, $hasAlias)
     {
         $aliasManager = $this->getMockBuilder('Samurai\Alias\AliasManager')
             ->disableOriginalConstructor()
@@ -157,9 +198,17 @@ class ListingTest extends \PHPUnit_Framework_TestCase
             ->method('getLocal')
             ->will($this->returnValue([$alias->getName() => $alias]));
 
-        $aliasManager->expects($this->exactly((int) ($useMethod === 'getAll')))
+        $aliasManager->expects($this->exactly((int) ($useMethod === 'getAll' || !$hasAlias)))
             ->method('getAll')
             ->will($this->returnValue([$alias->getName() => $alias]));
+
+        $aliasManager->expects($this->exactly((int) ($useMethod === 'get' && $hasAlias)))
+            ->method('get')
+            ->will($this->returnValue($alias));
+
+        $aliasManager->expects($this->exactly((int) ($useMethod === 'get')))
+            ->method('has')
+            ->will($this->returnValue($hasAlias));
 
         return $aliasManager;
     }
