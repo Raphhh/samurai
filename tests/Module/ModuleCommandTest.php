@@ -52,7 +52,7 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @depend testExecuteSave
+     * @depends testExecuteSave
      */
     public function testExecuteListAll()
     {
