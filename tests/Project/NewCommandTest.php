@@ -30,7 +30,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
     public function testDefault()
     {
 
-        $executor = $this->getMock('TRex\Cli\executor');
+        $executor = $this->getMock('TRex\Cli\Executor');
         $executor->expects($this->any())
             ->method('flush')
             ->will($this->returnValue(0));
@@ -111,7 +111,7 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
 
     public function testFilled()
     {
-        $executor = $this->getMock('TRex\Cli\executor');
+        $executor = $this->getMock('TRex\Cli\Executor');
         $executor->expects($this->any())
             ->method('flush')
             ->will($this->returnValue(0));
