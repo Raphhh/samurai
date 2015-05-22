@@ -12,8 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 interface ITask
 {
     const NO_ERROR_CODE = 0;
-    const NON_BLOCKING_ERROR_CODE = 1;
-    const BLOCKING_ERROR_CODE = 2;
+    const BLOCKING_ERROR_CODE = 1;
+    const NON_BLOCKING_ERROR_CODE = 2;
+
 
     /**
      * @param InputInterface $input
