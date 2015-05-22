@@ -81,7 +81,7 @@ class Listing extends Task
     {
         $result = '';
         foreach ($module->toArray() as $property => $value) {
-            if (is_scalar($value)) {
+            if (is_scalar($value) || is_null($value)) {
                 $result .= "$property: $value\n";
             }
         }
