@@ -7,9 +7,15 @@
 [![Total Downloads](https://poser.pugx.org/raphhh/samurai/downloads.svg)](https://packagist.org/packages/raphhh/samurai)
 [![License](https://poser.pugx.org/raphhh/samurai/license.svg)](https://packagist.org/packages/raphhh/samurai)
 
-Samurai is a PHP scaffolding tool. It helps you to start a new project in PHP, generating all the base files in a simple command line.
+Samurai is a PHP scaffolding tool. 
+It helps you to **start a new project in PHP**, generating all the base files in a simple command line.
 
-Samurai generates all the files you need for a library, a web application, a frameworked project, and so on. You can even add your own bootstrap.
+Samurai generates all the files you need for a library, a web application, a frameworked project, and so on. 
+You can even **load your own bootstrap**.
+
+Samurai will run several modules. 
+You can **choose witch module** to install according to your own needs. 
+You can also create your won module.
 
 ![Samurai during project installation](https://raw.githubusercontent.com/Raphhh/samurai/master/doc/samurai-new.png)
 
@@ -21,7 +27,23 @@ Samurai installs and params your project:
  1. Download the bootstrap and its dependency with Composer
  2. Param the Composer config (composer.json)
  3. Dump the autoloader of Composer with your new Package name
- 4. Execute the installed modules. 
+ 4. Execute the installed modules.
+ 
+Examples of bootstrap:
+ - A simple PHP librairy
+ - Symfony
+ - Laravel
+ - Zend
+ - CakePHP
+ - CodeIgniter
+ - Yii
+ - Drupal
+ - Joomla
+ - WordPress
+ - Silex
+ - Slim
+ - .. what you want!
+ 
 
 Examples of modules:
  - Init git for the project (todo)
@@ -29,9 +51,7 @@ Examples of modules:
  - Clean some files (changelog, ...)
  - Init PHPUnit (todo)
  - Init Behat (todo)
- - Link your project to Packagist (todo)
  - Link your project to Travis-ci (todo)
- - Link your project to Scrutinizer (todo)
  - ... what you want!
 
 
@@ -58,7 +78,7 @@ $ composer --version
 
 #### Set the PATH
 
-Second, make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/03-cli.md#composer-bin-dir) directory in your PATH.
+Second, **make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/03-cli.md#composer-bin-dir) directory in your PATH**.
 
 ##### Unix system
 
@@ -88,12 +108,12 @@ setx PATH "%PATH%;C:\%HOMEPATH%\AppData\Roaming\Composer\vendor\bin"
 
 For a better experience, you should also install [Git](http://git-scm.com/).
 
-Do not forget to add a [global .gitignore](https://help.github.com/articles/ignoring-files/#explicit-repository-excludes), to exlude [folders of your IDE or OS.](https://github.com/github/gitignore/tree/master/Global)
+Do not forget to add a [global .gitignore](https://help.github.com/articles/ignoring-files/#explicit-repository-excludes), to exclude files or folders of your [IDE or OS](https://github.com/github/gitignore/tree/master/Global).
 
 
 ### Install Samurai
 
-First, download Samurai with [Composer](https://getcomposer.org) in the global env.
+First, download Samurai with [Composer](https://getcomposer.org) **in the global env**.
 
 ```console
 $ composer global require raphhh/samurai
@@ -124,7 +144,7 @@ $ samurai help <command>
 
 ## Scaffold your project
 
-The samurai "new" command will create a fresh installation of a new project. 
+The samurai "new" command will create a **fresh installation of a new project**. 
 
 ### Choose between projects
 
@@ -192,7 +212,9 @@ $ samurai new lib -d specific/path/to/my/project
 
 ## Alias
 
-Alias are simple words linked to a specific bootstrap at a specific version. For example, the alias 'lib' points to the package 'raphhh/php-lib-bootstrap' at last stable version.
+Alias are simple words linked to a specific bootstrap at a specific version. 
+For example, the alias 'lib' points to the package 'raphhh/php-lib-bootstrap' at last stable version.
+**You can add any module you want, event yours.**
 
 ### List the existing alias
 
@@ -223,6 +245,8 @@ $ samurai alias rm <alias_name>
 ## Modules
 
 A module is a plugin added to Samurai. This plugin will execute some specific commands. For example, git module will init Git in your project.
+
+**You can easily develop your own module and add it to Samurai.** See the [module creation doc](https://github.com/Raphhh/samurai/wiki/Module-creation).
 
 ### Execute the modules
 
