@@ -12,12 +12,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class DummyTask implements ITask
 {
     /**
-     * @var bool
+     * @var int|null
      */
     private $result;
 
     /**
-     * @param int $result
+     * @param int|null $result
      */
     public function __construct($result)
     {
@@ -27,7 +27,7 @@ class DummyTask implements ITask
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int
+     * @return int|null
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
