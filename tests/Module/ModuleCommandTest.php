@@ -9,6 +9,8 @@ use Samurai\Project\Composer\Composer;
 use Samurai\Samurai;
 use Samurai\Task\ITask;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Helper\HelperSet;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Tester\CommandTester;
 use TRex\Cli\Executor;
 
@@ -27,8 +29,7 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
             ->method('flush')
             ->will($this->returnValue(0));
 
-        $application = new Application();
-        $samurai = new Samurai($application, $this->provideServices($application, $executor));
+        $samurai = new Samurai(new Application(), $this->provideServices($executor));
 
         $this->assertNull($samurai->getServices()['module_manager']->get('test'));
 
@@ -74,8 +75,44 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @depends testExecuteListAll
+     */
+    public function testExecuteRemove()
+    {
 
-    private function provideServices(Application $application, Executor $executor)
+        $executor = $this->getMock('TRex\Cli\Executor');
+        $executor->expects($this->any())
+            ->method('flush')
+            ->will($this->returnValue(0));
+
+        $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));
+
+        $questionHelper->expects($this->at(0))
+            ->method('ask')
+            ->will($this->returnValue(true));
+
+        $samurai = new Samurai(new Application(), $this->provideServices($executor, $questionHelper));
+
+        $this->assertNotNull($samurai->getServices()['module_manager']->get('test'));
+
+        $command = $samurai->getApplication()->find('module');
+
+        $commandTester = new CommandTester($command);
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'action' => 'rm',
+            'name' => 'test',
+        ]);
+
+        $this->assertSame(
+            "Removing vendor/package.\nSorting modules.\n",
+            $commandTester->getDisplay(true)
+        );
+    }
+
+
+    private function provideServices(Executor $executor, QuestionHelper $questionHelper = null)
     {
         $services = new Container();
 
@@ -87,8 +124,8 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
             return new Composer($services['executor'], new BalloonFactory());
         };
 
-        $services['helper_set'] = function () use ($application) {
-            return $application->getHelperSet();
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         $services['config'] = function () {

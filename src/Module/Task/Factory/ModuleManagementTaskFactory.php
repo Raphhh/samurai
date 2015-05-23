@@ -3,6 +3,7 @@ namespace Samurai\Module\Task\Factory;
 
 use Pimple\Container;
 use Samurai\Module\Task\Listing;
+use Samurai\Module\Task\Removing;
 use Samurai\Module\Task\Running;
 use Samurai\Module\Task\Saving;
 use Samurai\Task\ITask;
@@ -30,7 +31,7 @@ class ModuleManagementTaskFactory
             return new Saving($services);
         }
         if($input->getArgument('action') === 'rm' || $input->getArgument('action') === 'remove'){
-            throw new \RuntimeException('sorry, not yet set'); //todo
+            return new Removing($services);
         }
         if($input->getArgument('action') === 'enable'){
             throw new \RuntimeException('sorry, not yet set'); //todo
