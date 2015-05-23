@@ -114,7 +114,7 @@ class Composer
      */
     public function getHomePath()
     {
-        return $this->getExecutor()->read('composer config home --absolute');
+        return $this->getExecutor()->read('composer config home --global --absolute');
     }
 
     /**

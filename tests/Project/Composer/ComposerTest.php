@@ -314,7 +314,7 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
         $executor = $this->getMockBuilder('TRex\Cli\Executor')->getMock();
         $executor->expects($this->once())
             ->method('read')
-            ->with('composer config home --absolute')
+            ->with('composer config home --global --absolute')
             ->will($this->returnValue('result'));
 
         $composer = new Composer($executor, new BalloonFactory(new DummyFileReaderFactory()));
