@@ -50,6 +50,15 @@ class ModuleManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Samurai\Module\Task\Removing', $result);
     }
 
+    public function testCreateWithUpdateAction()
+    {
+        $input = $this->provideInput(['action' => 'update', 'name' => 'my-module']);
+
+        $factory = new ModuleManagementTaskFactory();
+        $result = $factory->create($input, new Container());
+        $this->assertInstanceOf('Samurai\Module\Task\Updating', $result);
+    }
+
     /**
      * @param array $args
      * @return ArrayInput

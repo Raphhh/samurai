@@ -78,6 +78,36 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testExecuteListAll
      */
+    public function testExecuteUpdate()
+    {
+
+        $executor = $this->getMock('TRex\Cli\Executor');
+        $executor->expects($this->any())
+            ->method('flush')
+            ->will($this->returnValue(0));
+
+        $samurai = new Samurai(new Application(), $this->provideServices($executor));
+
+        $this->assertNotNull($samurai->getServices()['module_manager']->get('test'));
+
+        $command = $samurai->getApplication()->find('module');
+
+        $commandTester = new CommandTester($command);
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'action' => 'update',
+            'name' => 'test',
+        ]);
+
+        $this->assertSame(
+            "Updating vendor/package.\nSorting modules.\n",
+            $commandTester->getDisplay(true)
+        );
+    }
+
+    /**
+     * @depends testExecuteUpdate
+     */
     public function testExecuteRemove()
     {
 

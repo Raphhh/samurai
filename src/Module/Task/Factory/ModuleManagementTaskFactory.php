@@ -7,6 +7,7 @@ use Samurai\Module\Task\Listing;
 use Samurai\Module\Task\Removing;
 use Samurai\Module\Task\Running;
 use Samurai\Module\Task\Saving;
+use Samurai\Module\Task\Updating;
 use Samurai\Task\ITask;
 use SimilarText\Finder;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,6 +38,12 @@ class ModuleManagementTaskFactory
             }
             return new Saving($services);
         }
+        if($input->getArgument('action') === 'update'){
+            if(!$input->getArgument('name')){
+                throw new \InvalidArgumentException('name param is mandatory for this action');
+            }
+            return new Updating($services);
+        }
         if($input->getArgument('action') === 'rm' || $input->getArgument('action') === 'remove'){
             if(!$input->getArgument('name')){
                 throw new \InvalidArgumentException('name param is mandatory for this action');
@@ -59,7 +66,7 @@ class ModuleManagementTaskFactory
             return new Running($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), ['save', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
+        $textFinder = new Finder($input->getArgument('action'), ['save', 'update', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),
