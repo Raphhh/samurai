@@ -17,14 +17,17 @@ class AliasManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateForSaving()
     {
         $factory = new AliasManagementTaskFactory();
-        $result = $factory->create($this->provideInput(['action' => 'save']), new Container());
+        $result = $factory->create(
+            $this->provideInput(['action' => 'save', 'name' => 'a', 'bootstrap' => 'b']),
+            new Container()
+        );
         $this->assertInstanceOf('Samurai\Alias\Task\Saving', $result);
     }
 
     public function testCreateForRemoving()
     {
         $factory = new AliasManagementTaskFactory();
-        $result = $factory->create($this->provideInput(['action' => 'rm']), new Container());
+        $result = $factory->create($this->provideInput(['action' => 'rm', 'name' => 'a']), new Container());
         $this->assertInstanceOf('Samurai\Alias\Task\Removing', $result);
     }
 
@@ -45,6 +48,8 @@ class AliasManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
             $args,
             new InputDefinition([
                 new InputArgument('action'),
+                new InputArgument('name'),
+                new InputArgument('bootstrap'),
             ])
         );
     }

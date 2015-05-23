@@ -29,9 +29,18 @@ class AliasManagementTaskFactory
             return new Listing($services);
         }
         if($input->getArgument('action') === 'save'){
+            if(!$input->getArgument('name')){
+                throw new \InvalidArgumentException('name param is mandatory for this action');
+            }
+            if(!$input->getArgument('bootstrap')){
+                throw new \InvalidArgumentException('bootstrap param is mandatory for this action');
+            }
             return new Saving($services);
         }
         if($input->getArgument('action') === 'rm' || $input->getArgument('action') === 'remove'){
+            if(!$input->getArgument('name')){
+                throw new \InvalidArgumentException('name param is mandatory for this action');
+            }
             return new Removing($services);
         }
 

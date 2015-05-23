@@ -2,6 +2,7 @@
 namespace Samurai\Module\Task\Factory;
 
 use Pimple\Container;
+use Samurai\Module\Task\Enabling;
 use Samurai\Module\Task\Listing;
 use Samurai\Module\Task\Removing;
 use Samurai\Module\Task\Running;
@@ -28,15 +29,30 @@ class ModuleManagementTaskFactory
             return new Listing($services);
         }
         if($input->getArgument('action') === 'save'){
+            if(!$input->getArgument('name')){
+                throw new \InvalidArgumentException('name param is mandatory for this action');
+            }
+            if(!$input->getArgument('package')){
+                throw new \InvalidArgumentException('package param is mandatory for this action');
+            }
             return new Saving($services);
         }
         if($input->getArgument('action') === 'rm' || $input->getArgument('action') === 'remove'){
+            if(!$input->getArgument('name')){
+                throw new \InvalidArgumentException('name param is mandatory for this action');
+            }
             return new Removing($services);
         }
         if($input->getArgument('action') === 'enable'){
+            if(!$input->getArgument('name')){
+                throw new \InvalidArgumentException('name param is mandatory for this action');
+            }
             throw new \RuntimeException('sorry, not yet set'); //todo
         }
         if($input->getArgument('action') === 'disable'){
+            if(!$input->getArgument('name')){
+                throw new \InvalidArgumentException('name param is mandatory for this action');
+            }
             throw new \RuntimeException('sorry, not yet set'); //todo
         }
         if($input->getArgument('action') === 'run' || !$input->getArgument('action')){
