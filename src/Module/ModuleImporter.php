@@ -99,6 +99,41 @@ class ModuleImporter
 
     /**
      * @param Module $module
+     * @param bool $mustSortModules
+     * @return bool
+     */
+    public function remove(Module $module, $mustSortModules = true)
+    {
+        $this->log(sprintf('<info>Removing %s.</info>', $module->getPackage()));
+
+        $dependents = $module->retrieveDependents($this->moduleManager->getAll());
+        if($dependents->count()){
+            $this->log(sprintf(
+                '<info>The module "%s" cant not be removed because is a dependency of "%s". First remove "%s".</info>',
+                $module->getName(),
+                implode(', ', array_keys($dependents->getArrayCopy())),
+                implode(', ', array_keys($dependents->getArrayCopy()))
+
+            ));
+            return false;
+        }
+
+        if (!$this->removeModule($module)) {
+            $this->log(sprintf('<error>An error occurred during the remove of %s.</error>', $module->getPackage()));
+            return false;
+        }
+
+        $this->moduleManager->remove($module->getName());
+
+        if($mustSortModules){
+            $this->sort();
+        }
+
+        return true;
+    }
+
+    /**
+     * @param Module $module
      */
     private function rollbackImport(Module $module)
     {
@@ -226,5 +261,4 @@ class ModuleImporter
             $this->getOutput()->writeln($message);
         }
     }
-
 }

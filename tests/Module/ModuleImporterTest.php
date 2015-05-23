@@ -14,6 +14,129 @@ use Symfony\Component\Console\Output\BufferedOutput;
 class ModuleImporterTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testRemove()
+    {
+        $moduleManager = $this->getMockBuilder('Samurai\Module\ModuleManager')->disableOriginalConstructor()->getMock();
+        $composer = $this->getMockBuilder('Samurai\Project\Composer\Composer')->disableOriginalConstructor()->getMock();
+        $balloonFactory = new BalloonFactory(new DummyFileReaderFactory(new DummyFileReader()));
+        $modulesSorter = $this->getMockBuilder('Samurai\Module\ModulesSorter')->disableOriginalConstructor()->getMock();
+
+        $modules = new Modules();
+
+        $module = new Module();
+        $module->setPackage('none/none');
+        $module->setName('a');
+
+        $composer->expects($this->once())
+            ->method('removePackage')
+            ->with('none/none', true)
+            ->will($this->returnValue(0));
+
+        $moduleManager->expects($this->once())
+            ->method('remove')
+            ->with($this->identicalTo($module->getName()));
+
+        $moduleManager->expects($this->any())
+            ->method('getAll')
+            ->will($this->returnValue($modules));
+
+        $modulesSorter->expects($this->once())
+            ->method('sort')
+            ->with($this->identicalTo($modules))
+            ->will($this->returnValue($modules));
+
+        $output = new BufferedOutput();
+
+        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleImporter->setOutput($output);
+        $this->assertTrue($moduleImporter->remove($module));
+        $this->assertSame(
+            "Removing none/none.\nSorting modules.\n",
+            $output->fetch()
+        );
+    }
+
+    public function testRemoveWithComposerFail()
+    {
+        $moduleManager = $this->getMockBuilder('Samurai\Module\ModuleManager')->disableOriginalConstructor()->getMock();
+        $composer = $this->getMockBuilder('Samurai\Project\Composer\Composer')->disableOriginalConstructor()->getMock();
+        $balloonFactory = new BalloonFactory(new DummyFileReaderFactory(new DummyFileReader()));
+        $modulesSorter = $this->getMockBuilder('Samurai\Module\ModulesSorter')->disableOriginalConstructor()->getMock();
+
+        $modules = new Modules();
+
+        $module = new Module();
+        $module->setPackage('none/none');
+        $module->setName('a');
+
+        $composer->expects($this->once())
+            ->method('removePackage')
+            ->with('none/none', true)
+            ->will($this->returnValue(1));
+
+        $moduleManager->expects($this->never())
+            ->method('remove');
+
+        $moduleManager->expects($this->any())
+            ->method('getAll')
+            ->will($this->returnValue($modules));
+
+        $modulesSorter->expects($this->never())
+            ->method('sort');
+
+        $output = new BufferedOutput();
+
+        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleImporter->setOutput($output);
+        $this->assertFalse($moduleImporter->remove($module));
+        $this->assertSame(
+            "Removing none/none.\nAn error occurred during the remove of none/none.\n",
+            $output->fetch()
+        );
+    }
+
+    public function testRemoveWithDependents()
+    {
+        $moduleManager = $this->getMockBuilder('Samurai\Module\ModuleManager')->disableOriginalConstructor()->getMock();
+        $composer = $this->getMockBuilder('Samurai\Project\Composer\Composer')->disableOriginalConstructor()->getMock();
+        $balloonFactory = new BalloonFactory(new DummyFileReaderFactory(new DummyFileReader()));
+        $modulesSorter = $this->getMockBuilder('Samurai\Module\ModulesSorter')->disableOriginalConstructor()->getMock();
+
+        $modules = new Modules();
+
+        $module = new Module();
+        $module->setPackage('none/none');
+        $module->setName('a');
+
+        $dependent = new Module();
+        $dependent->setPackage('p/d');
+        $dependent->setDependencies(new Modules([$module]));
+        $modules['d'] = $dependent;
+
+        $composer->expects($this->never())
+            ->method('removePackage');
+
+        $moduleManager->expects($this->never())
+            ->method('remove');
+
+        $moduleManager->expects($this->any())
+            ->method('getAll')
+            ->will($this->returnValue($modules));
+
+        $modulesSorter->expects($this->never())
+            ->method('sort');
+
+        $output = new BufferedOutput();
+
+        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleImporter->setOutput($output);
+        $this->assertFalse($moduleImporter->remove($module));
+        $this->assertSame(
+            "Removing none/none.\nThe module \"a\" cant not be removed because is a dependency of \"d\". First remove \"d\".\n",
+            $output->fetch()
+        );
+    }
+
     public function testImportWithIncorrectModulePackage()
     {
         $moduleManager = $this->getMockBuilder('Samurai\Module\ModuleManager')->disableOriginalConstructor()->getMock();
