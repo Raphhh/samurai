@@ -141,6 +141,34 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testExecuteInstall()
+    {
+        $executor = $this->getMock('TRex\Cli\Executor');
+        $executor->expects($this->any())
+            ->method('flush')
+            ->will($this->returnValue(0));
+
+        $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));
+
+        $questionHelper->expects($this->any())
+            ->method('ask')
+            ->will($this->returnValue(true));
+
+        $samurai = new Samurai(new Application(), $this->provideServices($executor, $questionHelper));
+
+        $command = $samurai->getApplication()->find('module');
+
+        $commandTester = new CommandTester($command);
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'action' => 'install',
+        ]);
+
+        $this->assertContains(
+            "Stating modules installation\n",
+            $commandTester->getDisplay(true)
+        );
+    }
 
     private function provideServices(Executor $executor, QuestionHelper $questionHelper = null)
     {

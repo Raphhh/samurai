@@ -3,6 +3,7 @@ namespace Samurai\Module\Task\Factory;
 
 use Pimple\Container;
 use Samurai\Module\Task\Enabling;
+use Samurai\Module\Task\Installing;
 use Samurai\Module\Task\Listing;
 use Samurai\Module\Task\Removing;
 use Samurai\Module\Task\Running;
@@ -28,6 +29,9 @@ class ModuleManagementTaskFactory
     {
         if($input->getArgument('action') === 'list'){
             return new Listing($services);
+        }
+        if($input->getArgument('action') === 'install'){
+            return new Installing($services);
         }
         if($input->getArgument('action') === 'save'){
             if(!$input->getArgument('name')){
@@ -66,7 +70,7 @@ class ModuleManagementTaskFactory
             return new Running($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), ['save', 'update', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
+        $textFinder = new Finder($input->getArgument('action'), ['save', 'install', 'update', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),
