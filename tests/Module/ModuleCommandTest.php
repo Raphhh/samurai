@@ -69,8 +69,8 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
             'action' => 'list',
         ]);
 
-        $this->assertStringStartsWith(
-            "1 module(s) set:\n\nname: test\ndescription: description\npackage: vendor/package\nversion: @stable\nsource: \nisEnable: 1\n",
+        $this->assertContains(
+            "name: test\ndescription: description\npackage: vendor/package\nversion: @stable\nsource: \nisEnable: 1\n",
             $commandTester->getDisplay(true)
         );
     }
