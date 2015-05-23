@@ -29,7 +29,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
             'bootstrap' => 'bootstrap',
             'version' => 'version',
         ];
-        $input = $this->provideInput($args);
+        $input = $this->provideInput(['name' => 'name']);
         $output = new BufferedOutput();
 
         $saving = new Removing(
@@ -53,7 +53,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
             'bootstrap' => 'bootstrap',
             'version' => 'version',
         ];
-        $input = $this->provideInput($args);
+        $input = $this->provideInput(['name' => 'name']);
         $output = new BufferedOutput();
 
         $saving = new Removing(
@@ -77,7 +77,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
             'bootstrap' => 'bootstrap',
             'version' => 'version',
         ];
-        $input = $this->provideInput($args);
+        $input = $this->provideInput(['name' => 'name']);
         $output = new BufferedOutput();
 
         $saving = new Removing(
@@ -103,9 +103,6 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
             $args,
             new InputDefinition([
                 new InputArgument('name'),
-                new InputArgument('description'),
-                new InputArgument('bootstrap'),
-                new InputArgument('version'),
             ])
         );
     }
