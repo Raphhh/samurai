@@ -21,7 +21,7 @@ class Updating extends Task
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $moduleName = $input->getArgument('name');
+        $moduleName = $input->getArgument('name'); //todo should call the task for all modules!
         if(!$this->getService('module_manager')->has($moduleName)){
             $output->writeln(sprintf('<error>Error: no module "%s" found</error>', $moduleName));
             return ITask::BLOCKING_ERROR_CODE;
