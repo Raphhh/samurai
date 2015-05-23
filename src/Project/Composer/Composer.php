@@ -80,6 +80,21 @@ class Composer
     }
 
     /**
+     * @param $name
+     * @param bool $isGlobal
+     * @param array $options
+     * @return int
+     */
+    public function updatePackage($name, $isGlobal = false, array $options = array())
+    {
+        $global = $isGlobal ? 'global ' : '';
+        return $this->execute(
+            trim(sprintf('composer %supdate %s', $global, $name))
+            . $this->mapOptions($options)
+        );
+    }
+
+    /**
      * @param string $name
      * @param bool $isGlobal
      * @param array $options
