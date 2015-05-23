@@ -24,8 +24,8 @@ class Saving extends Task
     {
         $module = $this->buildModuleFromInput($input);
         if($this->canBeSaved($input, $output, $module)){
-            $this->getService('module_importer')->setOutput($output);
-            if(!$this->getService('module_importer')->import($module)){
+            $this->getService('module_procedure')->setOutput($output);
+            if(!$this->getService('module_procedure')->import($module)){
                 return ITask::BLOCKING_ERROR_CODE;
             }
         }

@@ -137,8 +137,8 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
             return $factory->create($services['config']['module.path']);
         };
 
-        $services['module_importer'] = function (Container $services) {
-            return new ModuleImporter(
+        $services['module_procedure'] = function (Container $services) {
+            return new ModuleProcedure(
                 $services['module_manager'],
                 $services['composer'],
                 $services['balloon_factory'],

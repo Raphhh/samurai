@@ -9,7 +9,7 @@ use Samurai\Alias\AliasCommand;
 use Samurai\Module\Factory\ModuleManagerFactory;
 use Samurai\Module\ModuleCommand;
 use Samurai\Alias\AliasManagerFactory;
-use Samurai\Module\ModuleImporter;
+use Samurai\Module\ModuleProcedure;
 use Samurai\Module\ModulesSorter;
 use Samurai\Project\Composer\Composer;
 use Samurai\Project\NewCommand;
@@ -153,8 +153,8 @@ class Samurai
             return $factory->create($services['config']['module.path']);
         };
 
-        $services['module_importer'] = function (Container $services) {
-            return new ModuleImporter(
+        $services['module_procedure'] = function (Container $services) {
+            return new ModuleProcedure(
                 $services['module_manager'],
                 $services['composer'],
                 $services['balloon_factory'],

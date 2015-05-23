@@ -28,8 +28,8 @@ class Removing extends Task
         }
 
         if($this->confirmRemove($input, $output, $moduleName)){
-            $this->getService('module_importer')->setOutput($output);
-            $this->getService('module_importer')->remove($this->getService('module_manager')->get($moduleName));
+            $this->getService('module_procedure')->setOutput($output);
+            $this->getService('module_procedure')->remove($this->getService('module_manager')->get($moduleName));
         }
         return ITask::NO_ERROR_CODE;
     }

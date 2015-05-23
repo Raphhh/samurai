@@ -7,11 +7,11 @@ use Balloon\Reader\Factory\DummyFileReaderFactory;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
- * Class ModuleImporterTest
+ * Class ModuleProcedureTest
  * @package Samurai\Module\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ModuleImporterTest extends \PHPUnit_Framework_TestCase
+class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testRemove()
@@ -47,9 +47,9 @@ class ModuleImporterTest extends \PHPUnit_Framework_TestCase
 
         $output = new BufferedOutput();
 
-        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
-        $moduleImporter->setOutput($output);
-        $this->assertTrue($moduleImporter->remove($module));
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertTrue($moduleProcedure->remove($module));
         $this->assertSame(
             "Removing none/none.\nSorting modules.\n",
             $output->fetch()
@@ -86,9 +86,9 @@ class ModuleImporterTest extends \PHPUnit_Framework_TestCase
 
         $output = new BufferedOutput();
 
-        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
-        $moduleImporter->setOutput($output);
-        $this->assertFalse($moduleImporter->remove($module));
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertFalse($moduleProcedure->remove($module));
         $this->assertSame(
             "Removing none/none.\nAn error occurred during the remove of none/none.\n",
             $output->fetch()
@@ -128,9 +128,9 @@ class ModuleImporterTest extends \PHPUnit_Framework_TestCase
 
         $output = new BufferedOutput();
 
-        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
-        $moduleImporter->setOutput($output);
-        $this->assertFalse($moduleImporter->remove($module));
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertFalse($moduleProcedure->remove($module));
         $this->assertSame(
             "Removing none/none.\nThe module \"a\" cant not be removed because is a dependency of \"d\". First remove \"d\".\n",
             $output->fetch()
@@ -156,9 +156,9 @@ class ModuleImporterTest extends \PHPUnit_Framework_TestCase
 
         $output = new BufferedOutput();
 
-        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
-        $moduleImporter->setOutput($output);
-        $this->assertFalse($moduleImporter->import($module));
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertFalse($moduleProcedure->import($module));
         $this->assertSame(
             "Starting installation of none/none.\nAn error occurred during the installation of none/none.\n",
             $output->fetch()
@@ -228,9 +228,9 @@ class ModuleImporterTest extends \PHPUnit_Framework_TestCase
 
 
 
-        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
-        $moduleImporter->setOutput($output);
-        $this->assertTrue($moduleImporter->import($module));
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertTrue($moduleProcedure->import($module));
 
         $this->assertSame(
             "Starting installation of none/none.\nSorting modules.\n",
@@ -376,9 +376,9 @@ class ModuleImporterTest extends \PHPUnit_Framework_TestCase
 
 
 
-        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
-        $moduleImporter->setOutput($output);
-        $this->assertTrue($moduleImporter->import($module));
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertTrue($moduleProcedure->import($module));
 
         $this->assertSame(
             "Starting installation of none/none.\nStarting installation of dependency/1.\nStarting installation of dependency/2.\nSorting modules.\n",
@@ -523,9 +523,9 @@ class ModuleImporterTest extends \PHPUnit_Framework_TestCase
             ->method('sort');
 
 
-        $moduleImporter = new ModuleImporter($moduleManager, $composer, $balloonFactory, $modulesSorter);
-        $moduleImporter->setOutput($output);
-        $this->assertFalse($moduleImporter->import($module));
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertFalse($moduleProcedure->import($module));
 
         $this->assertSame(
             "Starting installation of none/none.\nStarting installation of dependency/1.\nAn error occurred during the installation of dependency/1.\nRoll-backing installation of none/none.\n",

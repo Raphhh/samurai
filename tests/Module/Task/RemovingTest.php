@@ -127,9 +127,9 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
             return $moduleManager;
         };
 
-        $moduleImporter = $this->provideModuleImporter($module, $hasModule, $willBeRemoved);
-        $services['module_importer'] = function () use($moduleImporter){
-            return $moduleImporter;
+        $moduleProcedure = $this->provideModuleProcedure($module, $hasModule, $willBeRemoved);
+        $services['module_procedure'] = function () use($moduleProcedure){
+            return $moduleProcedure;
         };
 
         if($hasModule) {
@@ -217,20 +217,20 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
      * @param $willBeRemoved
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function provideModuleImporter(Module $module, $hasModule, $willBeRemoved)
+    private function provideModuleProcedure(Module $module, $hasModule, $willBeRemoved)
     {
-        $moduleImporter = $this->getMockBuilder('Samurai\Module\ModuleImporter')->disableOriginalConstructor()->getMock();
+        $moduleProcedure = $this->getMockBuilder('Samurai\Module\ModuleProcedure')->disableOriginalConstructor()->getMock();
 
         if($hasModule && $willBeRemoved){
-            $moduleImporter->expects($this->once())
+            $moduleProcedure->expects($this->once())
                 ->method('remove')
                 ->with($module)
                 ->will($this->returnValue(true));
         }else{
-            $moduleImporter->expects($this->never())
+            $moduleProcedure->expects($this->never())
                 ->method('remove');
         }
 
-        return $moduleImporter;
+        return $moduleProcedure;
     }
 }

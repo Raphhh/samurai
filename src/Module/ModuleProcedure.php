@@ -6,11 +6,11 @@ use Samurai\Project\Composer\Composer;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class ModuleImporter
+ * Class ModuleProcedure
  * @package Samurai\Module
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ModuleImporter
+class ModuleProcedure
 {
     /**
      * @var ModuleManager

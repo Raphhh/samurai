@@ -134,9 +134,9 @@ class SavingTest extends \PHPUnit_Framework_TestCase
             };
         }
 
-        $moduleImporter = $this->provideModuleImporter($willBeSaved);
-        $services['module_importer'] = function () use($moduleImporter){
-            return $moduleImporter;
+        $moduleProcedure = $this->provideModuleProcedure($willBeSaved);
+        $services['module_procedure'] = function () use($moduleProcedure){
+            return $moduleProcedure;
         };
 
         return $services;
@@ -210,16 +210,16 @@ class SavingTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param bool $isCalled
-     * @return \Samurai\Module\ModuleImporter
+     * @return \Samurai\Module\ModuleProcedure
      */
-    private function provideModuleImporter($isCalled)
+    private function provideModuleProcedure($isCalled)
     {
-        $moduleImporter = $this->getMockBuilder('Samurai\Module\ModuleImporter')->disableOriginalConstructor()->getMock();
+        $moduleProcedure = $this->getMockBuilder('Samurai\Module\ModuleProcedure')->disableOriginalConstructor()->getMock();
 
-        $moduleImporter->expects($this->exactly((int)$isCalled))
+        $moduleProcedure->expects($this->exactly((int)$isCalled))
             ->method('import')
             ->will($this->returnValue(true));
 
-        return $moduleImporter;
+        return $moduleProcedure;
     }
 }
