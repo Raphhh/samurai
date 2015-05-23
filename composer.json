@@ -42,7 +42,7 @@
         "samurai"
     ],
     "scripts": {
-        "post-install-cmd": [
+        "post-package-install": [
             "samurai module install"
         ]
     }
