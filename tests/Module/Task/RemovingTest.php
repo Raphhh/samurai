@@ -32,7 +32,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
         $input = $this->provideInput(['name' => 'name']);
         $output = new BufferedOutput();
 
-        $saving = new Removing(
+        $removing = new Removing(
             $this->provideServices(
                 $this->provideModule($args),
                 false,
@@ -41,7 +41,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
                 $output
             )
         );
-        $this->assertSame(ITask::BLOCKING_ERROR_CODE, $saving->execute($input, $output));
+        $this->assertSame(ITask::BLOCKING_ERROR_CODE, $removing->execute($input, $output));
         $this->assertSame("Error: no module \"name\" found\n", $output->fetch());
     }
 
@@ -56,7 +56,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
         $input = $this->provideInput(['name' => 'name']);
         $output = new BufferedOutput();
 
-        $saving = new Removing(
+        $removing = new Removing(
             $this->provideServices(
                 $this->provideModule($args),
                 true,
@@ -65,7 +65,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
                 $output
             )
         );
-        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $removing->execute($input, $output));
         $this->assertSame("", $output->fetch());
     }
 
@@ -80,7 +80,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
         $input = $this->provideInput(['name' => 'name']);
         $output = new BufferedOutput();
 
-        $saving = new Removing(
+        $removing = new Removing(
             $this->provideServices(
                 $this->provideModule($args),
                 true,
@@ -89,7 +89,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
                 $output
             )
         );
-        $this->assertSame(ITask::NO_ERROR_CODE, $saving->execute($input, $output));
+        $this->assertSame(ITask::NO_ERROR_CODE, $removing->execute($input, $output));
         $this->assertSame("", $output->fetch());
     }
 
