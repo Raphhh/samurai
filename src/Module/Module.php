@@ -90,6 +90,26 @@ class Module extends Alias
     }
 
     /**
+     * @param Modules $modules
+     * @return Modules
+     */
+    public function retrieveDependents(Modules $modules)
+    {
+        $dependents = new Modules();
+        /**
+         * @var Module[] $modules
+         */
+        foreach($modules as $key => $module) {
+            foreach($module->getDependencies() as $dependency){
+                if($dependency->getPackage() === $this->getPackage()){
+                    $dependents[$key] = $module;
+                }
+            }
+        }
+        return $dependents;
+    }
+
+    /**
      * Getter of $tasks
      *
      * @return array
