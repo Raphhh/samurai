@@ -62,6 +62,15 @@ class ModulesSorterTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testSortWithEmptyModules()
+    {
+        $modules = new Modules();
+
+        $sorter = new ModulesSorter();
+        $result = $sorter->sort($modules);
+        $this->assertSame([], $result->getArrayCopy());
+    }
+
     public function testSortCircularDependencies()
     {
         $modules = new Modules();

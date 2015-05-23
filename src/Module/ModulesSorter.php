@@ -35,7 +35,7 @@ class ModulesSorter
      */
     private function run()
     {
-        do {
+        while ($this->initial) {
             if (!$this->sortOnce()) {
                 throw new \RuntimeException(
                     sprintf(
@@ -44,8 +44,7 @@ class ModulesSorter
                     )
                 );
             }
-
-        } while ($this->initial);
+        };
     }
 
     /**
