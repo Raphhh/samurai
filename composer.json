@@ -40,5 +40,10 @@
     },
     "bin": [
         "samurai"
-    ]
+    ],
+    "scripts": {
+        "post-install-cmd": [
+            "samurai module install"
+        ]
+    }
 }
