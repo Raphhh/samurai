@@ -26,7 +26,7 @@
     "require": {
         "php": ">=5.4",
         "symfony/console": "~2.6",
-        "raphhh/trex-cli": "dev-master#05eddd277294c5741ca790971709e1b9e5a8283b",
+        "raphhh/trex-cli": "~0.1",
         "pimple/pimple": "~3.0",
         "raphhh/puppy-config": "~1.0",
         "kzykhys/git": "0.1.*",
