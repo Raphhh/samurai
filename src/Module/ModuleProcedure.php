@@ -102,6 +102,28 @@ class ModuleProcedure
      * @param bool $mustSortModules
      * @return bool
      */
+    public function update(Module $module, $mustSortModules = true)
+    {
+        $this->log(sprintf('<info>Updating %s.</info>', $module->getPackage()));
+
+        if (!$this->updateModule($module)) {
+            $this->log(sprintf('<error>An error occurred during the update of %s.</error>', $module->getPackage()));
+            return false;
+        }
+
+        if(!$this->installModule($module, $mustSortModules)){ //todo if dependencies are removed, we need to clean them.
+            $this->log(sprintf('<error>An error occurred. You need to clean your modules. Try to remove "%s" and re-install it.</error>', $module->getPackage()));
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param Module $module
+     * @param bool $mustSortModules
+     * @return bool
+     */
     public function remove(Module $module, $mustSortModules = true)
     {
         $this->log(sprintf('<info>Removing %s.</info>', $module->getPackage()));
@@ -189,6 +211,15 @@ class ModuleProcedure
             throw new \RuntimeException('Sorry, for now Samurai does not manage a custom module source...');
         }
         return $this->composer->requirePackage($module->getPackage(), $module->getVersion(), true) === 0;
+    }
+
+    /**
+     * @param Module $module
+     * @return bool
+     */
+    private function updateModule(Module $module)
+    {
+        return $this->composer->updatePackage($module->getPackage(), true) === 0;
     }
 
     /**

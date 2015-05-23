@@ -13,6 +13,86 @@ use Symfony\Component\Console\Output\BufferedOutput;
  */
 class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
 {
+    public function testUpdate()
+    {
+        $moduleManager = $this->getMockBuilder('Samurai\Module\ModuleManager')->disableOriginalConstructor()->getMock();
+        $composer = $this->getMockBuilder('Samurai\Project\Composer\Composer')->disableOriginalConstructor()->getMock();
+        $balloonFactory = new BalloonFactory(new DummyFileReaderFactory(new DummyFileReader()));
+        $modulesSorter = $this->getMockBuilder('Samurai\Module\ModulesSorter')->disableOriginalConstructor()->getMock();
+
+        $modules = new Modules();
+
+        $module = new Module();
+        $module->setPackage('none/none');
+        $module->setName('a');
+
+        $composer->expects($this->once())
+            ->method('updatePackage')
+            ->with('none/none', true)
+            ->will($this->returnValue(0));
+
+        $moduleManager->expects($this->once())
+            ->method('add')
+            ->with($this->identicalTo($module));
+
+        $moduleManager->expects($this->any())
+            ->method('getAll')
+            ->will($this->returnValue($modules));
+
+        $modulesSorter->expects($this->once())
+            ->method('sort')
+            ->with($this->identicalTo($modules))
+            ->will($this->returnValue($modules));
+
+        $output = new BufferedOutput();
+
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertTrue($moduleProcedure->update($module));
+        $this->assertSame(
+            "Updating none/none.\nSorting modules.\n",
+            $output->fetch()
+        );
+    }
+
+    public function testUpdateeWithComposerFail()
+    {
+        $moduleManager = $this->getMockBuilder('Samurai\Module\ModuleManager')->disableOriginalConstructor()->getMock();
+        $composer = $this->getMockBuilder('Samurai\Project\Composer\Composer')->disableOriginalConstructor()->getMock();
+        $balloonFactory = new BalloonFactory(new DummyFileReaderFactory(new DummyFileReader()));
+        $modulesSorter = $this->getMockBuilder('Samurai\Module\ModulesSorter')->disableOriginalConstructor()->getMock();
+
+        $modules = new Modules();
+
+        $module = new Module();
+        $module->setPackage('none/none');
+        $module->setName('a');
+
+        $composer->expects($this->once())
+            ->method('updatePackage')
+            ->with('none/none', true)
+            ->will($this->returnValue(1));
+
+        $moduleManager->expects($this->never())
+            ->method('update');
+
+        $moduleManager->expects($this->any())
+            ->method('getAll')
+            ->will($this->returnValue($modules));
+
+        $modulesSorter->expects($this->never())
+            ->method('sort');
+
+        $output = new BufferedOutput();
+
+        $moduleProcedure = new ModuleProcedure($moduleManager, $composer, $balloonFactory, $modulesSorter);
+        $moduleProcedure->setOutput($output);
+        $this->assertFalse($moduleProcedure->update($module));
+        $this->assertSame(
+            "Updating none/none.\nAn error occurred during the update of none/none.\n",
+            $output->fetch()
+        );
+    }
 
     public function testRemove()
     {
