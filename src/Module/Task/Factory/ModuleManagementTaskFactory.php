@@ -47,13 +47,13 @@ class ModuleManagementTaskFactory
             if(!$input->getArgument('name')){
                 throw new \InvalidArgumentException('name param is mandatory for this action');
             }
-            throw new \RuntimeException('sorry, not yet set'); //todo
+            return new Enabling($services);
         }
         if($input->getArgument('action') === 'disable'){
             if(!$input->getArgument('name')){
                 throw new \InvalidArgumentException('name param is mandatory for this action');
             }
-            throw new \RuntimeException('sorry, not yet set'); //todo
+            return new Enabling($services);
         }
         if($input->getArgument('action') === 'run' || !$input->getArgument('action')){
             return new Running($services);
