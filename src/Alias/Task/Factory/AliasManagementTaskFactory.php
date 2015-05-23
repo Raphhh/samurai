@@ -23,6 +23,8 @@ class AliasManagementTaskFactory
      */
     public function create(InputInterface $input, Container $services)
     {
+        //todo: si pas d'action: proposer une liste. idem dans les modules.
+
         if($input->getArgument('action') === 'list'){
             return new Listing($services);
         }
