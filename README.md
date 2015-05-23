@@ -295,7 +295,7 @@ $ samurai module list <module_name>
 
 ### Add or redefine a module
 
-#### When you install Samurai(todo)
+#### When you install Samurai
 
 During the installation, Samurai will ask you if you want to load some recommended modules.
 
@@ -313,9 +313,15 @@ For example, if you want to load the git module:
 $ samurai module save raphhh/samurai-module-git
 ```
 
+You can also install all the recommended packages that you do not have installed during the Samurai installation, with the `install` action.
+
+```console
+$ samurai module install
+```
+
 If this module was already present, it will be overridden.
 
-### Enable/disable a module(todo)
+### Enable/disable a module
 
 If you disable a module, it will be not called during the `new` command, neither with the `module` command.
 
@@ -329,7 +335,7 @@ If you want to enable a module, execute the command:
 $ samurai module enable <module_name>
 ```
 
-### Update a module(todo)
+### Update a module
 
 If you want to update a module to a more recent version, execute the command:
 
@@ -346,7 +352,7 @@ $ samurai module update <module_name>
 Note that the update command will respect your version restriction as specified by Composer. See the [Composer update documentation](https://getcomposer.org/doc/03-cli.md#update) for more information.
 
 
-### Remove a module(todo)
+### Remove a module
 
 If you want to remove a module, execute the command:
 
