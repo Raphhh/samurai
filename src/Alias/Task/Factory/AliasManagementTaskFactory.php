@@ -23,7 +23,11 @@ class AliasManagementTaskFactory
      */
     public function create(InputInterface $input, Container $services)
     {
-        //todo: si pas d'action: proposer une liste. idem dans les modules.
+        $actions = ['save', 'list', 'rm'];
+
+        if(!$input->getArgument('action')){
+            throw new \InvalidArgumentException(sprintf('An action param is required: %s', json_encode($actions)));
+        }
 
         if($input->getArgument('action') === 'list'){
             return new Listing($services);
@@ -44,7 +48,7 @@ class AliasManagementTaskFactory
             return new Removing($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), ['save', 'list', 'rm', 'remove']);
+        $textFinder = new Finder($input->getArgument('action'), $actions);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),
