@@ -26,7 +26,6 @@ class BootstrapImportationTaskFactory
             ProjectInitializationTaskFactory::create($services),
             new BootstrapImportation($services),
             new ComposerConfigSetting($services),
-            new FilesCleaning($services), //todo extract this in a module!
             new ModulesRunning($services),
         ]);
     }

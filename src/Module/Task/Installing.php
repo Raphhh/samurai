@@ -20,9 +20,13 @@ class Installing extends Task
      */
     private $modules = [
         'git' => [
-                'package' => 'raphhh/samurai-module-git',
-                'version' => '@dev',
-            ],
+            'package' => 'raphhh/samurai-module-git',
+            'version' => '@dev',
+        ],
+        'cleaner' => [
+            'package' => 'raphhh/samurai-module-cleaner',
+            'version' => '@dev',
+        ],
     ];
 
     /**
