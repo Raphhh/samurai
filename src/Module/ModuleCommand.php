@@ -14,6 +14,20 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ModuleCommand extends Command
 {
+
+    /**
+     * @var array
+     */
+    public static $actions = [
+        'install',
+        'update',
+        'rm',
+        'list',
+        'enable',
+        'disable',
+        'run'
+    ];
+
     /**
      *
      */
@@ -25,7 +39,7 @@ class ModuleCommand extends Command
             ->addArgument(
                 'action',
                 InputArgument::OPTIONAL,
-                'sub-command'
+                'sub-command: ' . json_encode(self::$actions)
             )
             ->addArgument(
                 'name',

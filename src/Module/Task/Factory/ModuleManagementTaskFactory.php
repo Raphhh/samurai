@@ -2,6 +2,7 @@
 namespace Samurai\Module\Task\Factory;
 
 use Pimple\Container;
+use Samurai\Module\ModuleCommand;
 use Samurai\Module\Task\Enabling;
 use Samurai\Module\Task\Installing;
 use Samurai\Module\Task\Listing;
@@ -27,10 +28,9 @@ class ModuleManagementTaskFactory
      */
     public static function create(InputInterface $input, Container $services)
     {
-        $actions = ['install', 'update', 'rm', 'list', 'enable', 'disable', 'run'];
 
         if(!$input->getArgument('action')){
-            throw new \InvalidArgumentException(sprintf('An action param is required: %s', json_encode($actions)));
+            throw new \InvalidArgumentException(sprintf('An action param is required: %s', json_encode(ModuleCommand::$actions)));
         }
 
         if($input->getArgument('action') === 'list'){
@@ -64,7 +64,7 @@ class ModuleManagementTaskFactory
             return new Running($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), $actions);
+        $textFinder = new Finder($input->getArgument('action'), ModuleCommand::$actions);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),
