@@ -1,0 +1,15 @@
+The <info>%command.name%</info> command create a fresh installation of a new project:
+
+  <info>samurai %command.name%</info>
+
+If you know the project, you can directly specify it in the command. Samurai will create your project from this bootstrap:
+
+  <info>samurai %command.name% <bootstrap> [<version>]</info>
+  
+If your bootstrap is already in the aliases list, just specify the alias of your boostrap (See <info>alias</info> command):
+
+  <info>samurai %command.name% <alias></info>
+
+By default, Samurai will put your project into the same directory as your project name. But you can specify another directory with the option <comment>--dir</comment>. This must be a relative path from cwd.
+
+See the documentation for more info: https://github.com/Raphhh/samurai

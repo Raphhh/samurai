@@ -2,6 +2,7 @@
 namespace Samurai\Alias;
 
 use Pimple\Container;
+use Puppy\Config\ArrayConfig;
 use Puppy\Config\Config;
 use Samurai\Samurai;
 use Symfony\Component\Console\Application;
@@ -158,6 +159,10 @@ class AliasCommandTest extends \PHPUnit_Framework_TestCase
     private function provideServices(QuestionHelper $questionHelper)
     {
         $services = new Container();
+
+        $services['config'] = function () {
+            return new Config('');
+        };
 
         $services['helper_set'] = function () use ($questionHelper) {
             return new HelperSet(['question' => $questionHelper]);

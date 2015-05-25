@@ -50,7 +50,8 @@ class NewCommand extends Command
                 'm',
                 InputOption::VALUE_NONE,
                 'Avoid to run the modules'
-            );
+            )
+            ->setHelp(file_get_contents($this->getService('config')['doc.path'].'new.console'));
     }
 
     /**

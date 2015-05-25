@@ -3,6 +3,7 @@ namespace Samurai\Project;
 
 use PHPGit\Git;
 use Pimple\Container;
+use Puppy\Config\ArrayConfig;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManagerFactory;
 use Samurai\Module\Module;
@@ -224,6 +225,10 @@ class NewCommandTest extends \PHPUnit_Framework_TestCase
         $composer = $this->provideComposer(0);
 
         $services = new Container();
+
+        $services['config'] = function () {
+            return new Config('');
+        };
 
         $services['project'] = function () {
             return new Project();
