@@ -47,7 +47,7 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotNull($samurai->getServices()['module_manager']->get('test'));
         $this->assertSame(
-            "Starting installation of vendor/package.\nSorting modules.\n",
+            "Starting installation of vendor/package\nSorting modules\n",
             $commandTester->getDisplay(true)
         );
     }
@@ -100,7 +100,7 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertSame(
-            "Updating vendor/package.\nSorting modules.\n",
+            "Updating vendor/package\nSorting modules\n",
             $commandTester->getDisplay(true)
         );
     }
@@ -136,7 +136,7 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertSame(
-            "Removing vendor/package.\nSorting modules.\n",
+            "Removing vendor/package\nSorting modules\n",
             $commandTester->getDisplay(true)
         );
     }

@@ -82,10 +82,10 @@ class ModuleProcedure
      */
     public function import(Module $module, $mustSortModules = true)
     {
-        $this->log(sprintf('<info>Starting installation of %s.</info>', $module->getPackage()));
+        $this->log(sprintf('<info>Starting installation of %s</info>', $module->getPackage()));
 
         if (!$this->importModule($module)) {
-            $this->log(sprintf('<error>An error occurred during the installation of %s.</error>', $module->getPackage()));
+            $this->log(sprintf('<error>An error occurred during the installation of %s</error>', $module->getPackage()));
             return false;
         }
 
@@ -104,10 +104,10 @@ class ModuleProcedure
      */
     public function update(Module $module, $mustSortModules = true)
     {
-        $this->log(sprintf('<info>Updating %s.</info>', $module->getPackage()));
+        $this->log(sprintf('<info>Updating %s</info>', $module->getPackage()));
 
         if (!$this->updateModule($module)) {
-            $this->log(sprintf('<error>An error occurred during the update of %s.</error>', $module->getPackage()));
+            $this->log(sprintf('<error>An error occurred during the update of %s</error>', $module->getPackage()));
             return false;
         }
 
@@ -126,7 +126,7 @@ class ModuleProcedure
      */
     public function remove(Module $module, $mustSortModules = true)
     {
-        $this->log(sprintf('<info>Removing %s.</info>', $module->getPackage()));
+        $this->log(sprintf('<info>Removing %s</info>', $module->getPackage()));
 
         $dependents = $module->retrieveDependents($this->moduleManager->getAll());
         if($dependents->count()){
@@ -141,7 +141,7 @@ class ModuleProcedure
         }
 
         if (!$this->removeModule($module)) {
-            $this->log(sprintf('<error>An error occurred during the remove of %s.</error>', $module->getPackage()));
+            $this->log(sprintf('<error>An error occurred during the remove of %s</error>', $module->getPackage()));
             return false;
         }
 
@@ -159,7 +159,7 @@ class ModuleProcedure
      */
     private function rollbackImport(Module $module)
     {
-        $this->log(sprintf('<info>Roll-backing installation of %s.</info>', $module->getPackage()));
+        $this->log(sprintf('<info>Roll-backing installation of %s</info>', $module->getPackage()));
         $this->removeModule($module);
         $this->moduleManager->clear();
     }
@@ -279,7 +279,7 @@ class ModuleProcedure
      */
     private function sort()
     {
-        $this->log('<info>Sorting modules.</info>');
+        $this->log('<info>Sorting modules</info>');
         $this->moduleManager->set($this->modulesSorter->sort($this->moduleManager->getAll()));
     }
 

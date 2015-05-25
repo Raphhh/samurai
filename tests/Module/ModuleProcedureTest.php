@@ -50,7 +50,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $moduleProcedure->setOutput($output);
         $this->assertTrue($moduleProcedure->update($module));
         $this->assertSame(
-            "Updating none/none.\nSorting modules.\n",
+            "Updating none/none\nSorting modules\n",
             $output->fetch()
         );
     }
@@ -89,7 +89,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $moduleProcedure->setOutput($output);
         $this->assertFalse($moduleProcedure->update($module));
         $this->assertSame(
-            "Updating none/none.\nAn error occurred during the update of none/none.\n",
+            "Updating none/none\nAn error occurred during the update of none/none\n",
             $output->fetch()
         );
     }
@@ -131,7 +131,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $moduleProcedure->setOutput($output);
         $this->assertTrue($moduleProcedure->remove($module));
         $this->assertSame(
-            "Removing none/none.\nSorting modules.\n",
+            "Removing none/none\nSorting modules\n",
             $output->fetch()
         );
     }
@@ -170,7 +170,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $moduleProcedure->setOutput($output);
         $this->assertFalse($moduleProcedure->remove($module));
         $this->assertSame(
-            "Removing none/none.\nAn error occurred during the remove of none/none.\n",
+            "Removing none/none\nAn error occurred during the remove of none/none\n",
             $output->fetch()
         );
     }
@@ -212,7 +212,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $moduleProcedure->setOutput($output);
         $this->assertFalse($moduleProcedure->remove($module));
         $this->assertSame(
-            "Removing none/none.\nThe module \"a\" cant not be removed because is a dependency of \"d\". First remove \"d\".\n",
+            "Removing none/none\nThe module \"a\" cant not be removed because is a dependency of \"d\". First remove \"d\".\n",
             $output->fetch()
         );
     }
@@ -240,7 +240,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $moduleProcedure->setOutput($output);
         $this->assertFalse($moduleProcedure->import($module));
         $this->assertSame(
-            "Starting installation of none/none.\nAn error occurred during the installation of none/none.\n",
+            "Starting installation of none/none\nAn error occurred during the installation of none/none\n",
             $output->fetch()
         );
     }
@@ -313,7 +313,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($moduleProcedure->import($module));
 
         $this->assertSame(
-            "Starting installation of none/none.\nSorting modules.\n",
+            "Starting installation of none/none\nSorting modules\n",
             $output->fetch()
         );
 
@@ -461,7 +461,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($moduleProcedure->import($module));
 
         $this->assertSame(
-            "Starting installation of none/none.\nStarting installation of dependency/1.\nStarting installation of dependency/2.\nSorting modules.\n",
+            "Starting installation of none/none\nStarting installation of dependency/1\nStarting installation of dependency/2\nSorting modules\n",
             $output->fetch()
         );
 
@@ -608,7 +608,7 @@ class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($moduleProcedure->import($module));
 
         $this->assertSame(
-            "Starting installation of none/none.\nStarting installation of dependency/1.\nAn error occurred during the installation of dependency/1.\nRoll-backing installation of none/none.\n",
+            "Starting installation of none/none\nStarting installation of dependency/1\nAn error occurred during the installation of dependency/1\nRoll-backing installation of none/none\n",
             $output->fetch()
         );
 
