@@ -216,27 +216,29 @@ Alias are simple words linked to a specific bootstrap at a specific version.
 For example, the alias 'lib' points to the package 'raphhh/php-lib-bootstrap' at last stable version.
 **You can add any module you want, event yours.**
 
+The main command to manage the modules is `alias`. Just after this command you can specify some actions.
+
 ### List the existing alias
 
-To list all the alias, execute the command:
+To list all the alias, execute the action `list`.
 ```console
 $ samurai alias list
 ```
-To list a specific alias, execute the same command but with the name of the alias:
+To list a specific alias, execute the same action but with the name of the alias:
 ```console
 $ samurai module list <alias_name>
 ```
 
 ### Add or redefine an alias
 
-You can easily add any bootstrap you want, event yours! To add or redefine an alias, execute the command:
+You can easily add any bootstrap you want, event yours! To add or redefine an alias, execute the action `save`.
 ```console
 $ samurai alias save <alias_name> <bootstrap> [<version>] [<description>] [<source>]
 ```
 
 ### Remove an alias
 
-To remove an alias, execute the command:
+To remove an alias, execute the the action `rm`.
 ```console
 $ samurai alias rm <alias_name>
 ```
@@ -248,11 +250,13 @@ A module is a plugin added to Samurai. This plugin will execute some specific co
 
 **You can easily develop your own module and add it to Samurai.** See the [module creation doc](https://github.com/Raphhh/samurai/wiki/Module-creation).
 
+The main command to manage the modules is `module`. Just after this command you can specify some actions.
+
 ### Execute the modules
 
 #### During the scaffoling
 
-By default, all the enable modules you have installed will be called during the `new command`.
+By default, all the enable modules you have installed will be called during the `new` command.
 
 ```console
 $ samurai new
@@ -265,15 +269,10 @@ $ samurai new --no-module
 
 #### Separately
 
-Separately of the `new command`, you can (re)execute all the enable modules with the command `module'.
+Separately of the `new` command, you can (re)execute all the enable modules with the action `run` of the command `module`.
 
 ```console
 $ samurai module run
-```
-But in this case, the `run` action is not mandatory:
-
-```console
-$ samurai module
 ```
 
 You can also specify a module to execute only this one.
@@ -284,11 +283,14 @@ $ samurai module run <module_name>
 
 ### List the installed modules
 
-To list all the modules, execute the command:
+To list all the modules, execute the action `list`.
+
 ```console
 $ samurai module list
 ```
-To list a specific module, execute the same command but with the name of the module:
+
+To list a specific module, execute the same action but with the name of the module.
+
 ```console
 $ samurai module list <module_name>
 ```
@@ -297,7 +299,7 @@ $ samurai module list <module_name>
 
 #### Install recommended modules
 
-You can also install all the recommended packages with the `install` action.
+You can install all the recommended packages with the `install` action.
 
 ```console
 $ samurai module install
@@ -307,11 +309,13 @@ Note that you can only install pre-selected modules.
 
 #### Install a specific module
 
-To install any module, you must specify the package you want to add.
+To install any module you want, you must specify its package.
  
 ```console
 $ samurai module install <module_name> <vendor/package> [<version>] [<description>] [<source>]
 ```
+
+Tne `module_name` is just a shortcut you will use in the module actions. Choose any name you want.
 
 For example, if you want to load the git module:
 
@@ -319,18 +323,18 @@ For example, if you want to load the git module:
 $ samurai module install git raphhh/samurai-module-git
 ```
 
-Note that if the module was already present, it will be overridden.
+Note that if the module was already present, it will be overridden after confirmation.
 
 
 ### Enable/disable a module
 
-If you disable a module, it will be not called during the `new` command, neither with the `module` command.
+If you disable a module, it will be not called during the `new` command, neither with the `module run` command.
 
 ```console
 $ samurai module disable <module_name>
 ```
 
-If you want to enable a module, execute the command:
+If you want to enable a module, execute the action `enable`.
 
 ```console
 $ samurai module enable <module_name>
@@ -358,7 +362,7 @@ $ samurai module update <module_name>
 
 ### Remove a module
 
-If you want to remove a module, execute the command:
+If you want to remove a module, execute the action `rm` with the name of the module.
 
 ```console
 $ samurai module rm <module_name>
