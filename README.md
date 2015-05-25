@@ -295,22 +295,6 @@ $ samurai module list <module_name>
 
 ### Add or redefine a module
 
-#### Install a specific module
-
-Execute the module command with `save` action. You must specify the package of the module you want to add.
- 
-```console
-$ samurai module save <module_name> <vendor/package> [<version>] [<description>] [<source>]
-```
-
-For example, if you want to load the git module:
-
-```console
-$ samurai module save git raphhh/samurai-module-git
-```
-
-Note that if the module was already present, it will be overridden.
-
 #### Install recommended modules
 
 You can also install all the recommended packages with the `install` action.
@@ -318,6 +302,25 @@ You can also install all the recommended packages with the `install` action.
 ```console
 $ samurai module install
 ```
+
+Note that you can only install pre-selected modules.
+
+#### Install a specific module
+
+To install any module, you must specify the package you want to add.
+ 
+```console
+$ samurai module install <module_name> <vendor/package> [<version>] [<description>] [<source>]
+```
+
+For example, if you want to load the git module:
+
+```console
+$ samurai module install git raphhh/samurai-module-git
+```
+
+Note that if the module was already present, it will be overridden.
+
 
 ### Enable/disable a module
 

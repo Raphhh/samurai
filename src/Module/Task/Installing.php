@@ -32,6 +32,24 @@ class Installing extends Task
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        if($input->getArgument('name') && !$input->getArgument('package')) {
+            throw new \InvalidArgumentException('bootstrap param is mandatory for this action');
+        }
+
+        if($input->getArgument('name') && $input->getArgument('package')){
+            return $this->installModule($input, $output);
+        }
+
+        return $this->installModules($input, $output);
+    }
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null
+     */
+    private function installModules(InputInterface $input, OutputInterface $output)
+    {
         $output->writeln('<info>Stating modules installation</info>');
 
         foreach($this->modules as $name => $moduleData){
@@ -88,5 +106,16 @@ class Installing extends Task
         $module->setVersion($moduleData['version']);
         $module->setIsEnable(true);
         return $module;
+    }
+
+    /**
+     * @param $input
+     * @param $output
+     * @return bool
+     */
+    private function installModule($input, $output)
+    {
+        $task = new Saving($this->getServices());
+        return $task->execute($input, $output);
     }
 }

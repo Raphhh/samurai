@@ -33,15 +33,6 @@ class ModuleManagementTaskFactory
         if($input->getArgument('action') === 'install'){
             return new Installing($services);
         }
-        if($input->getArgument('action') === 'save'){
-            if(!$input->getArgument('name')){
-                throw new \InvalidArgumentException('name param is mandatory for this action');
-            }
-            if(!$input->getArgument('package')){
-                throw new \InvalidArgumentException('package param is mandatory for this action');
-            }
-            return new Saving($services);
-        }
         if($input->getArgument('action') === 'update'){
             if(!$input->getArgument('name')){
                 throw new \InvalidArgumentException('name param is mandatory for this action');
@@ -70,7 +61,7 @@ class ModuleManagementTaskFactory
             return new Running($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), ['save', 'install', 'update', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
+        $textFinder = new Finder($input->getArgument('action'), ['install', 'update', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),

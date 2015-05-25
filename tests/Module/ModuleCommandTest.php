@@ -38,7 +38,7 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $this->assertSame(ITask::NO_ERROR_CODE, $commandTester->execute([
             'command' => $command->getName(),
-            'action' => 'save',
+            'action' => 'install',
             'name' => 'test',
             'package' => 'vendor/package',
             'version' => '@stable',
