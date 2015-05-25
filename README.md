@@ -46,9 +46,9 @@ Examples of bootstrap:
  
 
 Examples of modules:
- - Init git for the project (todo)
+ - Init git for the project. See [raphhh/samurai-module-git](https://github.com/Raphhh/samurai-module-git).
  - Create a new repo on GitHub and link it to your project (github module) (todo)
- - Clean some files (changelog, ...)
+ - Clean some files (changelog, ...). See [raphhh/samurai-module-cleaner](https://github.com/Raphhh/samurai-module-cleaner).
  - Init PHPUnit (todo)
  - Init Behat (todo)
  - Link your project to Travis-ci (todo)
