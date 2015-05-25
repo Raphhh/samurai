@@ -64,7 +64,8 @@ class AliasCommand extends Command
                 'l',
                 InputOption::VALUE_NONE,
                 'Display local alias'
-            );
+            )
+            ->setHelp('See the documentation for more info: https://github.com/Raphhh/samurai');
     }
 
     /**
