@@ -338,19 +338,22 @@ $ samurai module enable <module_name>
 
 ### Update a module
 
-If you want to update a module to a more recent version, execute the command:
+Updating means that your module will be update to a more recent build version, according to its version constraints. 
+Note that the update command will respect the version restriction as specified by Composer. 
+See the [Composer update documentation](https://getcomposer.org/doc/03-cli.md#update) for more information.
+                                                                                                                      
+
+To update all the modules, just execute the action `update`. 
+
+```console
+$ samurai module update
+```
+
+If you want to update a specific module to a more recent version, execute the action with the module name.
 
 ```console
 $ samurai module update <module_name>
 ```
-
-If you want to update all the modules to a more recent version, execute the command:
-
-```console
-$ samurai module update <module_name>
-```
-
-Note that the update command will respect your version restriction as specified by Composer. See the [Composer update documentation](https://getcomposer.org/doc/03-cli.md#update) for more information.
 
 
 ### Remove a module

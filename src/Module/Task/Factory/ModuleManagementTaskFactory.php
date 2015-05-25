@@ -34,9 +34,6 @@ class ModuleManagementTaskFactory
             return new Installing($services);
         }
         if($input->getArgument('action') === 'update'){
-            if(!$input->getArgument('name')){
-                throw new \InvalidArgumentException('name param is mandatory for this action');
-            }
             return new Updating($services);
         }
         if($input->getArgument('action') === 'rm' || $input->getArgument('action') === 'remove'){
