@@ -27,9 +27,10 @@ class Removing extends Task
             return ITask::BLOCKING_ERROR_CODE;
         }
 
-        if($this->confirmRemove($input, $output, $moduleName)){
+        $module = $this->getService('module_manager')->get($moduleName);
+        if($this->confirmRemove($input, $output, $module->getPackage())){
             $this->getService('module_procedure')->setOutput($output);
-            $this->getService('module_procedure')->remove($this->getService('module_manager')->get($moduleName));
+            $this->getService('module_procedure')->remove($module);
         }
         return ITask::NO_ERROR_CODE;
     }
@@ -37,28 +38,28 @@ class Removing extends Task
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @param $moduleName
+     * @param string $modulePackage
      * @return bool
      */
-    private function confirmRemove(InputInterface $input, OutputInterface $output, $moduleName)
+    private function confirmRemove(InputInterface $input, OutputInterface $output, $modulePackage)
     {
         return $this->getService('helper_set')->get('question')->ask(
             $input,
             $output,
-            $this->buildQuestion($moduleName)
+            $this->buildQuestion($modulePackage)
         );
     }
 
     /**
-     * @param string $moduleName
+     * @param string $modulePackage
      * @return ConfirmationQuestion
      */
-    private function buildQuestion($moduleName)
+    private function buildQuestion($modulePackage)
     {
         return new ConfirmationQuestion(
             sprintf(
                 '<question>Do you want to remove the module "%s"</question>[y]',
-                $moduleName
+                $modulePackage
             )
         );
     }

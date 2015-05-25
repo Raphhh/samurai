@@ -173,7 +173,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
             ->with($module->getName())
             ->will($this->returnValue($hasModule));
 
-        if($hasModule && $willBeRemoved) {
+        if($hasModule) {
             $moduleManager->expects($this->once())
                 ->method('get')
                 ->will($this->returnValue($module));
@@ -202,7 +202,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
                 $output,
                 $this->callback(
                     function (ConfirmationQuestion $question) {
-                        return '<question>Do you want to remove the module "name"</question>[y]' === $question->getQuestion();
+                        return '<question>Do you want to remove the module "bootstrap"</question>[y]' === $question->getQuestion();
                     }
                 )
             )
