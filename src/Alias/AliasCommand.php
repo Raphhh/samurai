@@ -15,6 +15,16 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class AliasCommand extends Command
 {
+
+    /**
+     * @var array
+     */
+    public static $actions = [
+        'save',
+        'list',
+        'rm'
+    ];
+
     /**
      *
      */
@@ -26,7 +36,7 @@ class AliasCommand extends Command
             ->addArgument(
                 'action',
                 InputArgument::OPTIONAL,
-                'sub-command'
+                'sub-command: ' . json_encode(self::$actions)
             )
             ->addArgument(
                 'name',

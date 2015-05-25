@@ -2,6 +2,7 @@
 namespace Samurai\Alias\Task\Factory;
 
 use Pimple\Container;
+use Samurai\Alias\AliasCommand;
 use Samurai\Alias\Task\Listing;
 use Samurai\Alias\Task\Removing;
 use Samurai\Alias\Task\Saving;
@@ -23,10 +24,8 @@ class AliasManagementTaskFactory
      */
     public function create(InputInterface $input, Container $services)
     {
-        $actions = ['save', 'list', 'rm'];
-
         if(!$input->getArgument('action')){
-            throw new \InvalidArgumentException(sprintf('An action param is required: %s', json_encode($actions)));
+            throw new \InvalidArgumentException(sprintf('An action param is required: %s', json_encode(AliasCommand::$actions)));
         }
 
         if($input->getArgument('action') === 'list'){
@@ -48,7 +47,7 @@ class AliasManagementTaskFactory
             return new Removing($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), $actions);
+        $textFinder = new Finder($input->getArgument('action'), AliasCommand::$actions);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),
