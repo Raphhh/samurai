@@ -26,8 +26,8 @@ class Removing extends Task
             $output->writeln(sprintf('<error>Error: no alias "%s" found</error>', $aliasName));
             return ITask::BLOCKING_ERROR_CODE;
         }
-
-        if($this->confirmRemove($input, $output, $aliasName)){
+        $alias = $this->getService('alias_manager')->get($aliasName);
+        if($this->confirmRemove($input, $output, $alias->getPackage())){
             $this->getService('alias_manager')->remove($aliasName);
         }
         return ITask::NO_ERROR_CODE;
@@ -36,28 +36,28 @@ class Removing extends Task
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @param $aliasName
+     * @param string $aliasPackage
      * @return bool
      */
-    private function confirmRemove(InputInterface $input, OutputInterface $output, $aliasName)
+    private function confirmRemove(InputInterface $input, OutputInterface $output, $aliasPackage)
     {
         return $this->getService('helper_set')->get('question')->ask(
             $input,
             $output,
-            $this->buildQuestion($aliasName)
+            $this->buildQuestion($aliasPackage)
         );
     }
 
     /**
-     * @param string $aliasName
+     * @param string $aliasPackage
      * @return ConfirmationQuestion
      */
-    private function buildQuestion($aliasName)
+    private function buildQuestion($aliasPackage)
     {
         return new ConfirmationQuestion(
             sprintf(
                 '<question>Do you want to remove the bootstrap "%s"</question>[y]',
-                $aliasName
+                $aliasPackage
             )
         );
     }

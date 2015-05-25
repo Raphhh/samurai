@@ -165,6 +165,13 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
             ->with($alias->getName())
             ->will($this->returnValue($hasAlias));
 
+        if($hasAlias){
+            $aliasManager->expects($this->once())
+                ->method('get')
+                ->with($alias->getName())
+                ->will($this->returnValue($alias));
+        }
+
         $aliasManager->expects($this->exactly((int) $willBeRemoved))
             ->method('remove')
             ->with($this->equalTo($alias->getName()));
@@ -189,7 +196,7 @@ class RemovingTest extends \PHPUnit_Framework_TestCase
                 $output,
                 $this->callback(
                     function (ConfirmationQuestion $question) {
-                        return '<question>Do you want to remove the bootstrap "name"</question>[y]' === $question->getQuestion();
+                        return '<question>Do you want to remove the bootstrap "bootstrap"</question>[y]' === $question->getQuestion();
                     }
                 )
             )
