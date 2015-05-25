@@ -25,7 +25,7 @@ class ModuleManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateWithoutAction()
     {
-        $input = $this->provideInput([]);
+        $input = $this->provideInput(['action' => 'run']);
 
         $factory = new ModuleManagementTaskFactory();
         $result = $factory->create($input, new Container());

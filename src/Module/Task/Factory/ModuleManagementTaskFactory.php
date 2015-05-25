@@ -27,6 +27,12 @@ class ModuleManagementTaskFactory
      */
     public static function create(InputInterface $input, Container $services)
     {
+        $actions = ['install', 'update', 'rm', 'list', 'enable', 'disable', 'run'];
+
+        if(!$input->getArgument('action')){
+            throw new \InvalidArgumentException(sprintf('An action param is required: %s', json_encode($actions)));
+        }
+
         if($input->getArgument('action') === 'list'){
             return new Listing($services);
         }
@@ -54,11 +60,11 @@ class ModuleManagementTaskFactory
             }
             return new Enabling($services);
         }
-        if($input->getArgument('action') === 'run' || !$input->getArgument('action')){
+        if($input->getArgument('action') === 'run'){
             return new Running($services);
         }
 
-        $textFinder = new Finder($input->getArgument('action'), ['install', 'update', 'remove', 'rm', 'list', 'enable', 'disable', 'run']);
+        $textFinder = new Finder($input->getArgument('action'), $actions);
         throw new \InvalidArgumentException(sprintf(
             'Action "%s" not supported. Did you mean "%s"?',
             $input->getArgument('action'),

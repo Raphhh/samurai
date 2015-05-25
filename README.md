@@ -160,7 +160,7 @@ You just have to select a bootstrap to install.
 If you know the project, you can directly specify it in the command. Samurai will create your project from this bootstrap. 
 
 ```console
-$ samurai new <bootstrap>
+$ samurai new <alias>
 ```
 
 In fact, you specify an alias of a project. An alias is just a defined bootstrap and version. See alias section for more information.
