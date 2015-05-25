@@ -119,6 +119,12 @@ First, download Samurai with [Composer](https://getcomposer.org) **in the global
 $ composer global require raphhh/samurai
 ```
 
+Note that, by default, no module is installed. To install the recommended modules, execute the following command:
+```console
+$ samurai module install
+```
+See module doc for modre information.
+
 ### Test Samurai
 
 So, the samurai executable is found when you run the command in your terminal.
