@@ -51,7 +51,8 @@ class ModuleCommand extends Command
                 'source',
                 InputArgument::OPTIONAL,
                 'bootstrap source'
-            );
+            )
+            ->setHelp('See the documentation for more info: https://github.com/Raphhh/samurai');
     }
 
     /**
