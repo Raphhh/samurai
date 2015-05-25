@@ -33,7 +33,7 @@ class RunningTest extends \PHPUnit_Framework_TestCase
         $task = new Running($services);
         $this->assertSame(ITask::NO_ERROR_CODE, $task->execute($input, $output));
 
-        $this->assertSame("Running 2 module(s)\nABC", $output->fetch());
+        $this->assertSame("Running 2 module(s)\nABB", $output->fetch());
     }
 
     public function testExecuteForOne()
@@ -51,7 +51,7 @@ class RunningTest extends \PHPUnit_Framework_TestCase
         $task = new Running($services);
         $this->assertSame(ITask::NO_ERROR_CODE, $task->execute($input, $output));
 
-        $this->assertSame("Running the module \"name of B\"\nAB", $output->fetch());
+        $this->assertSame("Running the module \"name of A\"\nAB", $output->fetch());
     }
 
     /**
@@ -99,6 +99,7 @@ class RunningTest extends \PHPUnit_Framework_TestCase
 
         $moduleA = new Module();
         $moduleA->setName('name of A');
+        $moduleA->setIsEnable(true);
         $moduleA->setTasks([
             'Samurai\Module\resources\TaskA',
             'Samurai\Module\resources\TaskB',
@@ -106,11 +107,19 @@ class RunningTest extends \PHPUnit_Framework_TestCase
         $modules[] = $moduleA;
 
         $moduleB = new Module();
-        $moduleA->setName('name of B');
+        $moduleB->setName('name of B');
+        $moduleB->setIsEnable(true);
         $moduleB->setTasks([
-            'Samurai\Module\resources\TaskC',
+            'Samurai\Module\resources\TaskB',
         ]);
         $modules[] = $moduleB;
+
+        $moduleC = new Module();
+        $moduleC->setName('name of C');
+        $moduleC->setTasks([
+            'Samurai\Module\resources\TaskC',
+        ]);
+        $modules[] = $moduleC;
 
         return $modules;
     }

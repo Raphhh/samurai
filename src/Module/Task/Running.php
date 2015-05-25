@@ -43,6 +43,7 @@ class Running extends Task
      */
     protected function runModules(InputInterface $input, OutputInterface $output, Modules $modules)
     {
+        $modules = $this->filter($modules);
         $output->writeln(sprintf('<info>Running %d module(s)</info>', count($modules)));
         $planner = new PlannerAdapter(new ModulesPlannerBuilder($this->getServices(), $modules));
         return $planner->execute($input, $output);
@@ -59,5 +60,16 @@ class Running extends Task
         $output->writeln('<info>Running the module "'.$module->getName().'"</info>');
         $planner = new PlannerAdapter(new ModulePlannerBuilder($this->getServices(), $module));
         return $planner->execute($input, $output);
+    }
+
+    /**
+     * @param Modules $modules
+     * @return Modules
+     */
+    private function filter(Modules $modules)
+    {
+        return new Modules(array_filter($modules->getArrayCopy(), function(Module $module){
+            return $module->isEnable();
+        }));
     }
 }
