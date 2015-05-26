@@ -200,7 +200,7 @@ $ samurai new raphhh/puppy 1.1.0
 If you install a project from a non-aliased bootstrap, do not hesitate to add it in the alias list. It is very simple. See alias section for more information.
 
 ```console
-$ samurai alias puppy raphhh/puppy
+$ samurai alias save puppy raphhh/puppy
 $ samurai new puppy
 ```
 
