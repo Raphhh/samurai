@@ -14,7 +14,7 @@ Samurai generates all the files you need for a library, a web application, a fra
 You can even **load your own bootstrap**.
 
 Samurai will run several modules. 
-You can **choose witch module** to install according to your own needs. 
+You can **choose which module** to install according to your own needs. 
 You can also create your won module.
 
 ![Samurai during project installation](https://raw.githubusercontent.com/Raphhh/samurai/master/doc/samurai-new.png)
