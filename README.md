@@ -15,7 +15,7 @@ You can even **load your own bootstrap**.
 
 Samurai will run several modules. 
 You can **choose which module** to install according to your own needs. 
-You can also create your won module.
+You can also create your own module.
 
 ![Samurai during project installation](https://raw.githubusercontent.com/Raphhh/samurai/master/doc/samurai-new.png)
 
@@ -24,7 +24,7 @@ You can also create your won module.
 
 Samurai installs and params your project:
 
- 1. Download the bootstrap and its dependency with Composer
+ 1. Download the bootstrap and its dependencies with Composer
  2. Param the Composer config (composer.json)
  3. Dump the autoloader of Composer with your new Package name
  4. Execute the installed modules.
@@ -119,15 +119,15 @@ First, download Samurai with [Composer](https://getcomposer.org) **in the global
 $ composer global require raphhh/samurai
 ```
 
-Note that, by default, no module is installed. To install the recommended modules, execute the following command:
+Note, by default, no modules are installed. To install the recommended modules, execute the following command:
 ```console
 $ samurai module install
 ```
-See module doc for modre information.
+See module docs for more information.
 
 ### Test Samurai
 
-So, the samurai executable is found when you run the command in your terminal.
+The samurai executable is found when you run the following command in your terminal.
 
 ```console
 $ samurai help --version
@@ -237,7 +237,7 @@ $ samurai module list <alias_name>
 
 ### Add or redefine an alias
 
-You can easily add any bootstrap you want, event yours! To add or redefine an alias, execute the action `save`.
+You can easily add any bootstrap you want, even yours! To add or redefine an alias, execute the action `save`.
 ```console
 $ samurai alias save <alias_name> <bootstrap> [<version>] [<description>] [<source>]
 ```
@@ -252,7 +252,7 @@ $ samurai alias rm <alias_name>
 
 ## Modules
 
-A module is a plugin added to Samurai. This plugin will execute some specific commands. For example, git module will init Git in your project.
+A module is a plugin added to Samurai. This plugin will execute some specific commands. For example, the git module will init Git in your project.
 
 **You can easily develop your own module and add it to Samurai.** See the [module creation doc](https://github.com/Raphhh/samurai/wiki/Module-creation).
 
@@ -321,7 +321,7 @@ To install any module you want, you must specify its package.
 $ samurai module install <module_name> <vendor/package> [<version>] [<description>] [<source>]
 ```
 
-Tne `module_name` is just a shortcut you will use in the module actions. Choose any name you want.
+The `module_name` is just a shortcut you will use in the module actions. Choose any name you want.
 
 For example, if you want to load the git module:
 
