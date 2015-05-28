@@ -87,7 +87,7 @@ By default, the COMPOSER_BIN_DIR is the directory `~/.composer/vendor/bin`.
 For all users (restart):
 
 ```console
-# echo "export PATH=$PATH:~/.composer/vendor/bin" >> /etc/profile
+# echo "export PATH=$PATH:~/.composer/vendor/bin" > /etc/profile.d/composer.sh
 ```
 
 For current user (relogin):
