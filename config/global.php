@@ -1,7 +1,8 @@
 <?php
 return [
-    'doc.path' => __DIR__ . '/../doc/console/',
-    'alias.global.path' => __DIR__ . '/alias.json',
-    'alias.local.path' => __DIR__ . '/../vars/alias/alias.json',
-    'module.path' => __DIR__ . '/../vars/module/module.json',
+    'root' => __DIR__ . '/..',
+    'doc.path' => '%root%/doc/console/',
+    'alias.global.path' => '%root%/config/alias.json',
+    'alias.local.path' => '%root%/vars/alias/alias.json',
+    'module.path' => '%root%/vars/module/module.json',
 ];
