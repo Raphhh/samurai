@@ -1,0 +1,23 @@
+site_name: Samurai Documentation
+#site_url: /
+site_description: Samurai - A PHP scaffolding tool.
+#site_favicon: img/favicon.png
+
+repo_url: https://github.com/Raphhh/samurai/
+
+docs_dir: user-guide
+
+include_search: true
+
+use_absolute_urls: true
+
+copyright: Copyright &copy; 2015, Samurai
+#google_analytics: ['UA-xxx', 'website']
+
+pages:
+
+- 'About': 'index.md'
+- 'Installation' : 'installation.md'
+- 'Scaffolding': 'scaffolding.md'
+- 'Aliases': 'aliases.md'
+- 'Modules': 'modules.md'
