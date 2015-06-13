@@ -108,3 +108,12 @@ $ samurai module install
 ```console
 $ samurai module run
 ```
+
+## Documentation
+
+See the [Samurai documentation](http://samurai.readthedocs.org/).
+
+## Contribution and road map
+
+See the [Samurai wiki](https://github.com/Raphhh/samurai/wiki).
+
