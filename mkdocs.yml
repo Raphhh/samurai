@@ -5,7 +5,7 @@ site_description: Samurai - A PHP scaffolding tool.
 
 repo_url: https://github.com/Raphhh/samurai/
 
-docs_dir: user-guide
+docs_dir: doc/user-guide
 
 include_search: true
 
