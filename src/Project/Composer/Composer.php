@@ -55,7 +55,7 @@ class Composer
                 sprintf(
                     'composer create-project --prefer-dist %s %s %s',
                     $project->getBootstrap()->getPackage(),
-                    $project->getDirectoryPath(),
+                    $project->getDirectoryPath() ? '"' . $project->getDirectoryPath() .'"' : '',
                     $project->getBootstrap()->getVersion()
                 )
             )
