@@ -57,10 +57,14 @@ class Installing extends Task
         $output->writeln('<info>Stating modules installation</info>');
 
         foreach($this->modules as $name => $moduleData){
-            if(
-                !$this->getService('module_manager')->getByPackage($moduleData['package'])->count()
-                && $this->confirmInstall($input, $output, $moduleData['package'])
-            ){
+
+            if($this->getService('module_manager')->getByPackage($moduleData['package'])->count()){
+
+                $output->writeln(sprintf('<info>Module "%s" already installed</info>', $moduleData['package']));
+                continue;
+            }
+
+            if($this->confirmInstall($input, $output, $moduleData['package'])){
                 $this->getService('module_procedure')->setOutput($output);
                 $this->getService('module_procedure')->import($this->buildModule($name, $moduleData));
             }

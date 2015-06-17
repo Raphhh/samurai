@@ -34,7 +34,10 @@ class InstallingTest extends \PHPUnit_Framework_TestCase
             )
         );
         $this->assertSame(ITask::NO_ERROR_CODE, $installing->execute($input, $output));
-        $this->assertSame("Stating modules installation\n", $output->fetch());
+        $this->assertSame(
+            "Stating modules installation\nModule \"raphhh/samurai-module-git\" already installed\nModule \"raphhh/samurai-module-cleaner\" already installed\n",
+            $output->fetch()
+        );
     }
 
     public function testExecuteWithoutModuleButNotInstalled()
