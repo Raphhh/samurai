@@ -14,4 +14,9 @@ interface IPlannerBuilder
      * @return Planner
      */
     public function create();
+
+    /**
+     * @return string
+     */
+    public function getName();
 }

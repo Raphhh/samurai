@@ -45,7 +45,10 @@ class Running extends Task
     {
         $modules = $this->filter($modules);
         $output->writeln(sprintf('<info>Running %d module(s)</info>', count($modules)));
-        $planner = new PlannerAdapter(new ModulesPlannerBuilder($this->getServices(), $modules));
+        $planner = new PlannerAdapter(
+            new ModulesPlannerBuilder($this->getServices(), $modules, $this->getService('helper_set')->get('question')),
+            $this->getService('helper_set')->get('question')
+        );
         return $planner->execute($input, $output);
     }
 
@@ -58,7 +61,10 @@ class Running extends Task
     private function runModule(InputInterface $input, OutputInterface $output, Module $module)
     {
         $output->writeln('<info>Running the module "'.$module->getName().'"</info>');
-        $planner = new PlannerAdapter(new ModulePlannerBuilder($this->getServices(), $module));
+        $planner = new PlannerAdapter(
+            new ModulePlannerBuilder($this->getServices(), $module),
+            $this->getService('helper_set')->get('question')
+        );
         return $planner->execute($input, $output);
     }
 

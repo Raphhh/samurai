@@ -5,6 +5,7 @@ use Pimple\Container;
 use Samurai\Module\Module;
 use Samurai\Module\Modules;
 use Samurai\Task\ITask;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -20,11 +21,16 @@ class RunningTest extends \PHPUnit_Framework_TestCase
 
     public function testExecuteForAll()
     {
-        $moduleManager = $this->provideModuleManagerForAll();
-
         $services = new Container();
+
+        $moduleManager = $this->provideModuleManagerForAll();
         $services['module_manager'] = function() use($moduleManager){
             return $moduleManager;
+        };
+
+        $questionHelper = $this->getQuestionHelper();
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         $input = $this->provideInput([]);
@@ -38,11 +44,16 @@ class RunningTest extends \PHPUnit_Framework_TestCase
 
     public function testExecuteForOne()
     {
-        $moduleManager = $this->provideModuleManagerForOne();
-
         $services = new Container();
+
+        $moduleManager = $this->provideModuleManagerForOne();
         $services['module_manager'] = function() use($moduleManager){
             return $moduleManager;
+        };
+
+        $questionHelper = $this->getQuestionHelper();
+        $services['helper_set'] = function () use ($questionHelper) {
+            return new HelperSet(['question' => $questionHelper]);
         };
 
         $input = $this->provideInput(['name' => 'moduleA']);
@@ -136,5 +147,14 @@ class RunningTest extends \PHPUnit_Framework_TestCase
                 new InputArgument('name'),
             ])
         );
+    }
+
+    private function getQuestionHelper()
+    {
+        $questionHelper = $this->getMock('Symfony\Component\Console\Helper\QuestionHelper', array('ask'));
+        $questionHelper->expects($this->any())
+            ->method('ask')
+            ->will($this->returnValue(true));
+        return $questionHelper;
     }
 }

@@ -43,4 +43,12 @@ class ModulePlannerBuilder implements IPlannerBuilder
         }
         return $planner;
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->module->getName();
+    }
 }

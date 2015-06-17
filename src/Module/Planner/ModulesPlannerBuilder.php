@@ -4,6 +4,7 @@ namespace Samurai\Module\Planner;
 use Pimple\Container;
 use Samurai\Module\Modules;
 use Samurai\Task\Planner;
+use Symfony\Component\Console\Helper\QuestionHelper;
 
 /**
  * Class ModulesPlannerBuilder
@@ -23,13 +24,20 @@ class ModulesPlannerBuilder implements IPlannerBuilder
     private $modules;
 
     /**
+     * @var QuestionHelper
+     */
+    private $questionHelper;
+
+    /**
      * @param Container $services
      * @param Modules $modules
+     * @param QuestionHelper $questionHelper
      */
-    public function __construct(Container $services, Modules $modules)
+    public function __construct(Container $services, Modules $modules, QuestionHelper $questionHelper)
     {
         $this->services = $services;
         $this->modules = $modules;
+        $this->questionHelper = $questionHelper;
     }
 
     /**
@@ -39,8 +47,19 @@ class ModulesPlannerBuilder implements IPlannerBuilder
     {
         $planner = new Planner();
         foreach($this->modules as $module){
-            $planner[] = new PlannerAdapter(new ModulePlannerBuilder($this->services, $module));
+            $planner[] = new PlannerAdapter(
+                new ModulePlannerBuilder($this->services, $module),
+                $this->questionHelper
+            );
         }
         return $planner;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return '';
     }
 }

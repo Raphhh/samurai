@@ -37,9 +37,28 @@ class PlannerAdapterTest extends \PHPUnit_Framework_TestCase
         $input = new ArrayInput([]);
         $output = new BufferedOutput();
 
-        $adapter = new PlannerAdapter(new ModulesPlannerBuilder(new Container(), $modules));
+        $questionHelper = $this->getQuestionHelperMock();
+
+        $adapter = new PlannerAdapter(
+            new ModulesPlannerBuilder(new Container(), $modules, $questionHelper),
+            $questionHelper
+        );
         $this->assertSame(ITask::NO_ERROR_CODE, $adapter->execute($input, $output));
         $this->assertSame('ABC', $output->fetch());
 
+    }
+
+    /**
+     * @return \Symfony\Component\Console\Helper\QuestionHelper
+     */
+    private function getQuestionHelperMock()
+    {
+        $helper = $this->getMockBuilder('Symfony\Component\Console\Helper\QuestionHelper')->disableOriginalConstructor()->getMock();
+
+        $helper->expects($this->exactly(3))
+            ->method('ask')
+            ->will($this->returnValue(true));
+
+        return $helper;
     }
 }
