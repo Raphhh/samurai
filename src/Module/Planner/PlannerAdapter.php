@@ -50,6 +50,10 @@ class PlannerAdapter implements ITask
         if(!$this->questionHelper->ask($input, $output, $this->buildQuestion())){
             return ITask::NO_ERROR_CODE;
         }
+        if(!$this->plannerBuilder->count()){
+            $output->writeln('<error>Nothing to run</error>');
+            return ITask::NON_BLOCKING_ERROR_CODE;
+        }
         return $this->getPlanner()->execute($input, $output);
     }
 

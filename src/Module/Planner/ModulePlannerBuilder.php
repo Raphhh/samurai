@@ -51,4 +51,12 @@ class ModulePlannerBuilder implements IPlannerBuilder
     {
         return $this->module->getName();
     }
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->module->getTasks());
+    }
 }

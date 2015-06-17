@@ -62,4 +62,12 @@ class ModulesPlannerBuilder implements IPlannerBuilder
     {
         return '';
     }
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->modules);
+    }
 }

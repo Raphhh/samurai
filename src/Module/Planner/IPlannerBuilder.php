@@ -19,4 +19,9 @@ interface IPlannerBuilder
      * @return string
      */
     public function getName();
+
+    /**
+     * @return int
+     */
+    public function count();
 }
