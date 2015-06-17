@@ -82,7 +82,7 @@ To create a new project, run the `new` command of Samurai and choose your bootst
 $ samurai new
 ```
 
-For more information, see the detailed [scaffolding doc](http://samurai.readthedocs.org/) of Samurai.
+For more information, see the detailed [scaffolding doc](http://samurai.readthedocs.org/en/latest/scaffolding/) of Samurai.
 
 
 ## Modules
@@ -95,7 +95,7 @@ You can easily develop your own module and add it to Samurai.
 
 The modules can run during the scaffolding of a new project, or improve an existing project.
 
-For more information, see the detailed [modules doc](http://samurai.readthedocs.org/) of Samurai.
+For more information, see the detailed [modules doc](http://samurai.readthedocs.org/en/latest/modules/) of Samurai.
 
 ### Install pre-defined modules
 

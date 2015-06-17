@@ -53,6 +53,10 @@ For a better experience, you should also install [Git](http://git-scm.com/).
 
 Do not forget to add a [global .gitignore](https://help.github.com/articles/ignoring-files/#explicit-repository-excludes), to exclude files or folders of your [IDE or OS](https://github.com/github/gitignore/tree/master/Global).
 
+To test if git is installed:
+```console
+$ git --version
+```
 
 ## Install Samurai
 
@@ -62,19 +66,21 @@ First, download Samurai with [Composer](https://getcomposer.org) **in the global
 $ composer global require raphhh/samurai
 ```
 
-Note, by default, no modules are installed. To install the recommended modules, execute the following command:
-```console
-$ samurai module install
-```
-See module docs for more information.
-
 ## Test Samurai
 
 The samurai executable is found when you run the following command in your terminal.
 
 ```console
-$ samurai help --version
+$ samurai --version
 ```
+
+## Install modules
+
+Note, by default, no modules are installed. To install the recommended modules, execute the following command:
+```console
+$ samurai module install
+```
+See [modules docs](http://samurai.readthedocs.org/en/latest/modules/#add-or-redefine-a-module) for more information.
 
 ## List commands and help
 
