@@ -54,7 +54,7 @@ class Installing extends Task
      */
     private function installModules(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>Stating modules installation</info>');
+        $output->writeln('<info>Starting modules installation</info>');
 
         foreach($this->modules as $name => $moduleData){
 

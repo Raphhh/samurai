@@ -165,7 +165,7 @@ class ModuleCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertContains(
-            "Stating modules installation\n",
+            "Starting modules installation\n",
             $commandTester->getDisplay(true)
         );
     }
