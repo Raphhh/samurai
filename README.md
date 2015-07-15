@@ -12,7 +12,7 @@ Samurai is a PHP scaffolding tool.
 It helps you to :
 
  - **start a new project in PHP**, generating all the base files in a simple command line.
- - **improve a existing project**, running several modules with specific actions.
+ - **improve an existing project**, running several modules with specific actions.
 
 Samurai generates all the files you need for a library, a web application, a frameworked project, and so on. 
 You can even **load your own bootstrap**.
@@ -30,13 +30,13 @@ Samurai installs and params your project:
 
  1. Download the bootstrap and its dependencies with Composer
  2. Param the Composer config (composer.json)
- 3. Dump the autoloader of Composer with your new Package name
+ 3. Dump the autoloader of Composer with your new package name
  4. Execute the installed modules.
  
  
 ### Examples of bootstrap
 
- - A simple PHP librairy
+ - A simple PHP library
  - Symfony
  - Laravel
  - Zend
@@ -112,8 +112,12 @@ $ samurai module run
 ## Documentation
 
 See the [Samurai documentation](http://samurai.readthedocs.org/).
+ - [Installation](http://samurai.readthedocs.org/en/latest/installation/)
+ - [Usage](http://samurai.readthedocs.org/en/latest/scaffolding/)
+ - [Aliases](http://samurai.readthedocs.org/en/latest/aliases/)
+ - [Modules](http://samurai.readthedocs.org/en/latest/modules/)
 
-## Contribution and road map
+## Contribution and roadmap
 
 See the [Samurai wiki](https://github.com/Raphhh/samurai/wiki).
 
