@@ -19,9 +19,9 @@ So, you can execute directly the composer command:
 $ composer --version
 ```
 
-### Set the PATH
+### Set the PATH of the composer bin
 
-Second, **make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/03-cli.md#composer-bin-dir) directory in your PATH**.
+Second, to enable the execution of the samurai command, **make sure to place the [COMPOSER_BIN_DIR](https://getcomposer.org/doc/03-cli.md#composer-bin-dir) directory in your PATH**.
 
 #### Unix system
 
@@ -30,13 +30,13 @@ By default, the COMPOSER_BIN_DIR is the directory `~/.composer/vendor/bin`.
 For all users (restart):
 
 ```console
-# echo "export PATH=$PATH:~/.composer/vendor/bin" > /etc/profile.d/composer.sh
+# echo 'PATH="$PATH:~/.composer/vendor/bin"' > /etc/profile.d/composer.sh
 ```
 
 For current user (relogin):
 
 ```console
-$ echo "export PATH=$PATH:~/.composer/vendor/bin" >> ~/.profile
+$ echo 'PATH="$PATH:~/.composer/vendor/bin"' >> ~/.profile
 ```
 
 #### Windows
