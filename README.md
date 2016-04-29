@@ -8,7 +8,7 @@
 [![Total Downloads](https://poser.pugx.org/raphhh/samurai/downloads.svg)](https://packagist.org/packages/raphhh/samurai)
 [![License](https://poser.pugx.org/raphhh/samurai/license.svg)](https://packagist.org/packages/raphhh/samurai)
 
-Samurai is a PHP scaffolding tool. 
+[Samurai](http://samuraiphp.com/) is a PHP scaffolding tool. 
 It helps you to :
 
  - **start a new project in PHP**, generating all the base files in a simple command line.
