@@ -14,7 +14,7 @@
         "scaffolding tool",
         "composer"
     ],
-    "homepage": "https://github.com/Raphhh/samurai",
+    "homepage": "http://samuraiphp.com",
     "autoload": {
         "psr-4": {
             "Samurai\\": [
