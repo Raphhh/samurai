@@ -1,12 +1,14 @@
 <?php
 namespace Samurai\Module;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Class ModulesSorterTest
  * @package Samurai\Module\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ModulesSorterTest extends \PHPUnit_Framework_TestCase
+class ModulesSorterTest extends TestCase
 {
 
     public function testSort()

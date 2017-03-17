@@ -1,6 +1,7 @@
 <?php
 namespace Samurai;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 
 /**
@@ -8,7 +9,7 @@ use Symfony\Component\Console\Application;
  * @package Samurai
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class SamuraiTest extends \PHPUnit_Framework_TestCase
+class SamuraiTest extends TestCase
 {
 
     public function testRun()

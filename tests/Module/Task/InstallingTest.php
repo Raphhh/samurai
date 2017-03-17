@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Module\Task;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Module\Module;
 use Samurai\Module\Modules;
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @package Samurai\Module\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class InstallingTest extends \PHPUnit_Framework_TestCase
+class InstallingTest extends TestCase
 {
     public function testExecuteWithModule()
     {

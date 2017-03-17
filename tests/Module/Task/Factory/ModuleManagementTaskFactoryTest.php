@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Module\Task\Factory;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Input\InputDefinition;
  * @package Samurai\Module\Task\Factory
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ModuleManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
+class ModuleManagementTaskFactoryTest extends TestCase
 {
 
     public function testCreateWithIncorrectAction()

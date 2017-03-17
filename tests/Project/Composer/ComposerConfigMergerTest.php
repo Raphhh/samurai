@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Composer;
 
+use PHPUnit\Framework\TestCase;
 use Samurai\Project\Project;
 
 /**
@@ -8,7 +9,7 @@ use Samurai\Project\Project;
  * @package Samurai\Project\Composer
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ComposerConfigMergerTest extends \PHPUnit_Framework_TestCase
+class ComposerConfigMergerTest extends TestCase
 {
 
     public function testMerge()

@@ -1,12 +1,14 @@
 <?php
 namespace Samurai\Project;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Class AuthorTest
  * @package Samurai\Project
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class AuthorTest extends \PHPUnit_Framework_TestCase
+class AuthorTest extends TestCase
 {
 
     public function testConstructorWithEmptyString()

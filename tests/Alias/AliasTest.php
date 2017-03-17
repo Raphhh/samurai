@@ -1,12 +1,14 @@
 <?php
 namespace Samurai\Alias;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Class AliasTest
  * @package Samurai\Alias
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class AliasTest extends \PHPUnit_Framework_TestCase
+class AliasTest extends TestCase
 {
 
     public function testToArray()

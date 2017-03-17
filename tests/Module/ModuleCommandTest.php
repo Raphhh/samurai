@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Module;
 
+use PHPUnit\Framework\TestCase;
 use Balloon\Factory\BalloonFactory;
 use Pimple\Container;
 use Puppy\Config\Config;
@@ -19,7 +20,7 @@ use TRex\Cli\Executor;
  * @package Samurai\Module
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ModuleCommandTest extends \PHPUnit_Framework_TestCase
+class ModuleCommandTest extends TestCase
 {
     public function testExecuteSave()
     {

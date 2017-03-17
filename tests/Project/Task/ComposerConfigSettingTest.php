@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Task;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Project\Project;
 use Samurai\Task\ITask;
@@ -12,7 +13,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @package Samurai\Project\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ComposerConfigSettingTest extends \PHPUnit_Framework_TestCase
+class ComposerConfigSettingTest extends TestCase
 {
     public function testExecuteWithValidConfig()
     {

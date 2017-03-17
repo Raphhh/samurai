@@ -1,12 +1,14 @@
 <?php
 namespace Samurai\Project;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Class PackagesTest
  * @package Samurai\Project
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class PackagesTest extends \PHPUnit_Framework_TestCase
+class PackagesTest extends TestCase
 {
 
     public function testToArray()

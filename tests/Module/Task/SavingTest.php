@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Module\Task;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Module\Module;
 use Samurai\Task\ITask;
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  * @package Samurai\Module\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class SavingTest extends \PHPUnit_Framework_TestCase
+class SavingTest extends TestCase
 {
     public function testBuildModule()
     {

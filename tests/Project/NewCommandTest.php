@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project;
 
+use PHPUnit\Framework\TestCase;
 use PHPGit\Git;
 use Pimple\Container;
 use Puppy\Config\ArrayConfig;
@@ -23,7 +24,7 @@ use Symfony\Component\Console\Tester\CommandTester;
  * @package Samurai\Command
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class NewCommandTest extends \PHPUnit_Framework_TestCase
+class NewCommandTest extends TestCase
 {
 
     /**

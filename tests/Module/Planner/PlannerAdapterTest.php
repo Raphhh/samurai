@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Module\Planner;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Module\Module;
 use Samurai\Module\Modules;
@@ -13,7 +14,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @package Samurai\Module\Planner
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class PlannerAdapterTest extends \PHPUnit_Framework_TestCase
+class PlannerAdapterTest extends TestCase
 {
 
     public function testExecute()

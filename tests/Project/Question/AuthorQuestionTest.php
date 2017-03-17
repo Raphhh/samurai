@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Question;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Project\Author;
 use Samurai\Project\Project;
@@ -17,7 +18,7 @@ use Symfony\Component\Console\Question\Question;
  * @package Samurai\Project\Question
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class AuthorQuestionTest extends \PHPUnit_Framework_TestCase
+class AuthorQuestionTest extends TestCase
 {
     public function testExecuteForOneAuthorWithGit()
     {
