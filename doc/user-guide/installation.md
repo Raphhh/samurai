@@ -14,7 +14,7 @@ For Unix system be sure that you have installed [Composer globally](https://getc
 # mv composer.phar /usr/local/bin/composer
 ```
 
-So, you can execute directly the composer command:
+So, you can execute directly the composer command anywhere (instead of the composer.phar only in a specific dir):
 ```console
 $ composer --version
 ```
@@ -25,18 +25,18 @@ Second, to enable the execution of the samurai command, **make sure to place the
 
 #### Unix system
 
-By default, the COMPOSER_BIN_DIR is the directory `~/.composer/vendor/bin`.
+By default, the COMPOSER_BIN_DIR is the directory `~/.composer/vendor/bin`. To know your directory: `$ cd ~/.composer && composer config --list | grep bin-dir`
 
 For all users (restart):
 
 ```console
-# echo 'PATH="$PATH:~/.composer/vendor/bin"' > /etc/profile.d/composer.sh
+# echo 'PATH="$PATH:$HOME/.composer/vendor/bin"' > /etc/profile.d/composer.sh
 ```
 
 For current user (relogin):
 
 ```console
-$ echo 'PATH="$PATH:~/.composer/vendor/bin"' >> ~/.profile
+$ echo 'PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.profile
 ```
 
 #### Windows
