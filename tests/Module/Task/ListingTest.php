@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Module\Task;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Module\Module;
 use Samurai\Module\Modules;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @package Samurai\Alias\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ListingTest extends \PHPUnit_Framework_TestCase
+class ListingTest extends TestCase
 {
 
     public function testExecuteAll()

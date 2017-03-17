@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Module;
 
+use PHPUnit\Framework\TestCase;
 use Balloon\Factory\BalloonFactory;
 use Balloon\Reader\DummyFileReader;
 use Balloon\Reader\Factory\DummyFileReaderFactory;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @package Samurai\Module\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ModuleProcedureTest extends \PHPUnit_Framework_TestCase
+class ModuleProcedureTest extends TestCase
 {
     public function testUpdate()
     {

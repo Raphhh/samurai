@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Alias;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Puppy\Config\ArrayConfig;
 use Puppy\Config\Config;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Tester\CommandTester;
  * @package Samurai\Command
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class AliasCommandTest extends \PHPUnit_Framework_TestCase
+class AliasCommandTest extends TestCase
 {
     public function testExecuteSave()
     {

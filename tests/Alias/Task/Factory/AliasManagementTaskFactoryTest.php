@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Alias\Task\Factory;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Input\InputDefinition;
  * @package Samurai\Alias\Task\Factory
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class AliasManagementTaskFactoryTest extends \PHPUnit_Framework_TestCase
+class AliasManagementTaskFactoryTest extends TestCase
 {
 
     public function testCreateForSaving()

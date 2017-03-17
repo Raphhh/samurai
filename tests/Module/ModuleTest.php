@@ -1,12 +1,14 @@
 <?php
 namespace Samurai\Module;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Class ModuleTest
  * @package Samurai\Module
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ModuleTest extends \PHPUnit_Framework_TestCase
+class ModuleTest extends TestCase
 {
 
     public function testRetrieveDependentsWithEmptyModules()

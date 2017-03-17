@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Question;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Project\Project;
 use Samurai\Task\ITask;
@@ -14,7 +15,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @package Samurai\Project\Question
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class DirectoryPathQuestionTest extends \PHPUnit_Framework_TestCase
+class DirectoryPathQuestionTest extends TestCase
 {
     public function testExecuteWithDefaultName()
     {

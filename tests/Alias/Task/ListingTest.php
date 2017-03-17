@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Alias\Task;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Alias\Alias;
 use Samurai\Task\ITask;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @package Samurai\Alias\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ListingTest extends \PHPUnit_Framework_TestCase
+class ListingTest extends TestCase
 {
 
     public function testExecuteWithGlobal()

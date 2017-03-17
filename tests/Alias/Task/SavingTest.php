@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Alias\Task;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Samurai\Alias\Alias;
 use Samurai\Task\ITask;
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  * @package Samurai\Alias\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class SavingTest extends \PHPUnit_Framework_TestCase
+class SavingTest extends TestCase
 {
     public function testBuildAlias()
     {

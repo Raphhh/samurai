@@ -1,12 +1,14 @@
 <?php
 namespace Samurai\Project;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Class ProjectTest
  * @package Samurai\Project
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ProjectTest extends \PHPUnit_Framework_TestCase
+class ProjectTest extends TestCase
 {
 
     public function testTpConfig()

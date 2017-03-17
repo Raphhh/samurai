@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Task;
 
+use PHPUnit\Framework\TestCase;
 use Balloon\Factory\BalloonFactory;
 use Balloon\Reader\Factory\DummyFileReaderFactory;
 use Pimple\Container;
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @package Samurai\Project\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class BootstrapImportationTest extends \PHPUnit_Framework_TestCase
+class BootstrapImportationTest extends TestCase
 {
 
     public function testExecuteWithoutBootstrap()

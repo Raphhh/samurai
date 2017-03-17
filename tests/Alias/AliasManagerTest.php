@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Alias;
 
+use PHPUnit\Framework\TestCase;
 use Puppy\Config\Config;
 
 /**
@@ -8,7 +9,7 @@ use Puppy\Config\Config;
  * @package Samurai\Alias
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class AliasManagerTest extends \PHPUnit_Framework_TestCase
+class AliasManagerTest extends TestCase
 {
 
     public function testGetGlobal()

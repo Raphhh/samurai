@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Task;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\NullOutput;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @package Samurai\Task
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class PlannerTest extends \PHPUnit_Framework_TestCase
+class PlannerTest extends TestCase
 {
 
     public function testExecuteWithEmptyTasks()

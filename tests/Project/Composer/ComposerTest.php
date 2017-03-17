@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Composer;
 
+use PHPUnit\Framework\TestCase;
 use Balloon\Factory\BalloonFactory;
 use Balloon\Reader\Factory\DummyFileReaderFactory;
 use Samurai\Alias\Alias;
@@ -12,7 +13,7 @@ use TRex\Cli\Executor;
  * @package Samurai\Project\Composer
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class ComposerTest extends \PHPUnit_Framework_TestCase
+class ComposerTest extends TestCase
 {
     public function testCreateProject()
     {

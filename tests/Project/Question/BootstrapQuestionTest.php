@@ -1,6 +1,7 @@
 <?php
 namespace Samurai\Project\Question;
 
+use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Puppy\Config\Config;
 use Samurai\Alias\AliasManagerFactory;
@@ -20,7 +21,7 @@ use Symfony\Component\Console\Question\ChoiceQuestion;
  * @package Samurai\Project\Question
  * @author Raphaël Lefebvre <raphael@raphaellefebvre.be>
  */
-class BootstrapQuestionTest extends \PHPUnit_Framework_TestCase
+class BootstrapQuestionTest extends TestCase
 {
     public function testExecuteEmpty()
     {
